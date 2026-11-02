@@ -8,9 +8,10 @@ Raccolta strutturata, verificata e completa di materiali didattici, prove scritt
 ## 📌 Indice dei Contenuti
 
 1. [Struttura del Repository](#-struttura-del-repository)
-   * [Materiale_Sito_Ufficiale_Cutolo](#1-materiale_sito_ufficiale_cutolo)
-   * [Materiale_Prof_Cutolo](#2-materiale_prof_cutolo)
-   * [Informazioni_Chat_Cutolo](#3-informazioni_chat_cutolo)
+   * [Dispense_Algebra_Cutolo (Trattato Ufficiale in LaTeX)](#1-dispense_algebra_cutolo-trattato-ufficiale-in-latex)
+   * [Materiale_Sito_Ufficiale_Cutolo](#2-materiale_sito_ufficiale_cutolo)
+   * [Materiale_Prof_Cutolo](#3-materiale_prof_cutolo)
+   * [Informazioni_Chat_Cutolo](#4-informazioni_chat_cutolo)
 2. [Avvertenza su Fonti, Privacy e Riferimenti Personali](#-avvertenza-su-fonti-privacy-e-riferimenti-personali)
 3. [Disclaimer sul Copyright e Proprietà Intellettuale](#-disclaimer-sul-copyright-e-proprietà-intellettuale)
 4. [Istruzioni per la Clonazione (Git LFS)](#-istruzioni-per-la-clonazione-git-lfs)
@@ -20,7 +21,28 @@ Raccolta strutturata, verificata e completa di materiali didattici, prove scritt
 
 ## 📁 Struttura del Repository
 
-### 1. `Materiale_Sito_Ufficiale_Cutolo/`
+### 1. `Dispense_Algebra_Cutolo/` (Trattato Ufficiale in LaTeX)
+L'opera organica e modulare redatta in **LaTeX**, concepita come la dispensa definitiva per lo studio dell'intero programma d'esame. Include il codice sorgente suddiviso in 10 capitoli tematici, il preambolo stilistico con box decorati (`tcolorbox`), diagrammi vettoriali (`tikz`), tutte le dimostrazioni formali e una **GitHub Action** per la compilazione automatica del PDF ad ogni commit:
+
+* [**`main.tex`**](Dispense_Algebra_Cutolo/main.tex): Documento principale, frontespizio e indice generale.
+* [**`preamble.tex`**](Dispense_Algebra_Cutolo/preamble.tex): Pacchetti matematici, macro ufficiali di Cutolo ($\antivecf, \vecf, \P, \ds$), ambienti per teoremi, definizioni ed avvisi d'orale.
+* **`capitoli/`**:
+  * `00_prefazione.tex`: Metodologia di studio, convenzioni e criteri di valutazione.
+  * `01_logica_e_fondamenti.tex`: Calcolo proposizionale, connettivi completi, tavole di verità, tautologie, calcolo dei predicati e quantificatori.
+  * `02_insiemi_e_combinatoria.tex`: Teoria ingenua degli insiemi, buon ordinamento di $\N$, principio di induzione, calcolo combinatorio e binomio di Newton.
+  * `03_relazioni_e_applicazioni.tex`: Relazioni d'equivalenza, partizioni, proiezioni canoniche, sezioni e retrazioni, Teorema di omomorfismo per insiemi e cardinalità (Cantor).
+  * `04_relazioni_d_ordine_e_reticoli.tex`: Poset, diagrammi di Hasse, estremi, reticoli algebrici e d'ordine, criterio di Birkhoff ($N_5, M_3$), algebre di Boole e Teorema di Stone.
+  * `05_aritmetica_modulare_e_diofantee.tex`: Divisione euclidea, algoritmo esteso di Bézout a tabella, congruenze in $\Z_m$, Teorema Cinese del Resto (CRT), funzione $\varphi$ di Eulero e teoremi di Eulero-Fermat.
+  * `06_strutture_algebriche.tex`: Operazioni binarie, elementi neutri/simmetrici/cancellabili, semigruppi, monoidi, gruppi, Teorema di Lagrange, omomorfismi e anelli/campi.
+  * `07_anelli_di_polinomi.tex`: Polinomi $K[x]$, divisione euclidea, Teorema di Ruffini, criteri di irriducibilità, ideali e campi quoziente $K[x]/(f(x))$.
+  * `08_teoria_dei_grafi.tex`: Grafi non orientati, Handshaking Lemma, alberi e loro caratterizzazioni, grafi bipartiti (Kőnig), cammini euleriani (Eulero) e isomorfismi.
+  * `09_guida_strategica_esame_e_orale.tex`: Le 10 domande "killer" di Cutolo all'orale, vademecum del rigore linguistico e gestione dei tempi dello scritto.
+  * `10_raccolta_esercizi_svolti_tipo.tex`: Eserciziario risolto passo per passo con commento metodologico su tutti i tipi d'esame.
+* [**`README.md`**](Dispense_Algebra_Cutolo/README.md): Guida alla consultazione e istruzioni per la compilazione (GitHub Actions, Overleaf o locale).
+
+---
+
+### 2. `Materiale_Sito_Ufficiale_Cutolo/`
 Archivio integrale, speculare e verificato scaricato direttamente dal [sito ufficiale del docente](http://www.dma.unina.it/cutolo/didattica/AlgInfo/) (D.M.A. UniNa) per il corso di Algebra (LT Informatica - Canale 2 / U6282):
 
 * **`01_Note_e_Dispense_Teoriche/`**: 19 monografie e note didattiche di teoria del docente (logica, calcolo combinatorio aggiornato 2026, partizioni ed equivalenze, algoritmo euclideo, polinomi ed esercizi svolti, strutture booleane, omomorfismi per insiemi, cancellabilità, ecc.).
@@ -32,7 +54,7 @@ Archivio integrale, speculare e verificato scaricato direttamente dal [sito uffi
 
 ---
 
-### 2. `Materiale_Prof_Cutolo/`
+### 3. `Materiale_Prof_Cutolo/`
 Raccoglie esclusivamente le risorse riferite al corso del Prof. Cutolo (filtrando i materiali di altri docenti come Celentani e Brescia):
 
 * **`01_Appunti/`**: Appunti delle lezioni frontali in LaTeX (lezioni 2, 3, 4 e 5), appunti integrali del corso (raccolte A. Marasco, G. Fiorentino & G. Amato, appunti 2022/2025) e note aggiornate con prove svolte fino al 2025 (`unina_algebra_notes.pdf`).
@@ -44,7 +66,7 @@ Raccoglie esclusivamente le risorse riferite al corso del Prof. Cutolo (filtrand
 
 ---
 
-### 3. `Informazioni_Chat_Cutolo/`
+### 4. `Informazioni_Chat_Cutolo/`
 Guide strategiche ricavate dall'analisi di oltre 4.400 messaggi ed esperienze dirette degli studenti della Federico II:
 
 * [**`01_Modalita_Esame_e_Correzione.md`**](Informazioni_Chat_Cutolo/01_Modalita_Esame_e_Correzione.md): Ruolo di Cutolo come autore unico dello scritto per tutti i canali, regolamento Nuovo Ordinamento (2 ore, 2 esercizi in meno, alleggerimento su grafi e polinomi), correzione rapida (24-48 ore) e calendario orali.
