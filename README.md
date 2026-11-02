@@ -1,15 +1,16 @@
-# Algebra (Prof. Gennaro Cutolo) – Archivio e Guida all'Esame
+# Algebra (Prof. Giovanni Cutolo) – Archivio e Guida all'Esame
 **Corso di Laurea in Informatica – Università degli Studi di Napoli Federico II**
 
-Raccolta strutturata, verificata e completa di materiali didattici, prove scritte d'esame, appunti manoscritti, dispense ufficiali e guide informative per la preparazione dell'esame di **Algebra** con il **Prof. Gennaro Cutolo**.
+Raccolta strutturata, verificata e completa di materiali didattici, prove scritte d'esame, appunti manoscritti, dispense ufficiali e guide informative per la preparazione dell'esame di **Algebra** con il **Prof. Giovanni Cutolo**.
 
 ---
 
 ## 📌 Indice dei Contenuti
 
 1. [Struttura del Repository](#-struttura-del-repository)
-   * [Materiale_Prof_Cutolo](#1-materiale_prof_cutolo)
-   * [Informazioni_Chat_Cutolo](#2-informazioni_chat_cutolo)
+   * [Materiale_Sito_Ufficiale_Cutolo](#1-materiale_sito_ufficiale_cutolo)
+   * [Materiale_Prof_Cutolo](#2-materiale_prof_cutolo)
+   * [Informazioni_Chat_Cutolo](#3-informazioni_chat_cutolo)
 2. [Avvertenza su Fonti, Privacy e Riferimenti Personali](#-avvertenza-su-fonti-privacy-e-riferimenti-personali)
 3. [Disclaimer sul Copyright e Proprietà Intellettuale](#-disclaimer-sul-copyright-e-proprietà-intellettuale)
 4. [Istruzioni per la Clonazione (Git LFS)](#-istruzioni-per-la-clonazione-git-lfs)
@@ -19,7 +20,19 @@ Raccolta strutturata, verificata e completa di materiali didattici, prove scritt
 
 ## 📁 Struttura del Repository
 
-### 1. `Materiale_Prof_Cutolo/`
+### 1. `Materiale_Sito_Ufficiale_Cutolo/`
+Archivio integrale, speculare e verificato scaricato direttamente dal [sito ufficiale del docente](http://www.dma.unina.it/cutolo/didattica/AlgInfo/) (D.M.A. UniNa) per il corso di Algebra (LT Informatica - Canale 2 / U6282):
+
+* **`01_Note_e_Dispense_Teoriche/`**: 19 monografie e note didattiche di teoria del docente (logica, calcolo combinatorio aggiornato 2026, partizioni ed equivalenze, algoritmo euclideo, polinomi ed esercizi svolti, strutture booleane, omomorfismi per insiemi, cancellabilità, ecc.).
+* **`02_Esercizi_Ufficiali/`**: 5 fascicoli di esercizi tematici per l'esame (logica, insiemi e aritmetica modulare/diofantea, relazioni d'ordine e reticoli, teoria dei grafi, polinomi e strutture algebriche).
+* **`03_Prove_Scritte_Esami/`**: Raccolta completa di 177 prove scritte ufficiali suddivisa in:
+  * **`Recenti_2012_2026/`**: 114 tracce d'esame in PDF dal 2012 a settembre 2026.
+  * **`Archivio_Storico_2001_2011/`**: 63 tracce d'esame storiche in PDF dal 2001 al 2011.
+* **`04_Programmi_e_Registri/`**: Programmi ufficiali d'esame (recenti e storici) e il **registro integrale giorno per giorno delle lezioni ed esercizi** dell'anno accademico 2025/2026.
+
+---
+
+### 2. `Materiale_Prof_Cutolo/`
 Raccoglie esclusivamente le risorse riferite al corso del Prof. Cutolo (filtrando i materiali di altri docenti come Celentani e Brescia):
 
 * **`01_Appunti/`**: Appunti delle lezioni frontali in LaTeX (lezioni 2, 3, 4 e 5), appunti integrali del corso (raccolte A. Marasco, G. Fiorentino & G. Amato, appunti 2022/2025) e note aggiornate con prove svolte fino al 2025 (`unina_algebra_notes.pdf`).
@@ -31,7 +44,7 @@ Raccoglie esclusivamente le risorse riferite al corso del Prof. Cutolo (filtrand
 
 ---
 
-### 2. `Informazioni_Chat_Cutolo/`
+### 3. `Informazioni_Chat_Cutolo/`
 Guide strategiche ricavate dall'analisi di oltre 4.400 messaggi ed esperienze dirette degli studenti della Federico II:
 
 * [**`01_Modalita_Esame_e_Correzione.md`**](Informazioni_Chat_Cutolo/01_Modalita_Esame_e_Correzione.md): Ruolo di Cutolo come autore unico dello scritto per tutti i canali, regolamento Nuovo Ordinamento (2 ore, 2 esercizi in meno, alleggerimento su grafi e polinomi), correzione rapida (24-48 ore) e calendario orali.
@@ -57,7 +70,7 @@ Guide strategiche ricavate dall'analisi di oltre 4.400 messaggi ed esperienze di
 
 ## ⚖️ Disclaimer sul Copyright e Proprietà Intellettuale
 
-* I testi delle prove d'esame e le dispense didattiche ufficiali sono di proprietà del **Prof. Gennaro Cutolo** e del **Dipartimento di Matematica ed Applicazioni "R. Caccioppoli" dell'Università degli Studi di Napoli Federico II**.
+* I testi delle prove d'esame e le dispense didattiche ufficiali sono di proprietà del **Prof. Giovanni Cutolo** e del **Dipartimento di Matematica ed Applicazioni "R. Caccioppoli" dell'Università degli Studi di Napoli Federico II**.
 * I libri di testo indicati rimangono di esclusiva proprietà dei rispettivi autori ed editori e sono menzionati a puro scopo bibliografico per i programmi d'esame dell'Ateneo.
 * Gli appunti studenteschi appartengono ai rispettivi estensori e sono distribuiti a solo scopo di consultazione personale tra studenti.
 
