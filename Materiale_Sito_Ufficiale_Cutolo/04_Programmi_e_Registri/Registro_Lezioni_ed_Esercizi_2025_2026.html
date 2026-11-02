@@ -1,0 +1,1090 @@
+
+<!doctype html>
+<html lang=it-IT>
+<head>
+	<meta charset="utf-8">
+<meta name="description"  content="Giovanni Cutolo: sito per la didattica">
+<meta name="keywords" content="Matematica, Universit&agrave;, Algebra, Corsi, Divulgazione, Appunti, Esercizi">
+<meta name="author" content="Giovanni Cutolo">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/cutolo/didattica/didattica.php" rel="home">
+<link href="/cutolo/img/ico.png" rel="shortcut icon" type="image/x-icon">
+<link href="/cutolo/didattica/stile/css/mobile.css" rel="stylesheet" media="screen and (max-width: 50rem)">
+<link href="/cutolo/didattica/stile/css/default.css" rel="stylesheet" media="not screen and (max-width: 50rem)">
+<link href="/cutolo/didattica/stile/css/print.css" rel="stylesheet" media="print">
+<link href="/cutolo/didattica/stile/css/registri.css" rel="stylesheet" media="all">
+<title>Registro Algebra</title>
+<style>
+section>h3::after{
+	content:"/2026";
+}
+main .box section > h3::before {
+	content: "Lezione nr. ";
+}
+main .box section.plurale > h3::before {
+	content: "Lezioni nr. ";
+}
+.mid-container.hmenu{
+	flex-direction: column;
+	flex: 1;
+}
+table.TdV {
+	margin-left: auto;
+	margin-right: auto;
+	empty-cells: hide;
+	border-collapse: collapse;
+	background-color: rgba(1,1,1,.03);
+}
+table.TdV td{
+	border: none;
+	padding: 2px 1ex;
+	vertical-align: center;
+	text-align: center;
+}
+table.TdV td{
+	border: none;
+	padding: 2px 1ex;
+	vertical-align: center;
+	text-align: center;
+}
+table.TdV tr:first-child{
+	border-bottom: 1px solid Green;
+}
+table.TdV tr td:nth-child(2) {
+	border-right: 1px solid Green;
+}
+table.cayley {
+	margin-left: auto;
+	margin-right: auto;
+	empty-cells: hide;
+	border-collapse: separate;
+	background-color: rgba(1,1,1,.03);
+}
+table.cayley td{
+	border: 1px solid Green;
+	padding: 2px 1ex;
+	vertical-align: center;
+	text-align: center;
+}
+table.cayley tr:first-child td, table.cayley tr td:first-child {
+	border: 0;
+}
+.normaltext {font-weight: normal;}
+/* border-bottom: 1px solid #ddd; */
+</style>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<header>
+<h1><span id="mionome"><a href="/cutolo/didattica/">Cutolo</a></span><span id="separa">
+</span><span id="titolo">Corso di Algebra</span></h1>
+<a  href="http://www.unina.it/" id="logoUNINA"></a>
+</header>
+
+<div class="mid-container hmenu">
+<nav class="principale" onclick="void(0)">
+<input type="radio" name="menu-radio" id="chiudimenu">
+<div class="menuitem" onclick="void(0)">
+	<input type="radio" name="menu-radio" id="toggle-Corsi">
+	<label for="toggle-Corsi" onclick>Corsi</label>
+	<ul>
+		<li><a href="/cutolo/didattica/AlgComm/">Algebra Commutativa (LM&nbsp;Matematica)</a></li>
+		<!-- <li><a href="/cutolo/didattica/ThGalois/">Teoria di Galois (LT&nbsp;Matematica)</a></li> -->
+		<li><a href="/cutolo/didattica/AlgInfo/">Algebra (LT&nbsp;Informatica)</a></li>
+		<li><a href="/cutolo/didattica/SAI/">Strutture Algebriche per l'Informatica (LM&nbsp;Informatica)</a></li>
+		<li class="m-chiudi"><label for="chiudimenu" onclick></label></li>
+	</ul>
+</div>
+<div class="menuitem" onclick="void(0)">
+	<input type="radio" name="menu-radio" id="toggle-Archivio">
+	<label for="toggle-Archivio" onclick>Archivio</label>
+	<ul>
+		<li><a href="/cutolo/didattica/archivio/algebra_comm_arch.php">Algebra Commutativa</a></li>
+		<li><a href="/cutolo/didattica/archivio/algebra_info_arch.php">Algebra per informatica</a></li>
+		<li class="m-chiudi"><label for="chiudimenu" onclick></label></li>
+	</ul>
+</div>
+<a class="menuitem" href="/cutolo/didattica/materialedidattico.php">Materiale&nbsp;diverso</a>
+<a class="menuitem" href="/cutolo/didattica/varia/altro.php">Altro</a>
+<div class="menusep"></div>
+<a class="menuitem" id="m-contenuto" href="/cutolo/didattica/contenuti.php"></a>
+<div class="menuitem" id="m-home">
+<a href="/cutolo/didattica/"></a><a id="m-home-txt" href="/cutolo/didattica/"> Home</a>
+</div>
+</nav>
+<div style="display: none;">
+$
+\let\vuoto\varnothing
+\let\setminus\smallsetminus
+\let\smin\setminus
+\let\iso\simeq
+\let\n\triangleleft
+\let\implica\Rightarrow
+\let\Implica\Longrightarrow
+\let\shiff\Leftrightarrow
+\let\immersione\hookrightarrow
+\let\epi\twoheadrightarrow
+\let\mono\rightarrowtail
+\let\ot\otimes
+\newcommand\set[1]{\{#1\}}
+\newcommand\P{{\mathscr P}}
+\newcommand\U{{\mathscr U}}
+\newcommand\I{{\mathcal I}}
+\newcommand\F{{\mathcal F}}
+% \newcommand\Pf{{\P_{\mbox{\small\textbf {fin}}}}}
+\newcommand\Pf{{\P_{\text{fin}}}}
+\newcommand\N{\mathbb N}
+\newcommand\Z{\mathbb Z}
+\newcommand\Q{\mathbb Q}
+\newcommand\R{\mathbb R}
+\newcommand\C{\mathbb C}
+\newcommand\S{\mathbb S}
+\newcommand\Pr{\mathbb P}
+\newcommand\ds{\mathbin{\scriptstyle\triangle}}
+\newcommand\xor{\mathbin{\mathsf{XOR}}}
+\newcommand\nor{\mathbin{\mathsf{NOR}}}
+\newcommand\nand{\mathbin{\mathsf{NAND}}}
+\newcommand\gen[1]{\langle#1\rangle}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rest}{rest}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\Part}{Part}
+\DeclareMathOperator{\partz}{Partz}
+\DeclareMathOperator{\OS}{OS}
+\DeclareMathOperator{\OL}{OL}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\jac}{Jac}
+\DeclareMathOperator{\nrad}{NilRad}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\ass}{Ass}
+\DeclareMathOperator{\Min}{Min}
+\DeclareMathOperator{\minor}{Minor}
+\DeclareMathOperator{\maggior}{Maggior}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\car}{char}
+\DeclareMathOperator{\cd}{cd}
+\newcommand\Mod{{\mathcal{Mod}}}
+% \DeclareRobustCommand {\modbin}{\mathbin{\textrm {mod}}}
+\newcommand\modbin {\mathbin{\textrm {mod}}}
+\newcommand\antivec[2] {#1^{\raise #2pt\hbox{$\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\antivecf{\antivec f3}
+\newcommand\antivecv{v^{\raise 1.2pt\hbox{$\!\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\antivecg{g^{\raise 2pt\hbox{$\!\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\vecvuoto {\vec{\phantom{p}}}
+\newcommand\antivecvuoto{\,\antivec {{}}{2}}
+% \newcommand\antivecvuoto{{}^{\raise 2pt\hbox{$\scriptstyle\leftarrow\!\!$}}}
+\newcommand\maxid{\mathbin{{\n}{\cdot}}}
+\let\sseq\subseteq
+$</div>
+<div style='display:none;'>
+$
+\global\let\Part\partz
+\newcommand\avec[2] {#1^{\raise #2pt\hbox{$\!\!\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\vec[2]{#1^{\raise #2pt\hbox{$\!\!\!\scriptstyle\rightarrow\!\!$}}}
+\newcommand\avecf{\avec f3}
+\newcommand\vecf{\vec f3}
+\newcommand\vecg{\vec g2}
+\newcommand\avecg{\avec g1}
+\let\phi\varphi
+$
+</div>
+<main>
+
+<h1 class="offbox">Corso di Algebra (gruppo 2), a.a. 2025/26<span
+class="noprint"><br></span><span class="soloprint">&nbsp;&mdash; </span>Le lezioni</h1>
+
+<div class="box">
+<h2>Le Lezioni</h2>
+<section><h3>1 &mdash; 2/3</h3>
+<p>
+Introduzione al corso; contenuti, finalit&agrave;, modalit&agrave;, <a href="../algebra_info.php#materialedidattico">materiali didattici</a> ed altri riferimenti.</p>
+<p>
+Introduzione molto informale alle nozioni di linguaggio, formula e termine, con qualche esempio; cenni alla distinzione tra sintassi e semantica.</p>
+<p>
+I principali <em>connettivi proposizionali</em>, introdotti per via semantica, cio&egrave; tramite tavole (o tabelle) di verit&agrave;. Comparazione tra l'uso di tali connettivi in un linguaggio semiformalizzato e quello di parole corrispondenti nel linguaggio ordinario, con particolare riferimento al caso della disgiunzione.</p>
+<p>
+Forme proposizionali e calcolo dei loro valori di verit&agrave;; alcuni esempi. Forme logicamente equivalenti tra loro. Tautologie, contraddizioni e forme contingenti. Antecedente e conseguente di una implicazione. Alcune tautologie; tra queste: tautologia della doppia negazione; tautologie di commutativit&agrave; per $\land$, $\lor$, $\xor$, bicondizionale, di associativit&agrave; per $\land$ e $\lor$; principio del terzo escluso; $\xor$ come negazione del bicondizionale, leggi di De Morgan. Esempi di contraddizioni.</p>
+<p>
+Connettivo di implicazione (o condizionale). Prime osservazioni a riguardo.</p>
+<p>
+Per il contenuto di questa lezione e delle prossime si vedano <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>, <a href="/cutolo/didattica/note/connettivi.pdf">tavola dei connettivi binari</a> ed <a href="/cutolo/didattica/note/tautologie.pdf">esempi di tautologie</a>.</p>
+
+<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Esercizi A, B, C.1, C.2 e D da <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>.</li>
+		<li>Scrivere le tavole di verit&agrave; delle forme proposizionali $p\implica(\lnot p)$, $p\lor(p\land q)$ e $(p\land (\lnot q)\land r)$.</li>
+		<li>Cosa esprime il connettivo descritto da questa tavola di verit&agrave;?
+		<table class="TdV">
+			<tr>
+				<td>$p$</td><td>$q$</td><td>$p\mathbin{\text{?}}q$</td>
+			</tr>
+			<tr>
+				<td>$V$</td><td>$V$</td><td>$F$</td>
+			</tr>
+			<tr>
+				<td>$V$</td><td>$F$</td><td>$F$</td>
+			</tr>
+			<tr>
+				<td>$F$</td><td>$V$</td><td>$F$</td>
+			</tr>
+			<tr>
+				<td>$F$</td><td>$F$</td><td>$V$</td>
+			</tr>
+		</table>
+		</li>
+	</ol>
+</section>
+<section><h3>2 &mdash; 5/3</h3>
+<p>
+Discussione di alcuni esercizi dalla lezione precedente; connettivi proposizionali in frasi del linguaggio ordinario.</p>
+<p>
+Altre tautologie: idempotenza (o iterativit&agrave;); distributivit&agrave; rediproca tra $\land$ e $\lor$; distributivit&agrave; di $\land$ (ma non di $\lor$) rispetto a $\xor$; tautologie sul condizionale (implicazione come disgiunzione, negazione dell'implicazione, bicondizionale come doppia implicazione, contrapposizione, transitivit&agrave;); associativit&agrave; per $\shiff$ e $\xor$ (utilizzando forma alternative per la negazione di $\shiff$).</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Verificare che le forme proposizionali che a lezione, pur senza dimostrarlo, sono state indicate come tautologie lo sono effettivamente.</li>
+		<li>Calcolare le tavole di verit&agrave; per $p\lor(q\xor r)$ e $(p\lor q)\xor (p\lor r)$.
+		</li>
+		<li>Esercizi C.3, E, F.1, F.3 da <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>. La tautologia della transitivit&agrave; dell'implicazione sar&agrave; rapidamente discussa alla prossima lezione.</li>
+		<li>Decidere se la forma proposizionale $(p\nand (q\nand r))\iff ((p\nand q)\nand r)$ &egrave; una tautologia.</li>
+		<li>Negare le frasi "se piove mi bagno", "se piove non mi bagno", "se piove, mi bagno e mi ammalo".</li>
+		<li>Consiglio di verificare (alcune tra) le forme in
+		<a href="/cutolo/didattica/note/tautologie.pdf">esempi di tautologie</a>.
+	</li>
+</ol>
+</section>
+<section><h3>3 &mdash; 9/3</h3>
+<p>
+Tautologie di transitivit&agrave; per condizionale e bicondizionale.
+Interdipendenza (semantica) tra i connettivi proposizionali: basta uno tra NAND e NOR per descriverli tutti.</p>
+<p>
+Introduzione alla logica dei predicati. Variabili e loro sostituzioni. I quantificatori universale ed esistenziale. Occorrenze libere ed occorrenze vincolate di variabili; le sostituzioni di termini a variabili sono limitate alle occorrenze libere delle variabili. Proposizioni (o formule chiuse) e loro valori di verit&agrave;. Predicati</p>
+<p>
+Quantificatori ristretti. Alcune regole del calcolo dei predicati (come in <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>, anche per quantificatori ristretti), tra esse: quantificatori ripetuti, negazione di formule con quantificatori (anche ristretti), regola di specializzazione. Il quantificatore $\exists!$.</p>
+<p>
+Introduzione informale alla nozione di insieme. Il simbolo binario '$\in$' di appartenenza. Assioma di estensionalit&agrave; e qualche sua conseguenza (irrilevanza dell'ordine in cui sono elencati gli elementi di un insieme e delle ripetizioni in questi elenchi).</p>
+<p>
+Anche per il contenuto di questa lezione si pu&ograve; fare riferimento a <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>.<p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Esercizi F.4 e H (ma si invita a leggere anche le osservazioni in G, in particolare G.3) di <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a>.
+	</li>
+</ol>
+</section>
+<section><h3>4 &mdash; 12/3</h3>
+<p>
+Descrizioni di insiemi. Estensione di un predicato unario e cenno all'antinomia di Russell; notazione $\set{x\mid \phi(x)}$ per un predicato unario nella variabile $x$. Cenno agli assiomi di separazione (o di comprensione). Conseguenze: non esiste l'insieme di tutti gli insiemi; unicit&agrave; dell'insieme vuoto. Il singleton $\set x$ di un insieme $x$ (&egrave; diverso da $x$, <em>qualsiasi</em> sia $x$).</p>
+<p>
+Inclusione tra insiemi (ed inclusione stretta). Comparazione tra inclusione ($\sseq$) e appartenenza: <em>&egrave; fondamentale distinguere bene tra queste due nozioni</em>. Ad esempio: per ogni $x$ si ha $\vuoto\subseteq x$, quindi in particolare $\vuoto\sseq\vuoto$, ma $\vuoto\notin\vuoto$. Pi&ugrave; in generale, sempre per ogni $x$, si ha  $x\notin x$ (in conseguenza dell'assioma di fondazione, a cui si &egrave; solo accennato) e quindi $x\subseteq x$. L'insieme delle parti $\P(a):=\set{x\mid x\sseq a}$ di un insieme&nbsp;$a$.</p>
+<p>
+Nozioni insiemistiche e connettivi proposizionali. Comparazione tra i connettivi di equivalenza e implicazione da una parte, le relazioni di uguaglianza e inclusione tra insiemi dall'altra; operazioni insiemistiche binarie di unione, intersezione e differenza simmetrica, ed identit&agrave; insiemistiche che coinvolgono queste operazioni dedotte da tautologie (di commutativit&agrave;, associativit&agrave;, iterativit&agrave;, distributivit&agrave;) che coinvolgano $\lor$, $\land$, $\xor$. Differenza insiemistica, espressa da congiunzione e negazione.  Formule insiemistiche di De Morgan per unione ed intersezione (binarie).</p>
+<p>
+Alcune identit&agrave; per la differenza simmetrica: per ogni $a,b$, si ha $a\ds b=(a\cup b)\smin(a\cap b)={}$$(a\smin b)\cup(b\smin a)$, $a\ds a=\vuoto$, $a\ds\vuoto=a$.</p>
+<p>
+Per il contenuto di questa lezione, oltre che <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a> si veda anche <a href="/cutolo/didattica/note/settautologie.pdf">Tautologie ed identit&agrave; insiemistiche</a>.</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Vero o falso?:  $\vuoto\in\vuoto$; $\vuoto\subseteq\vuoto$; $\vuoto=\set\vuoto$; $\vuoto\subseteq\set\vuoto$; $\vuoto\in\set\vuoto$; $\vuoto\sseq\set{1,2,3}$; $\set{1,1,2,2,2,3,3}\sseq\set{2,1,3}$; $\set{1,1,2,2,2,3,3}\sseq\set{4,2,1,3}$.</li>
+		<li>Elencare gli elementi di $\P(\vuoto)$, di $\P(\set{0})$, di $\P(\set{0,1})$ e di $\P(\set{0,1,2})$.</li>
+		<li>Esercizi J da <a href="/cutolo/didattica/note/logica_rudimentale.pdf">Logica rudimentale</a> (in parte, essenzialmente, gi&agrave; visti a lezione).</li>
+		<li>Verificare le formule in <a href="/cutolo/didattica/note/settautologie.pdf">Tautologie ed identit&agrave; insiemistiche</a> (ne abbiamo gi&agrave; discusse molte a lezione).</li>
+		<li>Siano $a=\set{1,2,3,4,5,6,7}$, $b=\set{5,6,7,8,9}$, $c=\set{0,5,9}$. Elencare gli elementi di: $a\cap b$, $a\ds b$, $b\setminus c$, $(c \setminus b)\ds a$.</li>
+		<li>Provare che per ogni $a,b$, le seguenti affermazioni sono tra loro equivalenti: (i)&nbsp;$a\sseq b$; (ii)&nbsp;$a\cup b=b$; (iii)&nbsp;$a\cap b=a$; (iv)&nbsp;$a\smin b=\vuoto$; (v)&nbsp;$a\ds b=b\smin a$.</li>
+</ol>
+</section>
+<section><h3>5 &mdash; 16/3</h3>
+<p>
+Diagrammi di (Euler-)Venn. Diagrammi di Venn generici e loro uso per dimostrare formule insiemistiche (di uguaglianza o di inclusione) universali o per la costruzione di controesempi (un diagramma di Venn per un certo insieme $V$, in cui quindi ogni elemento di $V$ sia rappresentato da un'area, &egrave; generico quando, per ogni parte non vuota $P$ di $V$, nel diagramma appare, non vuota, un'area che descriva gli oggetti appartenenti a ciascuno degli elementi di $P$ ed a nessuno degli elementi di $V\setminus P$). Esempi di diagrammi generici per coppie, terne e quaterne di insiemi (per le quaterne: <a href="/cutolo/didattica/AlgInfo/misc/venn_b.png">questo</a> &egrave; un diagramma di Venn generico mentre <a href="/cutolo/didattica/AlgInfo/misc/venn_a.png">quest'altro</a> non lo &egrave;.)</p>
+<p>
+Vari esempi di diagrammi di Euler-Venn, per termini insiemistici, tra i quali: $a\ds(b\ds c)$, $a\setminus(b\setminus c)$, $(a\setminus b)\setminus c$, $(a\cup b)\setminus c$, $(a\setminus c)\cup (b\setminus c)$.</p>
+<p>
+L'unione unaria $\bigcup a=\set{x\mid \exists b\in a(x\in b)}$ di un insieme $a$; l'intersezione unaria $\bigcap a=\set{x\mid \forall b\in a(x\in b)}$ di un insieme <em>non vuoto</em> $a$.  Discussione sul motivo per cui $\bigcap \vuoto$ non &egrave; definito. Riduzione di unione ed intersezione binaria alle corrispondenti operazioni unarie: per ogni $a,b$ si ha $a\cup b=\bigcup \set{a,b}$ e $a\cap b=\bigcap \set{a,b}$. Altri esempi di unioni ed intersezioni unarie. Nel corso di queste discussioni abbiamo introdotto le notazioni $\P_k(a)$ e $\Pf(a)$ per l'insieme delle $k$-parti (cio&egrave;: sottoinsiemi con esattamente $k$ elementi) e quello delle parti finite di un insieme $a$. Osservazione: $\Pf(a)=\bigcup\set{\P_k(a)\mid k\in\N}$.</p>
+<p>
+Scritture alternative per rappresentare insiemi e per rappresentare unioni o intersezioni unarie: $\set{t(x,y,z,\dots)\mid \phi(x,y,z,\dots)}$, dove $t$ &egrave; un termine e $\phi$ un predicato nelle variabili $x,y,z,\dots$ &egrave; un'abbreviazione per $\set{a\mid \exists x,y,z,\dots\big(\phi(x,y,z,\dots)\land a=t(x,y,z,\dots)\big)}$; $\bigcup_{\phi(x,y,z,\dots)}t(x,y,z,\dots)$ e $\bigcap_{\phi(x,y,z,\dots)}t(x,y,z,\dots)$ sono l'unione e l'intersezione di $\set{t(x,y,z,\dots)\mid \phi(x,y,z,\dots)}$ (ad esempio, $\bigcup_{x\in a}x=\bigcup a$ per ogni $a$).</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Rappresentare in diagrammi di Venn (generici!) i termini insiemistici $a\cap (b\cup c)$; $a\cup (b\cap c)$, $(a\cap b)\setminus c$, $(a\setminus c)\cap (b\setminus c)$ e trarne qualche conclusione generale.</li>
+		<li>Calcolare $\bigcup s$ e $\bigcap s$ in ciascuno dei seguenti casi: (1)&nbsp;$s=\big\{\set{1,5,7},\set{1,5,8,9},\set{2,15,66}\big\}$; (2)&nbsp;$s=\set{x\subseteq\N\mid 3\notin x}$; (3)&nbsp;$s=\big\{\set{124,n}\mid n\in\N\big\}$;
+		(4)&nbsp;$s=\set{[-a,a]\mid 0\lt a\in\R}$, dove, si ricorda, per ogni coppia $a,b$ di numeri reali, $[a,b]=\set{x\in\R\mid a\le x\le b}$ &egrave; l'insieme dei numeri reali compresi tra $a$ e $b$;
+		<!-- (4)&nbsp;$s=\set{[n,n+1]\mid n\in\N}$, dove, si ricorda, per ogni coppia $a,b$ di numeri reali, $[a,b]=\set{x\in\R\mid a\le x\le b}$ &egrave; l'insieme dei numeri reali compresi tra $a$ e $b$.</li> -->
+		(5)&nbsp;$s=\set{\N}$.</li>
+		<li>Provare che per ogni $a$ e $b$ tali che $a\sseq b$ si ha $\bigcup a\sseq\bigcup b$ e, se $a\ne\vuoto$, $\bigcap b\sseq\bigcap a$.</li>
+		<li>Vero o falso? (1): $3\in\set{2n^2+1\mid n\in\Z}$; (2): $10\in\set{2n^2+1\mid n\in\Z}$; (3): $\set{1}\in\set{\set{a,b}\mid a,b\in\Z}$; (4): $\set{1,2}\in\set{\set{a,b}\mid a,b\in\Z}$; (5): $\set{1,2,3}\in\set{\set{a,b}\mid a,b\in\Z}$; (6): $\Z=\set{a-b\mid a,b\in\Z}$.</li>
+	</ol>
+</section>
+<section><h3>6 &mdash; 19/3</h3>
+<p>
+Formule generalizzate di associativit&agrave;, distributivit&agrave; e di De Morgan per unione e intersezione unarie: per ogni $a$ e $b$, $\big(\bigcup a\big)\cup \big(\bigcup b\big)={}$$\bigcup(a\cup b)$;
+se $a\ne\vuoto\ne b$, $\big(\bigcap a\big)\cap \big(\bigcap b\big)={}$$\bigcap(a\cup b)$; se $b\ne\vuoto$, $a\cap \big(\bigcup b\big)=\bigcup_{x\in b}(a\cap x)$, $a\cup \big(\bigcap b\big)=\bigcap_{x\in b}(a\cup x)$, $a\setminus \big(\bigcup b\big)=\bigcap_{x\in b}(a\setminus x)$ e $a\setminus \big(\bigcap b\big)=\bigcup_{x\in b}(a\setminus x)$.</p>
+<p>
+Coppie ordinate e loro propriet&agrave; caratteristica.
+Terne ordinate ed analoga propriet&agrave; caratteristica. Prodotto cartesiano tra due insiemi.</p>
+<p>
+<em>Corrispondenze</em> tra due insiemi. Grafico di una corrispondenza. Alcuni modi di descrivere corrispondenze (attraverso il grafico, diagrammi, tabelle, condizioni di appartenenza al grafico). Esempi.</p>
+<p>
+<em>Relazioni binarie</em> in un insieme. Notazioni: per insiemi $a$ e $b$, $\Corr(a,b)$ indica l'insieme delle corrispondenze da $a$ a $b$, $\Rel(a)$ quello delle relazioni binarie in $a$ (dunque: $\Corr(a,b)=\set{(a,b,g)\mid g\sseq a\times b}$ e $\Rel(a)=\Corr(a,a)$).</p>
+<p>
+Prodotto relazionale tra corrispondenze; sua associativit&agrave;.</p>
+<p>
+Applicazioni (o funzioni) tra due insiemi; definizione ed esempi. Terminologia e notazioni: dominio e codominio di un'applicazione $f$, l'immagine $f(x)$ di un elemento $x$ del dominio di $f$ (&egrave; un elemento del codominio).</p>
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>(Per i pi&ugrave; curiosi; argomento fuori programma). Provare che per ogni $a$, $b$, $c$ e $d$, si ha $\set{\set a,\set{a,b}}=\set{\set c,\set{c,d}}$ se e solo se $a=c$ e $b=d$. (Suggerimento: se $x=\set{\set a,\set{a,b}}$, allora $a=\bigcap\big(\bigcap x\big)\;\dots$) Tenendo conto di questa propriet&agrave;, si pu&ograve; dunque dare una definizione esplicita delle coppie ordinate, ponendo $(a,b):=\set{\set{a},\set{a,b}}$ per ogni $a$ e $b$. In effetti, questa &egrave; la definizione di coppia ordinata proposta da Kuratowski (ma ce ne sono altre!).</li>
+		<li>Dimostrare che, per ogni $x$ e $y$:
+			<ol>
+				<li>$x\times y=\vuoto$ se e solo se uno tra $x$ e $y$ &egrave; vuoto;</li>
+				<li>$x\times y=y\times x$ se e solo se o $x=y$ oppure uno tra $x$ e $y$ &egrave; vuoto.</li>
+			</ol></li>
+		<li>Elencare gli elementi di $\set{1,2}\times \set{1,2,3}$, quelli di $\set{1,2,3}\times \set{1,2}$ e quelli di $(\set{1,2}\times \set{1,2,3})\cap (\set{1,2,3}\times \set{1,2})$.</li>
+		<li>Vero o falso?
+			<ol>
+				<li>$(\set{0}\times\N)\cup (\set{1}\times\N)=\set{0,1}\times\N$;</li>
+				<li>$(\N\times\N)\cup ((\Z\setminus \N)\times(\Z\setminus \N))=\Z\times\Z$.</li>
+			</ol></li>
+			<li>Siano $a=\set{1,2,3}$ e $b=\set{0,5,10}$. Sia poi $\rho$ la corrispondenza da $a$ a $b$ definita da: per ogni $x\in a$ e $y\in b$ si ha $x\mathrel\rho y\iff x^2\le y$. Elencare gli elementi del grafico di&nbsp;$\rho$. Rappresentare poi $\rho$ con un diagramma con frecce e con una tabella.</li>
+			<li>Siano $\N$ l'insieme dei numeri naturali e $S=\set{1,2,3}$. Siano poi $\alpha$ la relazione binaria in $S$ definita da: $(\forall x,y\in S)(x\mathrel\alpha y\iff x\lt y)$ e $\beta$ la corrispondenza da $S$ ad $\N$ di grafico $\set{2}\times\set{x\in\N\mid x\lt 10}$. Descrivere la corrispondenza prodotto $\alpha\beta$.</li>
+			<li>Siano $\alpha$ e $\beta$ le corrispondenze da $\Z$ a $\P(\Z)$ definite ponendo, per ogni $n\in\Z$ e $x\in \P(\Z)$, $\quad n\mathrel{\alpha}x\iff n\in x\quad$ e $\quad n\mathrel{\beta}x\iff n\notin x$. Sia poi $\gamma$ la relazione di inclusione in $\P(\Z)$, cio&egrave; la relazione binaria in $\P(\Z)$ definita ponendo, per ogni $x,y\in\P(\Z)$, $x\mathrel{\gamma}y\iff x\sseq y$. Descrivere $\alpha\gamma$ e $\beta\gamma$.</li>
+			<li>Sia $a=\set{x\in\N\mid x\lt 10}$ e sia $\tau$ la relazione binaria in $a$ definita da: $\forall x,y\in a (x\mathrel\tau y\iff x\lt y)$. Descrivere $\tau^2=\tau\tau$ e $\tau^3=\tau\tau\tau$. Se, per ogni intero positivo $n$, indichiamo con $\tau^n$ il prodotto $\tau\tau\cdots\tau$ con $n$ fattori, &egrave; vero o falso che esiste un intero positivo $n$ tale che $\tau^n$ sia la relazione binaria in $a$ con grafico vuoto?</li>
+			<li>Indicato con $\R^+_0$ l'insieme dei numeri reali non negativi
+			(cio&egrave;: $\R^+_0=\set{a\in\R\mid a\ge 0}$), si stabilisca quali delle seguenti corrispondenze sono applicazioni:
+			<ul>
+				<li>$\alpha$ da $\R$ a $\R$, di grafico $\set{(a,b)\in\R\times\R\mid a=b^2}$;</li>
+				<li>$\beta$ da $\R^+_0$ a $\R$, di grafico $\set{(a,b)\in\R\times\R\mid a=b^2}$;</li>
+				<li>$\gamma$ da $\R^+_0$ a $\R^+_0$, di grafico $\set{(a,b)\in\R\times\R^+_0\mid a=b^2}$;</li>
+			</ul></li>
+	</ol>
+</section>
+<section><h3>7 &mdash; 23/3</h3>
+<p>
+Terminologia e notazioni: $\Map(a,b)$, ovvero $b^a$, &egrave; l'insieme delle applicazioni di dominio $a$ e codominio $b$. Immagine $\im(f)=\set{f(x)\mid x\in A}$ di un'applicazione $f\colon A\to B$ (da non confondere con l'immagine $f(x)$ di un elemento $x$ del dominio di $f$).</p>
+<p>
+Descrizioni di applicazioni. Tra queste, descrizione di corrispondenze nella forma $\dots\in a\mapsto\dots\in b$. Il problema della "buona definizione" di un'applicazione; slcuni esempi di corrispondenze descritte con questa sintassi che sono o che non sono applicazioni.</p>
+<p>
+Alcuni esempi (importanti) di applicazioni: l'applicazione identica $\id_a=(a,a,\Delta_a)$ di un insieme (dove $\Delta_a=\set{(x,x)\mid x\in a}$ &egrave; la diagonale di $a$) e, pi&ugrave; in generale, l'immersione $x\in c\mapsto x\in a$ in un insieme $a$ di una sua parte $c$. Restrizioni (se $f\in\Map(a,b)$ e $c\sseq a$, $f_{|c}\colon x\in c\mapsto f(x)\in b$ &egrave; la restrizione di $f$ a $c$) e, viceversa, prolungamenti di applicazioni (ad esempio, le immersioni sono restrizioni di applicazioni identiche). Ridotte di applicazioni (se $f\colon a\to b$ &egrave; un'applicazione e $\im f\sseq c\sseq b$, la ridotta di $f$ a $c$ &egrave; l'applicazione $f^{|c}\colon x\in a\mapsto f(x)\in c$). Ridotta all'immagine.</p>
+<p>
+Il prodotto relazionale tra due applicazioni $f\colon a\to b$ e $g\colon b\to c$ &egrave; ancora un'applicazione (da $a$ a $c$): l'applicazione composta $fg=g\circ f$. Descrizione esplicita di $g\circ f$. Ad esempio, il prodotto relazionale tra una corrispondenza $\alpha$ e un'applicazione identica &egrave; uguale ad $\alpha$; le restrizioni di un'applicazione $f$ sono composte tra $f$ ed una immersione.</p>
+<p>
+Applicazioni suriettive (cio&egrave; con immagine e codominio uguali); forme equivalenti della definizione di suriettivit&agrave;. Esempi. Discussione di un frequente e insensatissimo errore consistente nella pretesa di dimostrare che un'applicazione $f$ sia suriettiva a partire dal fatto che $\im f$ &egrave; contenuto in $\im f$. Esempi di applicazioni suriettive e di applicazioni non suriettive.</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li id="applicazioni-e-non">Quali tra le corrispondenze qui descritte sono applicazioni? Tra quelle che lo sono, decidere quali sono suriettive.
+		Qui $P=\P(\Z)\setminus\set\vuoto$ &egrave; l'insieme delle parti non vuote di $\Z$, come sempre $\P_2(\Z)$ &egrave; l'insieme delle parti di $\Z$ che hanno esattamente due elementi.
+			<ol style="list-style-type: lower-roman;">
+				<li>$n\in\Z\mapsto n^2/2\in\Z$;</li>
+				<li>$n\in\Z\mapsto \set {n,2n}\in\P(\Z)$;</li>
+				<li>$n\in\Z\mapsto n^2/2\in\Q$;</li>
+				<li>$\set{a,b}\in\P_2(\Z)\mapsto a+b\in\N$;</li>
+				<li>$\set{a,b}\in\P_2(\Z)\mapsto a+b\in\Z$;</li>
+				<li>$\set{a,b}\in\P_2(\N)\mapsto a^b\in\N$;</li>
+				<li>$(a,b)\in\Z\times\Z\mapsto a-b\in\N$;</li>
+				<li>$(a,b)\in\Z\times\Z\mapsto a-b\in\Z$;</li>
+				<li>$(a,b)\in\N\times\N\mapsto a^b\in\N$;</li>
+				<li>$X\in P\mapsto \min X\in\Z$; (qui $\min X$ &egrave;, se esiste, il pi&ugrave; piccolo numero appartenente ad $X$)</li>
+				<li>$X\in P\mapsto \Z\setminus X\in P$;</li>
+				<li>$X\in \P(\Z)\mapsto X\cap\N\in\P(\N)$;</li>
+				<li>$X\in \P(\Z)\mapsto X\cup\N\in\P(\N)$;</li>
+				<li>$X\in \P(\Z)\mapsto X\cup\N\in\P(\Z)$;</li>
+				<li>$X\in \P(\Z)\mapsto X\ds\N\in\P(\N)$.</li>
+			</ol></li>
+	</ol>
+</section>
+<section><h3>8 &mdash; 30/3</h3>
+<p>
+Ulteriori osservazioni sulla suriettivit&agrave;; la composta tra due applicazioni (componibili) suriettive &egrave; certamente suriettiva; viceversa, se un'applicazione composta $g\circ f$ &egrave; suriettiva, allora $g$ &egrave; suriettiva (ma, come abbiamo visto con un esempio, $f$ pu&ograve; non esserlo).</p>
+<p>
+L'applicazione immagine $\vecf\colon\P(a)\to\P(b)$ e l'applicazione antiimmagine $\avecf\colon\P(b)\to\P(a)$, definite da un'applicazione $f\colon a\to b$ ponendo $\vecf(c)=\im f_{|c}=\set{f(x)\mid x\in c}$ per ogni $c\in\P(a)$ e $\avecf(c)=\set{x\in a\mid f(x)\in c}$ per ogni $c\in\P(b)$. Vari esempi ed osservazioni. Tra queste:
+$\vecf (\vuoto)=\avecf(\vuoto)=\vuoto$, $\vecf(a)=\im f$, $\,\avecf (b)=\avecf (\im f)=a$; per ogni $y\in b$, $\avecf(\set y)=\set{x\in a\mid f(x)=y}$; $f$ &egrave; suriettiva se e solo se $\forall y\in b(\avecf(\set{b})\ne\vuoto)$. Per ogni $c\in\P(a)$ e $d\in\P(b)$ si ha $c\sseq\avecf(\vecf (c))$ (e l'inclusione pu&ograve; essere stretta) e $\vecf(\avecf (d))=d\cap\im f$, quindi $f$ &egrave; suriettiva se e solo se $\forall d\in\P(b)(\vecf(\avecf (d))=d)$.</p>
+<p>
+Applicazioni iniettive. Forme equivalenti della definizione; negazione dell'iniettivit&agrave;: un'applicazione $f\colon a\to b$  non &egrave; iniettiva se e solo se: $\exists x,y\in a$$(x\ne y\land f(x)=f(y))$. Se $a$ &egrave; un insieme con meno di due elementi, ogni applicazione di dominio $a$ &egrave; iniettiva. Sono iniettive le immersioni ed anche tutte le restrizioni delle applicazioni iniettive. Applicazioni biettive; lo sono le applicazioni identiche.</p>
+<p>
+Un'applicazione $f\colon a\to b$ &egrave; iniettiva se e solo se, per ogni $y\in b$, $\avecf(\set y)$ ha al massimo un elemento (cio&egrave;: $\avecf(\set y)$ o &egrave; vuoto o &egrave; un singleton).</p>
+<p>
+La composta tra due applicazioni (componibili) iniettive &egrave; certamente iniettiva; viceversa, se un'applicazione composta $g\circ f$ &egrave; iniettiva, allora $f$ &egrave; iniettiva (ma $g$ pu&ograve; non esserlo, anche se $g\circ f$ &egrave; biettiva). Conseguenze ovvie, di questa e delle analoghe osservazioni riguardanti la suriettivit&agrave;, a proposito della biettivit&agrave;.</p>
+<p>
+Sezioni e retrazioni di un'applicazione $f\colon a\to b$: un'applicazione $g\colon b\to a$ &egrave; una sezione di $f$ se e solo se $f\circ g=\id_b$, &egrave; una retrazione di $f$ se e solo se $g\circ f=\id_a$ (cio&egrave; se e solo se $f$ &egrave; una sezione di $g$); tutte le sezioni sono inettive, tutte le retrazioni sono suriettive. Un'applicazione $f\colon a\to b$ &egrave; suriettiva se e solo se ammette sezioni. Esempi di sezioni.</p>
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Quali tra le applicazioni nell'<a href="#applicazioni-e-non">esercizio della lezione scorsa</a> sono iniettive?</li>
+		<li>Si svolgano gli esercizi 7 e 8 dalla <a href="/cutolo/didattica/note/esercizi_pasqua.pdf">raccolta "per le vacanze di pasqua"</a>, decidendo anche quali delle applicazioni che vi appaiono sono iniettive.</li>
+		<li>Vero o falso? (1) ogni applicazione ha una restrizione iniettiva; (2)&nbsp;ogni applicazione ha una ridotta suriettiva.</li>
+		<li>Provare che per ogni insieme $a$ sia l'applicazione immagine che l'applicazione antiimmagine definite da $\id_a$ coincidono con $\id_{\P(a)}$.</li>
+		<li>Siano $f\colon a\to b$ e $g\colon b\to a$ applicazioni. Provare che l'applicazione immagine $(g\circ f)\vec{\phantom 1}3$ definita da $g\circ f$ &egrave; $\vecg\circ \vecf$ e che, analogamente, $(g\circ f)\avec{\phantom 1}3=\avecf\circ\avecg$.</li>
+		<li>Sia $f\colon a\to b$ un'applicazione. Provare:
+			<ul>
+				<li>Per ogni $x\in a$, $\vecf(\set x)=\set{f(x)}$.</li>
+				<li>$f$ &egrave; iniettiva se e solo se $\forall c\in\P(a)(\avecf(\vecf (c))=c)$.</li>
+				<li>Se $f$ &egrave; biettiva, $\vecf$ &egrave; biettiva e la sua inversa &egrave; $\avecf$.</li>
+			</ul>
+		</li>
+		<li>Sia $f$ l'applicazione ("valore assoluto") $n\in\Z\mapsto |n|\in\Z$. Posto $a=\set{0,1,2}$ e $b=\set{-1,3}$, si calcolino: $\im f$, $\vecf(a)$, $\avecf(a)$, $\vecf(b)$, $\avecf(b)$, $\vecf(\avecf(b))$, $\avecf(\vecf(b))$, $\avecf(\Z\setminus\N)$.</li>
+		<li>Sia $f$ l'applicazione $x\in\P(\Z)\mapsto \N\cap x\in\P(\N)$, si calcolino: $\im f$, $\vecf(\P(\N))$, $\avecf(\set{\vuoto})$, $\avecf(\set{\set{0}})$.</li>
+		<li>L'applicazione $h\colon a\in\Z\mapsto \begin{cases}a+1&amp;\text{se $a$ &egrave; pari}\\a+2&amp;\text{se $a$ &egrave; dispari}\end{cases}\in\Z$ &egrave; iniettiva? Determinare $\im h$.</li>
+		<li id='quattro-app'>Di ciascuna delle seguenti applicazioni, decidere se &egrave; iniettiva e se &egrave; suriettiva; descriverne poi (tutte) le sezioni:
+			<ul style="list-style-type: disc;">
+				<li>$a\colon n\in\N\mapsto n+1 \in\N$</li>
+				<li>$b\colon n\in\Z\mapsto n+1 \in\Z$</li>
+				<li>$c\colon n\in\N\mapsto \begin{cases}n-1&amp;\text{se $n\ne 0$}\\8137&amp;\text{se $n=0$}\end{cases}\in\N$</li>
+				<li>$d\colon n\in\Z\mapsto \begin{cases}n-1&amp;\text{se $n\ne 0$}\\8137&amp;\text{se $n=0$}\end{cases}\in\Z$</li>
+				</ul></li>
+		<li>Siano $a=\set{0,1,2}$ e $b=\set{0,1,2,3}$. Trovare tutte le sezioni delle applicazioni qui definite:
+					<ul>
+						<li>$f\colon x\in a\mapsto x+1\in b$</li>
+						<li>$\alpha\colon b\to a$ che manda 3 in 1 ed ogni altro elemento di $b$ in s&eacute;.</li>
+					</ul></li>
+		<li>Si scrivano tre diverse sezioni dell'applicazione $x\in\P(\Z)\mapsto x\cap\N\in\P(\N)$.</li>
+	</ol>
+</section>
+<section><h3>9 &mdash; 9/4</h3>
+<p>
+Un'applicazione $f\colon a\to b$ &egrave; iniettiva se e solo se, per ogni $y\in b$, $\avecf(\set y)$ ha al massimo un elemento (cio&egrave;: $\avecf(\set y)$ o &egrave; vuoto o &egrave; un singleton); conseguente caratterizzazioni della biettivit&agrave;.</p>
+<p>
+Teorema: un'applicazione $f\colon a\to b$ &egrave; iniettiva se e solo se ammette retrazioni o ha dominio vuoto.</p>
+<p>
+Esempi di retrazioni.
+<!-- Un'applicazione &egrave; biettiva se e solo se ha esattamente una sezione.</p> -->
+</p>
+<p>
+Nota: esistono in questo sito delle note su <a href="/cutolo/didattica/note/sez-retraz.pdf">sezioni e retrazioni</a>. Chi volesse leggerne almeno una parte tenga presente che molto del materiale l&igrave; contenuto non fa parte del nostro programma e le notazioni l&igrave; usate non sono quelle seguite nel corso. In particolare, rispetto al corso:</p>
+<ol>
+	<li>le note usano una diversa notazione per la composizione di applicazioni: se $f\colon a\to b$ e $g\colon b\to c$ sono applicazioni componibili, nelle note la loro composta $g\circ f$ &egrave; scritta sempre come $fg$ (facendo cio&egrave; riferimento al prodotto relazionale);</li>
+	<li>le note usano la notazione esponenziale per l'immagine di un elemento mediante un'applicazione: $x^f$ piuttosto che $f(x)$ come nel corso.</li>
+</ol>
+<p>
+Inverse di un'applicazione (cio&egrave;: applicazioni che ne siano sia sezioni che retrazioni). Teorema (<em>unicit&agrave; dell'inversa</em>): se un'applicazione $f$ ha una sezione $s$ ed una retrazione $r$, allora $s=r$, quindi $s$ &egrave; inversa di $f$; inoltre $s$ &egrave; l'unica sezione, l'unica retrazione e l'unica inversa di $f$.</p>
+<p>
+Teorema: per un'applicazione $f\colon a\to b$ le affermazioni che seguono sono equivalenti: (1)&nbsp;$f$ &egrave; biettiva; (2)&nbsp;$f$ ha una sezione ed una retrazione; (3)&nbsp;$f$ ha un'inversa; (4)&nbsp;$f$ ha una ed una sola sezione; (5)&nbsp;$\forall y\in b(\exists! x\in a(f(x)=y))$.</p>
+<p>
+(Notazione: si indica con $f^{-1}$ l'inversa dell'applicazione biettiva $f$. In alcuni contesti, ma non nel nostro corso, si usa indicare con lo stesso simbolo l'applicazione antiimmagine $\avecf$ di $f$; non confondere MAI queste due applicazioni tra loro.)</p>
+<p>Esempio: l'immersione $\set 0\hookrightarrow \set{0,1}$ ha una sola retrazione ma non &egrave; biettiva.</p>
+<p>
+Esempi di inverse; vari metodi che permettono di riconoscere che un'applicazione sia biettiva. Osservazione: per un'applicazione $f\colon a\to a$ (di dominio e codominio uguali), poniamo $f^2=f \circ f$, $f^3=f \circ f\circ f$ e, pi&ugrave; in generale, per ogni intero $n>1$,  $f^n=f\circ f\circ \cdots\circ f$, composizione con $n$ fattori (tutti uguali a $f$). Se $f^n=\id_a$, allora $f$ &egrave; biettiva, con inversa $f^{n-1}$ (ad esempio, $f=f^{-1}$ se e solo se $f^2=\id_a$; l'applicazione $x\in\P(s)\mapsto s\setminus x\in\P(s)$ &egrave; biettiva, qualunque sia l'insieme $s$). Trasposizioni (se $s$ &egrave; un insieme e $a$ e $b$ due suoi elementi distinti, la trasposizione in $s$ definita da $a$ e $b$ &egrave; l'applicazione $\tau\colon s\to s$ descritta da $\tau(a)=b$, $\tau(b)=a$ e $\tau(x)=x$ per ogni $x\in s\setminus\set{a,b}$. Essa &egrave; biettiva, perché $\tau\circ\tau=\id_s$).</p>
+<p>
+Osservazioni sull'importanza della nozione di invertibilit&agrave; (ad esempio, per la codifica fedele).</p>
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Si scrivano tre diverse retrazioni dell'applicazione $x\in\N\mapsto x-5\in\Z$.</li>
+		<li>Tra le applicazioni $f\colon n\in\Z\mapsto 3n-2\in\Z$, $g\colon n\in\Z\mapsto 3n-2\in\Q$, $h\colon n\in\Q\mapsto 2n-1\in\Q$, $k\colon n\in\Z\mapsto 8-n\in\Z$ si dica quali sono biettive e di queste si determinino le inverse. Fare lo stesso per l'applicazione $\alpha$ da $a=\set{1,2,3,4}$ ad $a$ che manda 1 in 3, 2 in 4, 3 in 2 e 4 in 1.</li>
+		<li>Si trovi l'inversa dell'applicazione al punto (ii) dell'esercizio 7 di quelli <a href="/cutolo/didattica/note/esercizi_pasqua.pdf">per le vacanze di pasqua</a>.</li>
+		<li id="biez.N-Z">Si verifichi che le applicazioni $n\in\N\mapsto \begin{cases}-n/2,&amp;\text{se }n\text{ &egrave; pari}\\(n+1)/2,&amp;\text{se }n\text{ &egrave; dispari}\end{cases}\in\Z$ e $n\in\Z\mapsto\begin{cases}2n-1,&amp;\text{se }n\gt0\\-2n,&amp;\text{se }n\le0\end{cases}\in\N$ sono l'una l'inversa dell'altra.</li>
+	</ol>
+</section>
+<section><h3>10 &mdash; 13/4</h3>
+<p>
+Per il contenuto di questa lezione si faccia riferimento alla nota <a href="/cutolo/didattica/note/combinatoria.pdf">Un po' di combinatoria</a>.</p>
+<p>
+Numeri naturali, operazioni usuali in $\N$, ordinamento usuale in $\N$. Principio di buon ordinamento per i naturali (ogni parte non vuota di $\N$ ha minimo). Dimostrazioni per controesempio minimo, con un esempio banale (oni intero positivo &egrave; prodotto di un intero dispari per una potenza di 2).</p>
+<p>
+Il principio di induzione. Nella prima forma: se $\phi$ &egrave; un predicato unario, $b\in\N$ e $N_b=\set{n\in\N\mid b\le n}$, se valgono $\phi(b)$ e, per ogni $n\in N_b$, l'implicazione $\phi(n)\implica \phi(n+1)$, allora vale $\phi(n)$ per ogni $n\in N_b$. Come esempio di applicazione:
+per ogni $n\in\N^*$, la somma $\sum_{i=1}^n i$dei primi $n$ interi positivi &egrave; $n(n+1)/2$.
+Cenno alla seconda forma del principio di induzione (o principio di induzione completa): offre una versione alternativa (e non consigliata) del metodo di dimostrazione per controesempio minimo.</p>
+<p>
+Introduzione alla combinatoria. Cosa significa &ldquo;contare&rdquo; il numero degli elementi di un insieme (finito). Equipotenza tra insiemi: se $a$ e $b$ sono insiemi, $a$ &egrave; equipotente a $b$ (in simboli: $|a|=|b|$) se e solo se esiste un'applicazione biettiva $a\to b$; propriet&agrave; di riflessivit&agrave;, transitivi&agrave; e simmetria della relazione di equipotenza.</p>
+<p>
+Applicazioni biettive $(f_{|c})^{|\vecf(c)}$ indotte &ldquo;per restrizione&rdquo; da un'applicazione iniettiva $f$ su una parte $c$ del dominio di $f$.</p>
+<p>
+Un insieme &egrave;, per definizione finito se e solo se &egrave; equipotente ad $I_n:=\set{1,2,3,\dots,n}$ per qualche $n\in\N$.
+Teorema: per ogni $n\in\N$ ed ogni $S\subset I_n$, non esistono applicazioni iniettive $I_n\to S$. Conseguenza: per ogni insieme finito $a$ esiste <em>esattamente</em> un numero naturale $n$ tale che $a$ sia equipotente a $I_n$ (questo $n$ &egrave; detto la cardinalit&agrave; di $a$).</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Dimostrare, per induzione, che per ogni intero positivo $n$:
+			<ol>
+				<li>$\sum_{i=1}^n (2i-1)=n^2$ (vale a dire: la somma tra i primi $n$ interi positivi dispari &egrave; $n^2$;</li>
+				<li>$\sum_{i=1}^n i^2=n(n+1)(2n+1)/6$.</li>
+				<li>$\sum_{i=1}^n i^3=n^2(n+1)^2/4$, ovvero: $\sum_{i=1}^n i^3=t_n^2$, dove $t_n$ &egrave; l'$n$-esimo numero triangolare $\sum_{i=1}^n i=n(n+1)/2$;</li>
+			</ol>
+			Ad esempio, il numero dell'anno scorso (2025) &egrave; il quadrato di 45, che &egrave; $t_9=1+2+\cdots+9$, quindi $2025=1^3+2^3+\cdots+9^3$.</li>
+		<li>Dimostrare, per induzione, che per ogni intero $n>2$ si ha $n^2>2(n+1)$.</li>
+	</ol>
+</section>
+<section><h3>11 &mdash; 16/4</h3>
+<p>
+Anche per il contenuto di questa lezione si faccia (per lo pi&ugrave;) riferimento alla nota <a href="/cutolo/didattica/note/combinatoria.pdf">Un po' di combinatoria</a>.</p>
+<p>
+Conseguenze dei risultati della lezioni scorsa: se $a$ &egrave; un insieme finito, non esistono applicazioni iniettive da $a$ ad una sua parte propria. Se $a$ e $b$ sono insiemi finiti, allora:</p>
+	<ul class='compact'>
+		<li>esistono applicazioni iniettive da $a$ a $b$ se e solo se $|a|\le |b|$;</li>
+		<li>esistono applicazioni suriettive da $a$ a $b$ se e solo se $|a|\ge |b|$ e $b=\vuoto\implica a=\vuoto$;</li>
+		<li>esistono applicazioni biettive da $a$ a $b$ se e solo se $|a|=|b|$;
+		<li>se $|a|=|b|$ e $f\colon a\to b$ &egrave; un'applicazione, sono equivalenti: (1) $f$ &egrave; iniettiva, (2) $f$ &egrave; biettiva, (3) $f$ &egrave; suriettiva. (Questo &egrave; <em>falso</em> per insiemi infiniti.)</li>
+	</ul>
+<p>
+Cenni alla comparazione tra cardinalità per insiemi infiniti, come da <a href="../lezioni/equipotenza.pdf">questa vecchia pagina</a> (dove quanto marcato come meno ovvio, ad eccezione delle uguaglianze $|\N^*|=|\N|$, osservata direttamente, e $|\N|=|\Z|$, conseguenza di un <a href="#biez.N-Z">esercizio della lezione 9</a>, va inteso solo a titolo di notizia).</p>
+<p>
+Cardinalit&agrave; di unioni finite di insiemi a due a due disgiunti. Il <em>principio di inclusione-esclusione</em>, con verifica nel caso dell'unione tra due o tre insiemi finiti.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Vero o falso? Siano $a$ e $b$ due insiemi finiti. Allora, necessariamente:
+		<ol>
+			<li>&hellip; se $|b|\le |a|$, esistono applicazioni suriettive da $a$ a $b$;</li>
+			<li>&hellip; se $0\lt |b|\le |a|$, esistono applicazioni suriettive da $a$ a $b$;</li>
+			<li>&hellip; se $|a|=|b|$ ogni applicazione suriettiva da $a$ a $b$ &egrave; iniettiva;</li>
+			<li>&hellip; esiste un sottoinsieme proprio di $b$ equipotente ad $a$ se e solo se $|a|\lt |b|$;</li>
+		</ol></li>
+	<li>Verificare in dettaglio, utilizzando come aiuto un diagramma di Venn come fatto a lezione nel caso di una coppia di insiemi, la validit&agrave; della formula che esprime il principio di inclusione-esclusione per una terna di insiemi finiti.</li>
+	<li>Siano $A$ e $B$ due insiemi finiti; supponiamo $|A|=12$ e $|B|=10$.
+		<ol>
+			<li>Se $|A\cap B|=8$, quanto vale $|A\cup B|$?</li>
+			<li>Se $|A\cup B|=20$, quanto vale $|A\cap B|$?</li>
+			<li>Se sappiamo che $3\le |A\cap B|\lt 8$, cosa possiamo dire su $|A\cup B|$?</li>
+		</ol></li>
+	<li>Siano $a$, $b$, $c$ insiemi finiti tali che $|a|=10$, $|b|=8$, $|c|=|a\cap b|$, $|a\cup b\cup c|=15$ e $b\cap c=\vuoto$.
+		<ol>
+			<li>Stabilire, se possibile, quanto vale $|a\cap c|$.</li>
+			<li>Usando l'informazione ottenuta, decidere se $b$ pu&ograve; essere contenuto in $a$ (cio&egrave;: se esistono elementi in $b\smin a$).</li>
+			<li>Che informazioni riusciamo ad ottenere su $|a\cap b|$ (cio&egrave; su $|c|$)?</li>
+		</ol>
+	Suggerimento: pu&ograve; essere utile disegnare un diagramma di Venn (non generico).</li>
+</ol>
+</section>
+<section><h3>12 &mdash; 20/4</h3>
+<p>
+Qualche esempio di applicazione del principio di inclusione-esclusione.</p>
+<p>
+Per (arbitrari) insiemi finiti $a$ e $b$: cardinalit&agrave; del prodotto cartesiano $a\times b$.  Il numero delle applicazioni e quello delle applicazioni iniettive, biettive o costanti $a\to b$.  Fattoriali e fattoriali discendenti (si veda <a href="/cutolo/didattica/note/combinatoria.pdf">Un po' di combinatoria</a>, con qualche refuso appena corretto). Varianti, equivalenti e non, dello stesso problema: numero delle stringhe in un dato insieme di caratteri e di data lunghezza che soddisfino varie condizioni. Esempi ed esercizi.</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Siano dati due insiemi $a$ e $b$ tali che $|a|=6$ e $|b|=12$. Quante sono le applicazioni da $a$ a $b$? Quante tra queste sono iniettive? Quante sono costanti?</li>
+		<li>Quante sono le applicazioni suriettive da $a=\set{n\in\N mid n\lt 20}$ a $b:=\set{1,2}$? Suggerimento: quante sono quelle non suriettive?  Quante sono le applicazioni suriettive da $b$ ad $a$?</li>
+		<li>Siano $a=\set{n\in\N\mid n \lt 9}$, e $b=\set{5,11,33,76}$, Quante sono le applicazioni $f$ da $a$ a $b$ tali che $\forall x\in a$$(f(x)\le 30)$? Quante sono le applicazioni $g$ da $b$ ad $a$ tali che $g(5)=g(33)\ne g(11)$?</li>
+		<!-- <li>Siano $a$ e $b$ insiemi di cardinalit&agrave;, nell'ordine, 5 e 2. Quante sono le applicazioni suriettive da $a$ a $b$? E quante quelle da $b$ ad $a$? (Attenzione: non c'&egrave; bisogno di usare formule di carattere generale).</li> -->
+		<li>Quante sono le parole di lunghezza 6 che si possono ottenere utilizzando un alfabeto di 12 caratteri? Tra queste, quante sono quelle che hanno tutte le lettere in posizione dispari (la prima, la terza etc.) uguali? E quelle palindrome? E quelle in cui nessuna lettera &egrave; ripetuta? E quelle in cui non ci sono lettere consecutive ripetute?</li>
+		<li>Sia $A$ un alfabeto di 8 caratteri e siano $x$ e $y$ due elementi distinti di $a$. Quante sono le parole in $A$ di lunghezza 5 soggette alla regola che al carattere $x$ possa seguire solo $x$? E quante sono quelle (sempre di lunghezza 5 su $A$) soggette alla regola che ad $x$ possa seguire solo $y$?</li>
+		<li>Utilizzando il consueto alfabeto della lingua italiana, con 21 lettere di cui cinque vocali, quante sono le parole di lunghezza sette in cui appaiono, alternate, consonanti e vocali (cio&egrave;: ogni vocale se non &egrave; la prima lettera della parola &egrave; preceduta da una consonante e se non &egrave; l'ultima &egrave; seguita da una consonante)?</li>
+	</ol>
+</section>
+<section><h3>13 &mdash; 23/4</h3>
+<p>
+Funzioni caratteristiche di parti di un insieme (per ogni parte $T$ di un insieme $S$,  la funzione caratteristica $\chi_{T,S}\colon S\to \set{0,1}$ di $T$ in $S$ associa, ad ogni $x\in S$, $1$ se $x\in T$ e $0$ se $x\notin T$). Teorema: l'applicazione da $\P(S)$ a $\Map(S,\set{0,1})$ che a ciascuna parte $T$ di $S$ associa $\chi_{T,S}$ &egrave; biettiva; l'inversa manda ogni $f\in \Map(S,\set{0,1})$ in $\avecf(\set 1)\in\P(S)$. Di conseguenza: $\P(S)$ e $\Map(S,\set{0,1})$ sono equipotenti; se $S$ &egrave; finito $|\P(S)|=2^{|S|}$.</p>
+<p>
+Dimostrazione alternativa (ed indipendente) del fatto che per ogni insieme $S$ ed ogni $a\in S$, si ha $|\P(S)\setminus\P(S\setminus\set a)|=|\P(S\setminus\set a)|$ e quindi $|\P(S)|=2|\P(S\setminus\set a)|$.</p>
+<p>
+Se $a$ e $b$ sono insiemi equipotenti, allora $\P(a)$ e $\P(b)$, ma anche, per ogni $k\in\N$, $\P_k(a)$ e $\P_k(b)$) sono equipotenti. Per verificarlo si &egrave; fatto uso dell'osservazione che se $f\colon a\to b$ &egrave; un'applicazione biettiva, allora $\vecf$ &egrave; biettiva, con inversa $\avecf$.</p>
+<p>
+<em>Coefficienti binomiali</em>: per ogni $n,k\in\N$, $\binom nk$ &egrave; per definizione la cardinalit&agrave; di $\P_k(a)$, per un qualsiasi insieme $a$ di cardinalit&agrave; $n$. Osservazioni sui casi, banali, in cui $k$ vale 0, 1 o $n$, oppure $k>n$. Per ogni $n\in\N$, $\sum_{k=0}^n\binom nk=2^n$. Propriet&agrave; di simmetria dei coefficienti binomiali: se $k,n\in\N$ e $k\le n$ allora $\binom nk=\binom n{n-k}$.</p>
+<p>
+Formula ricorsiva per i coefficienti binomiali: per ogni $k,n\in \N$, $\binom{n+1}{k+1}=\binom nk + \binom n{k+1}$. Il triangolo di Tartaglia-Pascal; sue propriet&agrave; (tra cui: simmetria e somma delle righe). Formula esplicita per i coefficienti binomiali: $\forall n,k\in\N \bigl(k\le n\implica\binom nk=n!/k!(n-k)!\bigr)$.</p>
+
+	<h4>Esercizi proposti:</h4>
+	<ol class="ex">
+		<li>Se $S$ &egrave; un insieme di cardinalit&agrave; 9, quali e quante sono le funzioni caratteristiche delle 4-parti di $S$?</li>
+		<li>Sia $S$ un insieme di cardinalit&agrave;&nbsp;11. Quante sono le parti di $S$ di cardinalit&agrave;&nbsp;4?  E quante quelle di cardinalit&agrave;&nbsp;7?  E quante quelle di cardinalit&agrave;&nbsp;17? Quante sono le 5-parti di $\P(S)$?</li>
+		<li>Sapendo che valgono le uguaglianze $\binom {15}6=5005$ e $\binom {15}7=6435$, calcolare (senza usare a formula esplicita) $\binom {15}7$ e poi $\binom {15}8$.</li>
+		<li>Posto $S=\set{1,2,3,4,5,6}$, calcolare in numero delle parti di $S$ contenenti $\set{2,6}$. Quante di queste hanno cardinalit&agrave; 5?</li>
+		<li>Posto $A=\set{n\in\N\mid n\lt 9}$ e $B=\set{2,5}$, esprimere (utilizzando coefficienti binomiali; non calcolare!) le cardinalit&agrave; degli insiemi $U:=\set{X\in\P(A)\mid 0\notin X\land|X|=6}$, $V:=\set{X\in\P(A)\mid 0\in X\land |X|=6}$, $W=\set{X\in\P(A)\mid B\sseq X\land |X|=6}$,  $Z:=\set{X\in\P(A)\mid (3\in X\implica B\subseteq X)  \land |X|=6}$ e $T:=\{X\in\P(A)\mid{} $esattamente un elemento di $X$ &egrave; maggiore di $5\land|X|=4\}$.</li>
+		<li>Siano $a=\set{n\in\N\mid n\lt 13}$  e $b=\set{n\in\N\mid n\lt 6}$. Esprimere (non calcolare):
+		<ul>
+			<li>il numero delle parti $c$ di $a$ tali che $|c|=7$ e $c\cap b=\set{0,2,3}$;</li>
+			<li>il numero delle parti $c$ di $a$ tali che $|c|=7$ e $|c\cap b|=3$.</li>
+		</ul></li>
+	</ol>
+</section>
+<section><h3>14 &mdash; 27/4</h3>
+<p>
+Discussione di esempi ed esercizi di combinatoria.</p>
+<p>
+Partizioni di un insieme (si vedano le note su <a href="/cutolo/didattica/note/partizioni-equivalenze.pdf">partizioni ed equivalenze</a>). Definizione, caratterizzazione, esempi; partizioni banali. Se $F$ &egrave; una partizione di un insieme finito $a$, allora $|a|=\sum_{b\in F}|b|$. Proiezione canonica di un insieme su una sua partizione (&egrave; un'applicazione suriettiva). Altri esempi: le partizioni su insiemi di cardinalit&agrave; al pi&ugrave; $3$; le partizioni di cardinalit&agrave; $2$.</p>
+<p>
+Propriet&agrave; di relazioni binarie: propriet&agrave; riflessiva,  simmetrica, transitiva; loro formulazioni equivalenti in termini di propriet&agrave; della relazione capovolta (o rovesciata; se $\rho$ &egrave; una relazione binaria in $a$ quella capovolta definita da $\rho$ ha per grafico $\set{(y,x)\mid x\mathrel\rho y}$) e del grafico; loro negazione. Diversi esempi. Un'osservazione che semplifica la verifica della transitivit&agrave; di una relazione binaria $\rho$ su un insieme $A$: se $x,z\in A$ e $y\in \set{x,z}$, allora l'implicazione $((x\mathrel\rho y)\land(y\mathrel\rho z))\implica x\mathrel\rho z$ &egrave; banalmente verificata.
+<em>Relazioni di equivalenza</em>. Esempi di relazioni di equivalenza; tra queste le relazioni di equivalenza banali in un insieme (la relazione di uguaglianza e la relazione universale).</p>
+<p>
+<em>Nucleo di equivalenza</em> di un'applicazione (anche detto, nel libro di testo, equivalenza associata all'applicazione).</p>
+<p>
+<em>Classi di equivalenza</em>; loro propriet&agrave; fondamentali: fissata una relazione di equivalenza $\sim$ in un insieme $A$ per ogni $a,b\in A$ si ha:</p>
+<ul class="compact">
+	<li>$a\in [a]_\sim$, quindi $[a]_\sim\ne \vuoto$;</li>
+	<li>sono tra loro equivalenti: $a\sim b$, $b\sim a$, $ a\in[b]_\sim$, $b \in [a]_\sim$, $[a]_\sim=[b]_\sim$;</li>
+	<li>$[a]_\sim$ &egrave; l'unica classe di equivalenza rispetto a $\sim$ a cui $a$ appartenga.</li>
+</ul>
+<p>Con le stesse notazioni: l'insieme quoziente $A/{\sim}$. Questo insieme &egrave; una partizione di $A$. Di conseguenza, per ogni $a,b\in A$ sono equivalenti: $a\sim b$, $[a]_\sim\cap[b]_\sim\ne\vuoto$, $[a]_\sim\sseq [b]_\sim$.</p>
+<p>
+Teorema fondamentale su partizioni e relazioni di equivalenza: per ogni insieme $a$, l'applicazione ${\sim}\in\Eq(a)\mapsto a/{\sim}\in\partz(a)$ &egrave; biettiva (dominio e codominio sono gli insiemi delle relazioni di equivalenza e delle partizioni di $a$).</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Sia $a=\set{n\in\N\mid n\lt 10}$. Stabilire quali tra questi sono e quali non sono partizioni di $a$: $a$, $b=\set a$, $c=\set{\vuoto,\set{1,2,5,7,9},\set{0,4,8},\set{3,6}}$, $d=\set{\set{1,2,5,7,9},\set{0,4,8},\set{3,6}}$, $e=\set{\set{1,2,3,4,5,7,9},\set{0,2},\set{6,8}}$.</li>
+	<li>Trovare quattro partizioni distinte dell'insieme $\set{1,2,3,4}$.</li>
+	<li>Trovare tre partizioni non banali dell'insieme $\Z$.</li>
+	<li>Sia $a$ un insieme di cardinalit&agrave; 10. Calcolare il numero delle partizioni $F$ di $a$ tali che $|F|=2$.</li>
+	<li>Svolgere gli esercizi 1 (esclusi i punti f e g) e 2 (solo i punti d ed e) da <a href="/cutolo/didattica/note/esercizi_rel.pdf">relazioni binarie</a>, limitatamente alle propriet&agrave; di essere, riflessiva, simmetrica, transitiva, di equivalenza.</li>
+	<li>Utilizzando quanto detto a lezione (e riportato in questo registro) sulla semplificazione nella verifica della transitivit&agrave; di una relazione binaria, trovare tutte le relazioni binarie non transitive sull'insieme $\set{0,1}$.</li>
+	<li>Provare che se $f\colon a\to b$ e $g\colon b\to c$ sono applicazioni componibili e $g$ &egrave; iniettiva, $g\circ f$ ed $f$ hanno lo stesso nucleo di equivalenza.</li>
+	<li>Sia $a$ un insieme di cardinalit&agrave; 7. Calcolare il numero della partizioni di $a$ in cui appaia un blocco di cardinalit&agrave; 4.</li>
+	<li>Siano $v\colon n\in\Z\mapsto |n|\in\N$ e $w\colon n\in\Z\mapsto n^2\in\Z$. Descriverne i nuclei di equivalenza e, rispetto a ciascuno di essi, la classe di $-5$.</li>
+</ol>
+</section>
+<section><h3>15 &mdash; 30/4</h3>
+<p>
+Ulteriori osservazioni sul teorema fondamentale su partizioni e relazioni di equivalenza; descrizione dettagliata della biezione inversa; diversi esempi. Utilizzo del teorema per lo studio delle relazioni di equivalenza su un insieme. Tra gli esempi: descrizione delle relazioni di equivalenza su un insieme di cardinalit&agrave; 3; descrizioni di relazioni di equivalenza soggette a vincoli.</p>
+<p>
+Proiezione canonica di un insieme $a$ su un suo quoziente $a/{\sim}$; questa ha proprio $\sim$ come nucleo di equivalenza, quindi <em>ogni relazione di equivalenza &egrave; un nucleo di equivalenza</em> (in effetti, di molte applicazioni).</p>
+<p>
+Descrizione delle classi di equivalenza rispetto ad un nucleo di equivalenza. Il teorema di omomorfismo per insiemi (a proposito del quale, oltre a quanto nelle <a href="/cutolo/didattica/note/partizioni-equivalenze.pdf">note su partizioni ed equivalenze</a>, si veda anche l'esempio 2 dalla precedente <a href="/cutolo/didattica/note/teorfond.pdf">nota su questo stesso teorema</a>, (nella quale si usano notazioni diverse da quelle del corso: per comporre applicazioni viene usato il prodotto relazionale e non la composizione `$\circ$', per le immagini di elementi viene usata la notazione esponenziale). Ogni applicazione &egrave; la composta di un'applicazione iniettiva per una suriettiva. Esempi.</p>
+<p>
+Operazioni binarie (ovunque definite) in un insieme. Definizione ed esempi. Operazioni binarie commutative ed associative. Strutture algebriche con un'operazione binaria. Molti esempi (operazioni di addizione, di moltiplicazione e di sottrazione in insiemi numerici; operazioni insiemistiche nell'insieme delle parti di un insieme; prodotto relazionale in $\Rel(S)$ per un insieme $S$; concatenazione tra stringhe (ovvero parole) su un alfabeto).</p>
+<p>
+Cenno ai teoremi di associativit&agrave; e di commutativit&agrave;.</p>
+<p>
+L'operazione opposta $*^{op}$ definita da una operazione binaria $*$ (se $*$ è definita sull'insieme $a$, allora $*^{op}$ &egrave; definita da: per ogni $x$, $y\in a$, $x\mathbin{*^{op}} y=y*x$), con cenno al principio di dualit&agrave; destra/sinistra per operazioni binarie. Si ha $(*^{op})^{op}=*$; inoltre $*^{op}=*$ se e solo se $*$ &egrave; commutativa; $*^{op}$ &egrave; associativa se e solo se lo &egrave; $*$.</p>
+<p>
+Elementi neutri a sinistra e a destra; elementi neutri. Vari esempi (n tutte le strutture gi&agrave; presentate). Rispetto ad un'operazione binaria, un elemento &egrave; neutro a sinistra (risp. a destra) se e solo se &egrave; neutro a destra (risp. a sinistra) rispetto all'operazione opposta.</p>
+<p>
+Teorema (<em>unicit&agrave; dei neutri</em>): se, in una assegnata struttura con un'operazione binaria, $s$ &egrave; un elemento neutro a sinistra e $d$ &egrave; un elemento neutro a destra, allora $s=d$ e quindi $s$ &egrave; neutro, inoltre $s$ &egrave; l'unico elemento neutro a destra nonch&eacute; l'unico elemento neutro a sinistra nella struttura. Esempio di un strutture con pi&ugrave; di un neutro a destra o a sinistra.
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Verificare che, nella biezione stabilita dal teorema fondamentale su partizioni e relazioni di equivalenza, le partizioni banali di un insieme $a$, (cio&egrave; $\P_1(a)$ e, se $a\ne\vuoto$, $\set a$) corrispondono alle relazioni di equivalenza banali in $a$.</li>
+	<li>Sia $f$ l'applicazione da $A=\set{0,1,2,3,4,5,6,7}$ a $\Z$ definita da $f(0)=10$, $f(1)=f(2)=50$ e $f(a)=a^2+1$ per ogni altro elemento $a$ di $A$. Detto $\rho$ il nucleo di equivalenza di $f$, descrivere $A/\rho$, elencando i suoi elementi e gli elementi di ciascuna delle classi modulo $\rho$. Quanti elementi ha $A/\rho$?</li>
+	<li>Siano $a$ un insieme finito e $k\colon \P(a)\to\N$ l'applicazione che ad ogni parte $c$ di $a$ associa la sua cardinalit&agrave; $|c|$. Descrivere il nucleo di equivalenza $\tau$ di $k$ e l'insieme quoziente $Q:=\P(a)/\tau$. Quanti elementi ha $Q$?</li>
+	<li>Provare che la relazione binaria $\sigma$ definita in $\R$ ponendo, per ogni $x,y\in\R$, $x\mathrel\sigma y$ se e solo $x^4+(3-\log (|x|+1))^3+1=y^4+(3-\log(|y|+1))^3+1$ &egrave; di equivalenza.</li>
+	<li>Detto $\rho$ il nucleo di equivalenza dell'applicazione $X\in\P(\Z)\mapsto X\cap\N\in\P(\N)$, descrivere $[\set{-1}]_\rho$ e $[\vuoto]_\rho$.</li>
+	<li>Sia $a=\set{n\in\N\mid n\lt 10}$. In $\P(a)$ si consideri la relazione di equivalenza $\sim$ definita ponendo, per ogni $x,y\in\P(a)$, $x\sim y\iff{}$$x\cup\set 1=y\cup\set 1$.
+	<ul>
+		<li>Elencare gli elementi di $[\vuoto]_{{\sim}}$ e quelli di $[\set{0,1}]_{{\sim}}$.</li>
+		<li>In generale, per ogni $x\in\P(a)$, descrivere $[x]_{{\sim}}$, e calcolare $\big|[x]_{{\sim}}\big|$.</li>
+		<li>Calcolare $|\P(a)/{\sim}|$.</li>
+	</ul></li>
+	<li>Siano $S=\set{n\in\N\mid n\lt 15}$, $T=\set{n\in\N\mid n\lt 6}$ e $\theta$ l'applicazione $X\in\P(S)\mapsto |X|\in\N$. Detto $\rho$ il nucleo di equivalenza di $\theta$, descrivere $[T]_\rho$ e  $|[T]_\rho|$. Trovare, se possibile, una parte $V$ di $S$ tale che $[V]_\rho\ne[T]_\rho$ ma  $|[V]_\rho|=|[T]_\rho|$.</li>
+	<li>Descrivere il nucleo di equivalenza dell'applicazione $f\colon n\in\Z\mapsto (-1)^n\in\Z$ e, rispetto ad esso, calcolare la classe di equivalenza di $13765$.</li>
+	<li>Sia $a=\set{0,1,2,3,4,5,6}$. Stabilire quante sono, e descrivere esplicitamente,&nbsp;&hellip;
+	<ul>
+		<li>&hellip; le relazioni di equivalenza $\sim$ in $a$ tali che $1\sim 3\not\sim 2\sim 4$ e $5\in[0]_\sim=[6]_\sim$</li>
+		<li>&hellip; le relazioni di equivalenza $\rho$ in $a$ tali che $0\mathrel\rho 3$, $\set{2,5}\subseteq [3]_\rho$ e $6\in[4]_\rho\iff 1\mathrel\rho 6$.</li>
+		</ul></li>
+	<li>Sia $a$ un insieme tale che $|a|=6$. Quante sono le relazioni di equivalenza $\rho$ in $a$ tali che $a/\rho$ abbia esattamente due elementi?</li>
+	<li>Posto $a=\set{1,2,3}$, e detta $F$ la partizione $\set{\set 1,\set{2,3}}$ di $a$, stabilire quante sono le applicazioni $f\colon a\to a$ tali che $F=a/\rho$, dove $\rho$ &egrave; il nucleo di equivalenza di $f$.</li>
+	<li>Sia $*$ un'operazione binaria associativa e commutativa sull'insieme $S$. Senza fare uso dei teoremi di associativit&agrave; e commutativit&agrave;, dimostrare in modo diretto che, per ogni $a,b,c,d\in S$, si ha: $(a*b)*(c*d)=(a*c)*(b*d)$.</li>
+	<li>Vero o falso? Per ogni insieme non vuoto $S$ ed ogni operazione binaria $*$ in $S$,&nbsp;&hellip;
+		<ol>
+		<li>&hellip; in $S$ esiste sempre un elemento neutro a destra o un elemento neutro a sinistra;</li>
+		<li>&hellip; se $*$ &egrave; commutativa tutti gli elementi neutri a destra in $(S,*)$ sono anche neutri a sinistra;</li>
+		<li>&hellip; se $*$ &egrave; commutativa in $S$ esiste al massimo un elemento neutro a sinistra;</li>
+		<li>&hellip; se $a$ e $b$ sono due elementi neutri a sinistra distinti in $(S,*)$, in $(S,*)$ non esistono elementi neutri a destra;</li>
+		<li>&hellip; se $a$ &egrave; un elemento neutro a sinistra in $(S,*)$, nessun elemento di $S\setminus\set a$ &egrave; neutro a destra in $(S,*)$.</li>
+		</ol></li>
+	</ol>
+</section>
+<section><h3>16 &mdash; 4/5</h3>
+<p>
+Semigruppi e monoidi. Diversi esempi.</p>
+<p>
+Parti <em>chiuse</em> (si dice anche <em>stabili</em>) in una struttura (rispetto ad una operazione binaria); <em>operazioni indotte</em> e strutture indotte. Operazioni indotte da operazioni associative o commutative hanno le stesse propriet&agrave; (non vale il viceversa). Esempi. Il monoide $(T(a),\circ,\id_a)$ delle trasformazioni di un insieme.</p>
+<p>
+In una struttura con un'operazione binaria ed elemento neutro:
+<em>simmetrici</em> destri o sinistri; simmetrici (uso, alternativo, dei termini 'inverso' e 'opposto' per 'simmetrico'). L'eventuale elemento neutro &egrave; simmetrico di s&eacute; stesso. Elementi simmetrizzabili (anche: simmetrizzabili a sinistra o a destra). Vari esempi, tra cui: identificazione degli elementi simmetrizzabili a destra, a sinistra, simmetrizzabili nel monoide delle trasformazioni di un insieme.</p>
+<p>
+Teorema di unicit&agrave; dei simmetrici nei monoidi: se, per un elemento $a$ di un assegnato monoide $S$, $s$ &egrave; un simmetrico sinistro e $d$ &egrave; un simmetrico destro di $a$, allora $s=d$, quindi $s$ &egrave; l'unico simmetrico di $a$, l'unico simmetrico sinistro di $a$ e l'unico simmetrico destro di $a$ in $S$.</p>
+<p>
+Gruppi e gruppi abeliani. Tra gli esempi: il gruppo delle parti di un insieme rispetto alla differenza simmetrica.</p>
+<p>
+Il gruppo $\U(M)$ degli invertibili di un monoide $M$; espressione del simmetrico di un prodotto (in notazione moltiplicativa, per ogni $a,b\in\U(M)$ si ha $(ab)'=b'a'$, se gli apici indicano simmetrici). Alcuni esempi, tra i quali $\U(\Q,\cdot)$ ed il gruppo simmetrico $\Sym(a)=\U(T(a))$ su un insieme $a$.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Delle seguenti tredici parti di $\Z$: $\N$, $\Z\setminus \N$, $\vuoto$,  $\set{x\in\Z \mid x > 8}$, $\set{x\in\Z \mid x> -8}$, $\set 0$, $\set 1$, $\set {0,1}$, $\set {-1}$, $\set {0,1,2}$, $\set {1,-1}$, l'insieme degli interi pari, l'insieme degli interi dispari, dire quali sono chiuse rispetto alle (usuali) operazioni di addizione o di moltiplicazione.</li>
+	<li>L'insieme delle parti infinite di $\N$ &egrave; chiuso in $(\P(\N),\cap)$, in $(\P(\N),\cup)$, in $(\P(\N),\ds)$, in $(\P(\N),\setminus)$?</li>
+	<li>Nel monoide delle parole su un alfabeto che contenga la lettera y (con l'operazione di concatenazione), dire se sono o non sono parti chiuse: l'insieme delle parole di lunghezza (nel senso ovvio) maggiore di 55;  l'insieme delle parole di lunghezza pari; l'insieme delle parole che iniziano per y; l'insieme delle parole che finiscono  per yyy; l'insieme delle parole in cui y non appare; l'insieme delle parole in cui y appare al massimo tre volte; l'insieme delle parole che se hanno lunghezza maggiore di 10 allora non hanno y tra le lettere che vi appaiono.</li>
+	<li>Fissato un insieme $a$, dire quali dei seguenti insiemi costituiscono parti chiuse in $(T(a),\circ)$: l'insieme delle applicazioni (da $a$ in $a$) iniettive, l'insieme di quelle suriettive, l'insieme di quelle biettive, l'insieme di quelle non iniettive, l'insieme di quelle non suriettive, l'insieme di quelle non biettive, l'insieme di quelle costanti, l'insieme di quelle non costanti. In alcuni casi la risposta potrebbe dipendere dalla scelta di $a$.</li>
+	<li>Vero o falso? Per ogni insieme $S$ ed ogni operazione binaria $*$ in $S$, tale che $(S,*)$ abbia elemento neutro $t$&nbsp;&hellip;
+		<ol>
+		<li>&hellip; $t$ ammette simmetrico in $(S,*)$;</li>
+		<li>&hellip; se $t$ ammette simmetrico in $(S,*)$, questo &egrave; $t$ stesso;</li>
+		<li>&hellip; se $*$ &egrave; commutativa, in $(S,*)$ ogni elemento dotato di un simmetrico sinistro ha un simmetrico;</li>
+		<li>&hellip; se $x$ &egrave; un elemento di $S$ che ha in $(S,*)$ due distinti simmetrici destri, allora $x$ non ha simmetrici sinistri in $(S,*)$;</li>
+		<li>&hellip; se $*$ &egrave; associativa e $x$ &egrave; un elemento di $S$ che ha in $(S,*)$ due distinti simmetrici destri, allora $x$ non ha simmetrici sinistri in $(S,*)$.</li>
+		</ol></li>
+	<li id="ex_primalista_opbin">Studiare (non tutte subito) le operazioni binarie qui elencate, stabilendo per ciascuna di esse se &egrave; commutativa e se &egrave; associativa, determinandone gli (eventuali) elementi neutri a sinistra, a destra, neutri delle strutture da esse definite e, se l'elemento neutro esiste, gli elementi simmetrizzabili a sinistra, a destra, simmetrizzabili (descrivendo anche i rispettivi simmetrici a sinistra o a destra).
+		<ul>
+		<li>$\alpha\colon (a,b)\in \Z\times\Z\mapsto a+b+1\in\Z$;</li>
+		<li>$\beta\colon (a,b)\in \Z\times\Z\mapsto -ab\in\Z$;</li>
+		<li>$\gamma\colon (a,b)\in \Q\times\Q\mapsto (a+b)/2\in\Q$;</li>
+		<li>$\delta\colon (a,b)\in \Z\times\Z\mapsto 2ab\in\Z$;</li>
+		<li>$\varepsilon\colon (a,b)\in \Q\times\Q\mapsto 2ab\in\Q$;</li>
+		<li>$\zeta\colon (a,b)\in \N\times\N\mapsto a10^b\in\N$;</li>
+		<li>$\eta\colon (a,b)\in \P(\Z)\times\P(\Z)\mapsto a\cup b\cup \set 1\in\P(\Z)$;</li>
+		<li>$\theta\colon (a,b)\in \N\times\N\mapsto a(b^{a+b}+3ab^2)+1\in\N\quad$ (suggerimento: calcolare $1\mathbin\theta2$, $2\mathbin\theta1$,  $0\mathbin\theta(1\mathbin\theta 1)$, $(0\mathbin\theta1)\mathbin\theta 1$);</li>
+		<li>$\iota\colon (a,b)\in \P(\Z)\times\P(\Z)\mapsto (a\cap\N)\cup b\in\P(\Z)$;</li>
+		<li>$\kappa\colon \big((a,\alpha),(b,\beta)\big)\in S\times S\mapsto (a+\alpha b,\alpha\beta)\in S$, dove $S=\Z\times\set{-1,1}$;</li>
+		<li>$\lambda\colon (a,b)\in\Q\times\Q\mapsto a/(|b|+1)\in\Q$.</li>
+		</ul></li>
+	</ol>
+</section>
+<section><h3>17 &mdash; 7/5</h3>
+<p>
+Sottostrutture: sottosemigruppi, sottomonoidi. Esempio: per un insieme $a$ ed una sua parte propria $b$, $(\P(b),\cap,b)$ &egrave; un sottosemigruppo che &egrave; un monoide ma non un sottomonoide del monoide $(\P(a),\cap,a)$.  Sottogruppi e loro caratterizzazione: una parte non vuota $H$ di un gruppo ne &egrave; un sottogruppo se e solo se per ogni $x,y\in H$ il prodotto (in notazione moltiplicativa) $xy'$ appartiene ad $H$; qui $y'$ indica il simmetrico di $x$ nel gruppo (la condizione $xy'\in H$ pu&ograve; essere equivalentemente sostituita da $x'y\in H$). Esempi.</p>
+<p>
+In una struttura algebrica con una operazione binaria: traslazioni destra e sinistra determinate da un elemento. Elementi cancellabili a sinistra o a destra, elementi cancellabili. Esplicitazione e negazione della cancellabilit&agrave;. In ogni monoide, gli elementi simmetrizzabili a sinistra (rispettivamente a destra) sono cancellabili a sinistra (rispettivamente a destra). Il viceversa non vale in generale (ad esempio, non vale in $(\Z,\cdot)$) ma vale nel caso dei monoidi finiti.  Nei gruppi tutti gli elementi sono cancellabili. In un semigruppo finito la presenza di un elemento cancellabile a sinistra implica la presenza di un elemento neutro a sinistra. (questi contenuti sono disponibili in una <a href="/cutolo/didattica/note/cancellabili.pdf">nota sulla cancellabilit&agrave;</a>; nella quale, come in altre note, si usa la notazione per l'immagine di elementi mediante un'applicazione e la composizione tra applicazioni &egrave; scritta come prodotto relazionale: $fg$ per $g\circ f$).</p>
+<p>
+Esercizi su operazioni e strutture.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Determinare gli elementi cancellabili nel monoide delle parole su un prefissato alfabeto.</li>
+	<li id="#ex_secondalista_opbin">Posto $S=\Z\times\Z$, studiare le strutture algebriche $(S,*)$, $(S,\bullet)$ e $(S,\diamond)$ (le operazioni sono definite avanti), stabilendo di che tipo di strutture si tratta, tra quelle gi&agrave; introdotte (un semigruppo?, un monoide?, un gruppo?; commutativo o no?), se (e quali) elementi neutri a destra, a sinistra, neutri hanno, gli elementi cancellabili (anche solo a destra o a sinistra) e, nel caso la domanda abbia senso, quali siano i loro elementi simmetrizzabili (anche solo a destra o a sinistra), identificandone i simmetrici.
+		<ul>
+			<li>$*\colon \big((a,\alpha),(b,\beta)\big)\in S\times S\mapsto(a+b,\alpha\beta)\in S$</li>
+			<li>$\bullet\colon \big((a,\alpha),(b,\beta)\big)\in S\times S\mapsto (a+b,\beta)\in S$</li>
+			<li>$\diamond\colon \big((a,\alpha),(b,\beta)\big)\in S\times S\mapsto (a+\alpha b,\alpha\beta)\in S$.</li>
+		</ul>
+		In ciascuna di queste strutture si stablisca poi quali tra $\Z\times\N$ e $\N\times\Z$ costituiscano parti chiuse (o, eventualmente, sottomonoidi) e, per quelle che lo sono, si ripeta l'esercizio per le strutture indotte su esse.</li>
+		<li>Decidere se l'insieme delle parti finite di $\N$ costituisce un sottogruppo di $(\P(\N),\ds)$, un sottomonoide di $(\P(\N),\cup)$, un sottomonoide di $(\P(\N),\cap)$.</li>
+		<li>Verificare che per ogni intero $n$, l'insieme dei multipli di $n$ costituisce un sottogruppo di $(\Z,+)$.</li>
+		<li>Siano $a$ un insieme e $x$ un suo elemento. Provare che $\set{\alpha\in\Sym(a)\mid \alpha(x)=x}$ costituisce un sottogruppo di $(\Sym(a),\circ)$.</li>
+		<li>Determinare gli elementi cancellabili a destra o a sinistra rispetto alle operazioni proposte nell'<a href="#ex_primalista_opbin">ultimo esercizio</a> della lezione scorsa.</li>
+		<li>Sia $(S,*)$ un semigruppo e, per ogni $a\in S$, sia $\sigma_a$ la traslazione sinistra determinata da $a$ in $(S,*)$. Provare che per ogni $x,y\in S$ si ha $\sigma_x\circ\sigma_y=\sigma_{xy}$. Usando il fatto che le applicazioni iniettive da $S$ ad $S$ formano una parte chiusa del monoide delle trasformazioni di $S$, dedurne che gli elementi cancellabili a sinistra in formano una parte chiusa in $(S,*)$. Come ulteriore conseguenza, per dualit&agrave;, dedurre che anche gli elementi cancellabili a destra in $(S,*)$ ne formano una parte chiusa.</li>
+	</ol>
+</section>
+<section><h3>18 &mdash; 11/5</h3>
+<p>
+Omomorfismi; definizione e vari esempi. Isomorfismi. L'inversa di un isomorfismo &egrave; necessariamente un isomorfismo. Strutture isomorfe tra loro.</p>
+<p>
+Gli omomorfismi suriettivi conservano: commutativit&agrave;, associativit&agrave;, elementi neutri (anche a destra o a sinistra),  simmetrici (anche a destra o a sinistra), ma in generale non la cancellabilit&agrave; (un esempio a proposito: se $a$ &egrave; un insieme finito non vuoto e $W$ &egrave; il monoide delle parole su $a$, allora l'applicazione $\gamma$ che ad ogni parola $w\in W$ associa l'insieme delle lettere che appaiono in $w$ &egrave; un omomorfismo suriettivo da $W$ a $(\P(a),\cup)$; se $w$ &egrave; una qualsiasi parola non vuota in $W$, si ha che $w$ &egrave; cancellabile (in $W$) ma $\gamma(w)$ non lo &egrave; in $(\P(a),\cup)$. Altri importanti esempi saranno discussi in seguito).</p>
+<p>
+Invarianza delle propriet&agrave; algebriche (inclusa la cancellabilit&agrave;) per isomorfismi. Centralit&agrave; della nozione di isomorfismo in algebra. Determinazione del tipo di una struttura algebrica (essere un semigruppo, un monoide, un gruppo etc.) attraverso l'individuazione di un isomorfismo. Ad esempio, se $\alpha$ &egrave; l'operazione definita nell'<a href="#ex_primalista_opbin">esercizio 12 della lezione  nr.&nbsp;16</a>, $(\Z,\alpha)$ &egrave; un gruppo abeliano perché isomorfo a $(\Z,+)$ tramite l'isomorfismo $n\in(\Z,+)\mapsto n-1\in(\Z,*)$.</p>
+<p>
+Tavola di Cayley di un'operazione binaria. Visualizzazione di propriet&agrave; in una tavola di Cayley: commutativit&agrave;, eventuali elementi neutri sinistri o destri (e quindi neutro); eventuali simmetrizzabili e loro simmetrici (anche sinistri o destri); cancellabilit&agrave; (anche a sinistra o destra). Effetto di omomorfismi e isomorfismi sulle tavole di Cayley. Qualche esempio. Le tavole di Cayley dei gruppi di cardinalit&agrave; $2$.</p>
+<p>
+Non commutativit&agrave; di $T(a)$ per gli insiemi di cardinalit&agrave; maggiore di 1.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Verificare che le seguenti applicazioni sono omomorfismi: $n\in(\Z,\cdot)\mapsto |n|\in (\N,\cdot)$, $n\in(\Z,+)\mapsto -n\in (\Z,+)$; pi&ugrave; in generale, se $G$ &egrave; un gruppo abeliano l'applicazione $G\to G$ che ad ogni elemento associa il simmetrico &egrave; un isomorfismo (e se $G$ non &egrave; abeliano?). Cosa sappiamo dire su $n\in(\Z,\cdot)\mapsto -n\in (\Z,\cdot)$? E su $x\in\P(\Z)\mapsto x\setminus\N\in\P(\N)$?</li>
+	<li>Verificare che per ogni gruppo $G$ ed ogni $a\in G$, l'applicazione $n\in(\Z,+)\mapsto a^n\in G$ &egrave; un omomorfismo.</li>
+	<li>Sia $*$ l'operazione binaria in $S:=\Z\times\Z$ definita da $(a,\alpha)*(b,\beta)=(a+\alpha b,\alpha\beta)$ per ogni $a,b,\alpha,\beta\in\Z$. Per ciascuna delle applicazioni $n\in\Z\mapsto (n,1)\in S$ e $n\in\Z\mapsto (0,n)\in S$ decidere se &egrave; un omomorfismo da $(\Z,+)$, o da $(\Z,\cdot)$, a $(S,*)$. L'applicazione $(a,\alpha)\in S\mapsto \alpha\in\Z$ &egrave; un omomorfismo da $(S,*)$ a $(\Z,+)$? Ed a $(\Z,\cdot)$?</li>
+	<li>A lezione non abbiamo verificato che gli omomorfismi suriettivi conservano l'associativit&agrave;. Farlo.</li>
+	<li>Sia $(S,*)$ un semigruppo. L'applicazione $a\in S\mapsto \sigma_a \in T(S)$ &egrave; un omomorfismo? (Si confronti questa domanda con l'ultimo esercizio della lezione scorsa.) E se $(S,*)$ non &egrave; un semigruppo? ($T(S)$ &egrave; il monoide delle trasformazioni di $S$, $\sigma_a$ la traslazione sinistra definita da $a$ in $(S,*)$.)</li>
+	<li>Vero o falso? Supponendo che esista un omomorfismo suriettivo da una struttura $(S,*)$ ad una struttura $(T,\bullet)$, dove $*$ e $\bullet$ sono operazioni binarie,&nbsp;&hellip;<ul>
+		<li>se $(S,*)$ &egrave; un semigruppo, $(T,\bullet)$ &egrave; un semigruppo;</li>
+		<li>se $(T,\bullet)$ &egrave; un semigruppo, $(S,*)$ &egrave; un semigruppo;</li>
+		<li>se $(S,*)$ &egrave; un monoide, $(T,\bullet)$ &egrave; un monoide;</li>
+		<li>se $(T,\bullet)$ &egrave; un monoide, $(S,*)$ &egrave; un monoide;</li>
+		<li>se $(S,*)$ &egrave; un gruppo, $(T,\bullet)$ &egrave; un gruppo;</li>
+		<li>se $(T,\bullet)$ &egrave; un gruppo, $(S,*)$ &egrave; un gruppo.</li></ul></li>
+	<li id="ex_TdC_P(S)">Per l'insieme $a=\set{0,1}$, scrivere le tavole di Cayley di $(\P(a),\cap)$, $(\P(a),\ds)$, $(\P(a),\setminus)$.</li>
+	<li>Usando, come fatto in aula per i gruppi con due elementi, il fatto che nella tavola di Cayley di un gruppo non ci sono elementi ripetuti nelle righe n&eacute; nelle colonne, scrivere la tavola di Cayley di un gruppo con tre elementi: $t$ (neutro), $a$, $b$.</li>
+	<li>Siano $a=\set{1,2,3,4}$ e $\sigma$ l'applicazione di $a$ in $a$ che manda 1 in 2, 2 in 3, 3 in 4 e 4 in 1. Dopo aver verificato che $\sigma^4(=\sigma\circ\sigma\circ\sigma\circ\sigma)$ coincide con $\id_a$ e di conseguenza che $\sigma$ &egrave; biettiva e $\Sigma:=\set{\id_a,\sigma,\sigma^2,\sigma^3}$ costituisce un sottogruppo di $\Sym(a)$, scrivere la tavola di Cayley di $(\Sigma,\circ)$. Confrontare questa con la tavola di Cayley di $(\P(a),\ds)$ per un insieme $a$ costituito da due elementi.</li>
+	<li>Sia $S=\set{t,a,b}$ un insieme di tre elementi e si consideri in $S$ l'operazione $*$ definita da questa tavola di Cayley:
+	<table class="cayley">
+		<tr>
+			<td></td><td>$t$</td><td>$a$</td><td>$b$</td></tr>
+		<tr>
+			<td>$t$</td><td>$t$</td><td>$a$</td><td>$b$</td>
+		</tr>
+		<tr>
+			<td>$a$</td><td>$a$</td><td>$t$</td><td>$a$</td>
+		</tr>
+		<tr>
+			<td>$b$</td><td>$b$</td><td>$b$</td><td>$b$</td>
+		</tr>
+	</table>
+	Dopo aver verificato che $t$ &egrave; neutro in $(S,*)$ ed aver determinato i simmetrici destri e sinistri degli elementi di $S$, senza fare ulteriori calcoli si decida se $*$ &egrave; associativa.</li>
+</ol>
+</section>
+<section><h3>19 &mdash; 14/5</h3>
+<p>
+Il gruppo simmetrico su un insieme $a$ &egrave; abeliano se e solo se $|a|\le 2$.</p>
+<p>
+Solo per rapidi cenni: <em>potenze</em> (o, in notazione additiva, <em>multipli</em>) di un elemento di un semigruppo secondo interi (positivi nel caso dei semigruppi, naturali nel caso dei monoidi, arbitrari nel caso di elementi invertibili, in particolare per gruppi). Regole di calcolo: per ogni elemento $x$ di un semigruppo e per ogni $n,m\in\Z$ per cui $x^n$ e $x^m$ siano definiti, $x^{n+m}=x^n x^m$ e $x^{nm}=(x^n)^m$. In notazione additiva queste formule diventano, con le stesse quantificazioni, $(n+m)x=nx+mx$ e $(nm)x=m(nx)$.
+Potenze (o multipli) secondo interi di uno stesso elemento di un qualsiasi semigruppo commutano sempre tra loro. In notazione moltiplicativa, se $x$ &egrave; un elemento di un semigruppo $S$, l'insieme $\set{x^n\mid n\in\N^+}$ &egrave; le pi&ugrave; piccola parte chiusa di $S$ contenente $\set x$, se $S$ &egrave; un monoide (o, rispettivamente, un gruppo), $\set{x^n\mid n\in\N}$ (o, rispettivamente, $\set{x^n\mid n\in\Z}$) costituisce il pi&ugrave; piccolo sottomonoide (o, rispettivamente, un sottogruppo) di $S$ contenente $\set x$ (questi sono anche chiamati, rispettivamente, parte chiusa, sottomonoide e sottogruppo generati da $x$ in $S$).</p>
+<p>
+Anelli. Definizione ed esempi (tra questi, gli anelli su $\Z$, $2\Z$, $\Q$, $\R$ con le usuali operazioni di addizione e moltiplicazione, l'anello delle parti di un insieme, con le operazioni di differenza simmetrica ed intersezione); anelli commutativi, anelli unitari. L'anello prodotto diretto tra due anelli. Sottoanelli, sottoanelli unitari. Terminologia e notazioni per anelli: lo zero $0_R$ e (se esiste) l'unit&agrave; $1_R$ di un anello $R$. Opposti (cio&egrave; simmetrici rispetto all'operazione additiva) e inversi (cio&egrave; eventuali simmetrici rispetto all'operazione moltiplicativa), differenza: per ogni $a,b\in R$,  $a-b=a+(-b)$.</p>
+<p>
+Alcune regole elementari di calcolo in un anello $R$: per ogni $a$, $b$ in $R$, $a0_R=0_R=0_Ra$, e $a(-b)=-(ab)=(-a)b$; distributivit&agrave; della moltiplicazione rispetto all'operazione di differenza; se $R$ &egrave; unitario, per ogni $n\in\Z$ e $a\in R$ si ha $(n1_R)a=na$.</p>
+<p>
+Legge di annullamento del prodotto con esempi di anelli in cui essa non vale. <em>Divisori dello zero</em> sinistri, destri, divisori dello zero negli anelli  (si vedano le <a href="/cutolo/didattica/note/cancellabili.pdf">note sulla cancellabilit&agrave;</a>). Teorema: i divisori sinistri (risp. destri) dello zero sono precisamente gli elementi non cancellabili a sinistra (risp. a destra), i divisori dello zero sono precisamente gli elementi non cancellabili. Anelli integri, <em>domini di integrit&agrave;</em>. In un anello con pi&ugrave; di un elemento, lo zero &egrave; sicuramente un divisore dello zero, quindi non invertibile. Corpi e campi (i primi sono integri, i secondi sono domini di integrit&agrave;. Il viceversa non vale in generale, ma vale nel caso finito). Esempi di campi: $\R$, $\Q$, l'insieme delle parti di un singleton.</p>
+<p>
+Elementi idempotenti ed <em>anelli booleani</em> (si veda la prima parte delle <a href="/cutolo/didattica/note/strutturebooleane.pdf">note sulle strutture booleane</a>); l'anello delle parti di un qualsiasi insieme &egrave; booleano. Propriet&agrave; degli anelli booleani: sono commutativi e, in essi, ogni elemento coincide col suo opposto (cio&egrave;: $2a=0_R$ per ogni elemento $a$ di un anello booleano $R$). Enunciato del teorema di Stone per anelli booleani (ogni anello booleano &egrave; isomorfo ad un sottoanello unitario dell'anello delle parti di un insieme; ogni anello booleano finito &egrave; isomorfo all'anello delle parti di un insieme). Conseguenze: gli anelli booleani finiti hanno per cardinalit&agrave; una potenza di $2$; scelti comunque due anelli booleani finiti, essi sono isomorfi se e solo se sono equipotenti.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Scrivere la tavola di Cayley del gruppo simmetrico sull'insieme $a=\set{1,2,3}$.</li>
+	<li>Nel gruppo $(\Z,+)$, determinare la parte chiusa, il sottomonoide ed il sottogruppo generato da $-1$.</li>
+	<li>Nel gruppo $(\P(\Z),\ds)$, determinare la parte chiusa, il sottomonoide ed il sottogruppo generati da $\N$.</li>
+	<li>Sia $*$ l'operazione binaria definita in $\Z$ ponendo, per ogni $a,b\in\Z$, $a*b=b$. Verificare che la struttura $(\Z,+,*)$ (dove $+$ &egrave; l'addizione usuale tra interi) non &egrave; un anello, benché $(\Z,+)$ sia un gruppo abeliano, $*$ sia associativa e distributiva a sinistra rispetto a $+$.</li>
+	<li>Verificare in dettaglio quanto accennato a lezione: se $R$ &egrave; un anello unitario, per ogni $n\in\Z$ e $a\in R$ si ha $(n1_R)a=na$.</li>
+	<li>Verificare in dettaglio quanto affermato a lezione a proposito della nozione di prodotto diretto di anelli: che &egrave; un anello, che &egrave; commutativo, o unitario, se e solo se i due anelli che lo definiscono hanno la stessa propriet&agrave;.</li>
+	<li>Siano $R$ ed $S$ due anelli e sia $P$ il loro prodotto diretto. Allora l'applicazione $(r,s)\in P\mapsto s\in S$ &egrave; un omomorfismo suriettivo di anelli.</li>
+	<li>Nell'anello prodotto diretto $\Z\times\Z$, verificare che $\set{0}\times \Z$ &egrave; un sottoanello. &Egrave; anche un sottoanello unitario? Che tipo di anello &egrave; $\set{0}\times \Z$ (munito delle operazioni indotte da quelle di $\Z\times\Z$)? Per caso &egrave; isomorfo ad un anello che gi&agrave; conosciamo? Cambia qualcosa se si considera $\set{1}\times \Z$ al posto di $\set{0}\times \Z$?</li>
+	<li>Nell'anello prodotto diretto $\Z\times\Z$, si decida quali tra questi elementi sono divisori dello zero, quali cancellabili e quali invertibili: $(1,1)$, $(7,-3)$, $(0,2)$ $(1,-1)$. Fatto questo, provare a descrivere l'insieme dei divisori dello zero in $\Z\times\Z$.</li>
+	<li>L'insieme delle parti finite di $\N$ costituisce un sottoanello di $(\P(\N)\ds,\cap)$? Come anello, &egrave; unitario?</li>
+	<li>Sia $a$ un elemento invertibile in un anello unitario $R$. &Egrave; possibile che $a$ sia un divisore dello zero in $R$?</li>
+	<li>Sia $T=\Z\times\Z\times\Z$ l'insieme delle terne ordinate di numeri interi. In $T$ definiamo le operazioni binarie $\oplus$ e $*$ ponendo, per ogni $a,b,c$, $u,v,w\in\Z$, $(a,b,c)\oplus(u,v,w)=(a+u,b+v,c+w)$, e $(a,b,c)*(u,v,w)=(au,av+bw,cw)$. Verificare che $(T,\oplus,*)$ &egrave; un anello, decidere se &egrave; commutativo e se &egrave; unitario. Stabilire anche se $(1,1,0)$ &egrave; un divisore dello zero (destro? sinistro?) in $R$. Nel caso in cui $R$ sia unitario, determinarne gli elementi invertibili.</li>
+	<li>Provare (ammesso che sia vero) quanto segue: se $a$ e $b$ sono elementi di un anello $R$, in $R$ si ha $(a+b)^2=a^2+2ab+b^2$ se e solo se $ab=ba$.</li>
+</ol>
+</section>
+<section><h3>20 &mdash; 18/5</h3>
+<p>
+(Senza dimostrazione, ma &egrave; un facile esercizio): gli omomorfismoi tra gruppi ne conservano gli elementi neutri, quelli tra monoidi non sempre. Se $a$ &egrave; un insieme e $b$ ne &egrave; una parte propria, l'immersione dell'anello delle parti di $b$ in quello di $a$ &egrave; un esempio di omomorfismo iniettivo tra anelli unitari che non conserva l'unit&agrave;.</p>
+<p>
+Formula del binomio di Newton: se $a$ e $b$ sono due elementi di un anello unitario e $ab=ba$, allora, per ogni intero positivo $n$, si ha $(a+b)^n=\sum_{k=0}^n\binom nk a^k b^{n-k}$ (si veda l'ultima pagina delle vecchie note sui <a href="/cutolo/didattica/note/coeffBin.pdf">coefficienti binomiali</a>).</p>
+<p>
+La relazione $|_S$ di divisibilit&agrave; in un semigruppo commutativo $S$: &egrave; sempre transitiva, &egrave; riflessiva se $S$ &egrave; un monoide. In un monoide commutativo, gli elementi invertibili sono precisamente quelli che dividono ogni elemento del monoide. Nei gruppi commutativi, la divisibilit&agrave; &egrave; la relazione universale. Divisibilit&agrave; in anelli commutativi (ad esempio, in $\Z$): &egrave; riferita all'operazione moltiplicativa; ogni elemento divide lo zero dell'anello; un elemento che divida due elementi $a$ e $b$ divide tutte le loro combinazioni lineari (cio&egrave; gli elementi della forma $au+bv$ per elementi $u$ e $v$ dell'anello).</p>
+<p>
+Elementi tra loro associati (cio&egrave; che si dividono a vicenda) in un arbitrario monoide commutativo $M$; la relazione "essere elementi associati" &egrave; di equivalenza in $M$, per verifica diretta ma anche perché per due qualsiasi elementi $a$ e $b$ sono equivalenti le propriet&agrave; di essere associati, di avere gli stessi divisori, di avere gli stessi multipli. Osservazione generale: se, in un monoide commutativo, $a$ e $a'$ sono elementi tra loro associati ed anche $b$ e $b'$ sono elementi tra loro associati, allora $a$ divide $b$ se e solo se $a'$ divide $b'$. Dunque: le propriet&agrave; relative alla divisibilit&agrave; tra elementi restano invariate al passaggio da elementi ad elementi associati. Se $a\in M$; allora, per ogni $u\in\U(M)$, $a$ e $au$ sono associati; se $a$ &egrave; cancellabile vale anche il viceversa: gli elementi associati ad $a$ in $M$ sono tutti e soli quelli della forma $au$ per un opportuno $u\in\U(M)$. Esempio: in $\Z$ rispetto alla moltiplicazione due numeri sono associati se e solo se hanno lo stesso valore assoluto.</p>
+<p>
+Problema: date un'operazione binaria $*$ ed una relazione di equivalenza $\sigma$ in un insieme $S$, si pu&ograve; usare $*$ per definire "nel modo pi&ugrave; ovvio possibile" un'operazione binaria in $S/{\sigma}$? Alcuni esempi. Equivalenze compatibili con un'operazione binaria ed operazioni quoziente (cio&egrave; quelle indotte sull'insieme quoziente). Esempi.
+Congruenze in una struttura algebrica e strutture quoziente.</p>
+<p>
+Se $\sigma$ &egrave; una congruenza in una struttura di sostegno $S$, la proiezione canonica $a\in S\mapsto [a]_\sim \in S/{\sigma}$ &egrave; un omomorfismo suriettivo (dalla struttura assegnata alla struttura quoziente), quindi conserva: commutativit&agrave;, associativit&agrave;, esistenza di neutri e simmetrici (anche solo a destra o sinistra), distributivit&agrave;. I quozienti di semigruppi, monoidi, gruppi (eventualmente abeliani), anelli (eventualmente commutativi o unitari) sono quindi strutture dello stesso tipo.</p>
+<p>
+Equivalenze compatibili a destra o a sinistra con una operazione binaria. Caratterizzazione delle equivalenze compatibili come equivalenze compatibili sia destra che a sinistra.</p>
+<p>
+Le <em>congruenze modulo un intero</em> in $\Z$ (cio&egrave; le relazioni di equivalenza $\equiv_m$ al variare di $m\in\Z$). Loro descrizione esplicita nei casi in cui $m$ sia uno tra 0, 1 e 2; per ogni intero $m$, ${\equiv_m}={\equiv_{-m}}$. Le relazioni $\equiv_m$ sono effettivamente congruenze nell'anello $\Z$ degli interi (a titolo di notizia: non ne esistono altre, anzi: non esistono altre relazioni di equivalenza compatibili con l'addizione in $\Z$). Notazione: per ogni $m\in\Z$ si scrive $\Z_m$ per $\Z/{\equiv_m}$ ed anche, per ogni $a\in\Z$, $[a]_m$ per $[a]_{\equiv_m}$.</p>
+<p>
+Descrizione esplicita degli elementi degli anelli $\Z_m$: per ogni $m,a\in \Z$ si ha $[a]_m=a+m\Z:=\set{a+mk\mid k\in \Z}$.</p>
+<p>
+Per ogni $a,m\in\Z$, se $m\ne 0$ esistono interi positivi in $[a]_m$. L'operazione parziale $\modbin$ (o $\%$): per ogni $a\in\Z$ e $m\in\Z\setminus\set 0$,  $a\modbin m$ &egrave; definito come il minimo numero naturale in $[a]_m$; questo numero &egrave; minore di $|m|$.
+Descrizione esplicita dei quozienti di $\Z$: per ogni $m\in\Z\setminus\set0$, $\Z_m=\set{[0]_m, [1]_m, [2]_m, \dots, [|m|-1]_m}$. Gli elementi di $\Z_m$ appena elencati sono a due a due distinti (vale a dire: se $i$ e $j$ sono numeri naturali minori di $|m|$ e $i\ne j$, allora $i\not\equiv_m j$), quindi $|\Z_m|=|m|$. Se $m$ &egrave; un intero positivo, $(\Z_m,+,\cdot)$ costituisce un esempio di anello commutativo unitario di cardinalit&agrave; (e caratteristica) $m$,; il suo gruppo additivo $(\Z_m,+)$ &egrave; ciclico.</p>
+<p>
+Divisione con resto (o divisione aritmetica) tra numeri interi (il secondo dei quali non nullo). Esistenza ed unicit&agrave; della coppia quoziente-resto.</p>
+<p>
+Consiglio la lettura, da affiancare allo studio serio dell'argomento, di un <a href="/cutolo/didattica//PLS/2016/AritmeticaModulare.pdf">articolo divulgativo</a>, scritto per studenti delle scuole superiori, che introduce in modo  informale (e ripeto, non da solo sufficiente ai nostri scopi) alcuni argomenti trattati in questa lezione.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Identificare la relazione di divisibilit&agrave; nei monoidi $(\N,+)$, $(\P(\N),\cap)$, $(\P(\N),\cup)$, $(\P(\N),\ds)$ (si chiede, ad esempio, di chiarire sotto quali condizioni, se $a$ e $b$ sono numeri naturali, $a$ divide $b$ in $(\N,+)$; similmente per gli altri monoidi).</li>
+	<li>La relazione di equipotenza in $\P(\set{1,2,3})$ &egrave; compatibile con una delle operazioni $\cap$ o $\ds$?</li>
+	<li>La relazione indotta in $\N^*$ da $\equiv_2$ (cio&egrave; quella definita dichiarando due numeri interi positivi equivalenti se e solo se sono congrui modulo 2) &egrave; compatibile con l'operazione di elevazione a potenza ($(a,b)\mapsto a^b$) in $\N^*$? E se sostituiamo $\N$ ad $\N^*$ cambia qualcosa?</li>
+	<li>Decidere se la relazione di equivalenza $\sim$ definita in $\P(\Z)$ ponendo, per ogni $x,y\in\P(\Z)$, $x\sim y\iff x\cap\N=y\cap\N$ &egrave; o non &egrave; una congruenza nell'anello delle parti di $\Z$.</li>
+	<li>Nel monoide delle parole su un alfabeto, la relazione "avere la stessa lunghezza" (dove si intende che la parola vuota &egrave; in relazione solo con s&eacute; stessa) &egrave; una congruenza?</li>
+	<li id="ex_ker">Sia $f\colon A\to B$ un omomorfismo tra le strutture algebriche $(A,*)$  e $(B,\bullet)$. Provare che il nucleo di equivalenza di $f$ &egrave; compatibile con $*$. Se possibile, spiegare perch&eacute; questo esercizio generalizza i precedenti.</li>
+	<li>Nel monoide delle parole su un alfabeto, la relazione "avere la prima lettera in comune" (dove si intende che la parola vuota &egrave; in relazione solo con s&eacute; stessa) &egrave; una congruenza?</li>
+	<li>Elencare gli elementi di $[40]_6\cap\set{n\in\Z\mid -10\le n\le 10}$.</li>
+	<li>Elencare gli interi $m$ tali che $1\equiv_m -9$ e gli interi $h$ tali che $1+8h\equiv_h -9$.</li>
+	<li>Provare che se due interi sono congrui modulo un intero $m$, essi sono congrui anche modulo ciascun divisore di $m$.</li>
+	<li>Scrivere le tavole di Cayley, rispetto alle operazioni di addizione e moltiplicazione, dell'anello $\Z_4$. In questo anello $[2]_4$ &egrave; cancellabile? Provare che $\Z_4$ non &egrave; un dominio di integrit&agrave;.</li>
+	<li>L'anello $(\Z_{15},+,\cdot)$ non &egrave; un dominio di integrit&agrave;. Trovare in esso qualche divisore non nullo dello zero.</li>
+	<li>Provare che, invece, $(\Z_3,+,\cdot)$ &egrave; un campo.</li>
+	<li>Calcolare: $15\modbin 6$, $(-15)\modbin 6$, $15\modbin -6$, $(-15)\modbin -6$, </li>
+	<li>Vero o falso? $\Z_5=\set{[12]_5,[9]_5,[-12]_5,[100]_5,[-4]_5}$</li>
+</ol>
+</section>
+<section><h3>21 &mdash; 21/5</h3>
+<p>
+Osservazione: se $m$ &egrave; un numero intero positivo composto (cio&egrave; $m=ab$ dove $a$ e $b$ sono interi maggiori di 1), allora $\Z_m$ non &egrave; un anello integro. (Dunque: il passaggio al quoziente non conserva, in generale, la cancellabilit&agrave;.)</p>
+<p>
+Terminologia: classi di resto. Metodi dell'aritmetica modulare, con esempi di calcoli rapidi (ad esempio, di potenze).</p>
+<p>
+Elementi periodici nei gruppi. Se un elemento $x$ di un gruppo ha periodo un numero intero positivo $m$, allora, per ogni $a,b\in\Z$ si ha $x^a=x^b\iff a\equiv_m b$; di conseguenza $m$ &egrave; anche la cardinalit&agrave; del sottogruppo generato da $x$ . Senza dimostrazione: se $G$ &egrave; un gruppo finito di cardinalit&agrave; $n$ e con elemento neutro $1_G$, per ogni $x\in G$ si ha $x^n=1_G$, quindi il periodo di $x$ divide $n$. Cenno al teorema di Fermat-Eulero.</p>
+<p>
+Massimi comuni divisori (MCD) di una parte di un semigruppo commutativo. Laddove esistano, costituiscono una classe di elementi associati.</p>
+<p>
+Algoritmo euclideo (delle divisioni successive) per la ricerca di un MCD tra due numeri interi (descrizione e giustificazione; si vedano anche le  <a href="/cutolo/didattica/note/algEucl.pdf">note</a> su questo argomento; un altro file disponibile &egrave; <a href="https://www.docenti.unina.it/#!/professor/4d4152494120524f534152494143454c454e54414e49434c4e4d525336324535344638333947/materiale_didattico/44738">nel sito docenti della Professoressa Celentani</a>). &ldquo;Pseudodivisione euclidea&rdquo; e suo utilizzo per la velocizzazione dell'algoritmo euclideo (per ogni $a,b\in\Z$, se $b\ne 0$ esistono $q,r\in\Z$ tali che $a=bq+r$ e $|r|\le|b/2|$).</p>
+<p>
+Estensione dell'algoritmo euclideo e teorema di B&eacute;zout (la dimostrazione fornita &egrave; quella, costruttiva, data dalla validit&agrave; dell'algoritmo euclideo esteso, non quella nel libro di testo): se $a$ e $b$ sono numeri interi e $d$ &egrave; un MCD tra essi,</p>
+<ul class="compact">
+	<li>l'insieme delle combinazioni lineari di $a$ e $b$ in $\Z$ coincide con $d\Z$;</li>
+	<li>per ogni $c\in\Z$, l'equazione diofantea $ax+by=c$ ha soluzioni (intere) se e solo $d$ divide $c$.</li>
+	<li>$a$ e $b$ sono coprimi se e solo se esistono interi $u$ e $v$ tali che $1=au+bv$.</li>
+</ul>
+<p>
+Come conseguenza del teorema di B&eacute;zout, lemma di Euclide: siano $a,b,c\in\Z$; se $a$ e $b$ sono coprimi e $a$ divide $bc$, allora $a$ divide $c$.</p>
+<p>
+Equazioni di primo grado in un anello commutativo unitario e, pi&ugrave; specificamente, in un quoziente proprio di $\Z$, ovvero equazioni congruenziali di primo grado ad una incognita: se $a$, $c$ ed $m$  sono interi, e $m\ne 0$, l'equazione congruenziale $ax\equiv_m c$ (in $\Z$) &egrave; un modo per esprimere l'equazione $[a]_m X= [c]_m$ in $\Z_m$. Equivalenza tra il problema di risolvere l'equazione congruenziale $ax\equiv_m c$ e quello di risolvere l'equazione diofantea $ax+my=c$.
+<em>Criterio di esistenza di soluzioni per le equazioni congruenziali</em> di questo tipo (&egrave; un'ulteriore versione del teorema di B&eacute;zout).</p>
+<p>
+Conseguenze ulteriori: determinazione degli elementi invertibili nei quozienti di $\Z$. Per interi $m\ne 0$, sono equivalenti: (1) $\Z_m$ &egrave; un campo; (2) $\Z_m$ &egrave; un dominio di integrit&agrave; non nullo; (3) $m$ &egrave; primo.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Calcolare a mente $10^{100}\modbin 11$; $2^{100}\modbin 7$; $7^{100}\modbin 25$.</li>
+	<li>Sono le 15. Che ora sar&agrave; tra $16\cdot 9\cdot 7^2 + 5^{40}-3^{10}$ ore?</li>
+	<li>Calcolare (a mente, ci mancherebbe!)
+		<!-- $72543618991175\modbin 9$ e $72543618991175\modbin 3$, poi $(626\cdot 3125)\modbin 3$ ed infine   -->
+	$78598!\modbin 9743$.</li>
+	<li>Nel granducato di Strampalia non circolano monete e la valuta locale, il tallero strampalese, viene emesso solo in due tagli: la banconota da 15 talleri e quella da 33 talleri. Usando il teorema di B&eacute;zout, spiegare quali pagamenti in talleri strampalesi possono essere effettuati in contanti (&egrave; ammessa la possibilit&agrave; di pagare ricevendo un resto).</li>
+	<li>Utilizzando l'algoritmo euclideo esteso, trovare una coppia soluzione dell'equazione diofantea $62x-27y=8$.</li>
+	<li>Svolgere gli esercizi 5 e 9 da <a href="/cutolo/didattica/note/esercizi_LIA.pdf">Tautologie, insiemi, aritmetica</a> (la scrittura $ax\equiv c\pmod m$ sta per $ax\equiv_m c$).</li>
+	<li>Elencare gli elementi dell'anello $\Z_{12}$, specificando queli tra essi sono divisori dello zero e invertibili; di questi ultimi determinare gli inversi.</li>
+</ol>
+</section>
+<section><h3>22 &mdash; 25/5</h3>
+<p>
+Ancora esempi sui metodi dell'aritmetica modulare. Alcuni criteri di divisibilit&agrave; (per 3, 9, 2, 5, 4). Osservazione: se due interi sono congrui modulo un intero $m$, essi sono congrui anche modulo ciascun divisore di $m$.</p>
+<p>
+Minimi comuni multipli (mcm) di una parte di un semigruppo commutativo. Laddove esistano, costituiscono una classe di elementi associati.</p>
+<p>
+Divisori banali ed elementi irriducibili in monoidi commutativi; numeri interi primi. Il teorema fondamentale dell'aritmetica: ogni numero intero diverso da $0$, $1$ e $-1$ &egrave; prodotto di primi, in modo essenzialmente unico. Conseguenza: determinazione dei divisori di un intero e di MCD e mcm di coppie di interi di cui siano note fattorizzazioni in prodotto di primi. Osservazione: se $a,b\in\Z$ e $d$ e $m$ sono MCD e mcm di $\set{a,b}$ allora $|ab|=|dm|$.</p>
+<p>
+Metodi per la risoluzione dell'equazione congruenziale  $(*)$: $ax\equiv_m c$ (dove $a,c,m\in\Z$ e $m\ne 0$; d'ora in avanti queste notazioni restano fissate). Prima osservazione: l'insieme delle soluzioni &egrave; una unione di classi di resto modulo $m$. &Egrave; precisamente una classe di resto modulo $m$ se e solo se $a$ ed $m$ sono coprimi (in questo caso diciamo che $(*)$ &egrave; ridotta).</p>
+<p>
+Metodi di semplificazione: data l'equazione congruenziale $(*)$ come sopra,</p>
+<ol style="list-style-type: lower-roman;">
+<li> se $a'\in[a]_m$ e $c'\in[c]_m$, l'equazione congruenziale $a'x\equiv_m c'$ &egrave; equivalente a $(*)$ (nel senso che le due equazioni hanno lo stesso insieme di soluzioni);</li>
+<li> per ogni $k\in\Z$, se $k\ne 0$, l'equazione congruenziale $akx\equiv_{mk} ck$  &egrave; equivalente a $(*)$;</li>
+<li> per ogni $t\in\Z$, se $t$ &egrave; coprimo con $m$, l'equazione congruenziale $atx\equiv_{m} ct$  &egrave; equivalente a $(*)$.</li>
+</ol>
+<p>
+La (ii) segue dal fatto che, per ogni $a,b,m,k\in\Z$ se $k\ne0$ si ha $a\equiv_m b$ se e solo se $ak\equiv_{mk} bk$.
+Come ovvio, le osservazioni (ii) e (iii) vengono usate per dividere gli interi $a$ e $c$ (e, nel caso di (ii) anche $m$) per loro divisori comuni.</p>
+<p>
+Un algoritmo (non l'unico possibile) per l'individuazione delle soluzioni dell'equazione congruenziale $(*)$: (1) detto $d$ un MCD tra $a$ ed $m$, se $d$ non divide $c$ l'equazione non ha soluzioni e l'algoritmo termina, altrimenti si sostituiscono $a$, $m$ e $c$  con $a_1=a/d$, $m_1=m/d$, $c_1=c/d$, ottenendo l'equazione $a_1x\equiv_{m_1} c_1$ equivalente a $(*)$; (2) $a_1$ ed $m_1$ sono coprimi, quindi $[a_1]_{m_1}$ &egrave; invertibile; se ne determina l'inverso $[u]_{m_1}$; lo si pu&ograve; fare, in assenza di metodi pi&ugrave; rapidi, utilizzando l'algorimo euclideo esteso (vedi lezione precedente) per ottenere interi $u$ e $v$ tali che $1=a_1u+m_1v$, sicch&eacute; $[u]_{m_1}=[a_1]_{m_1}^{-1}$; (3) l'algoritmo ora termina fornendo $[uc_1]_{m_1}$, che &egrave; l'insieme delle soluzioni dell'equazione $(*)$.</p>
+<p>
+Sia in partenza che al passo (2) &egrave; possibile (anzi, &egrave; bene farlo) applicare i metodi di semplificazione delle equazioni congruenziali discussi sopra. Alcuni <strong><a href="/cutolo/didattica/note/esempi-eq-congr.pdf">esempi</a></strong>.</p>
+<p>
+Come conseguenza: determinazione di tutte le soluzioni di un'equazione diofantea della forma $ax+by=c$ per interi $a,b,c$. Ulteriore osservazione: risolvere l'equazione congruenziale $(*)$ &egrave; equivalente a risolvere l'equazione diofantea $ax+my=c$ e quindi anche a risolvere l'equazione congruenziale $my\equiv_a c$.</p>
+<p>
+Relazioni (binarie) antiriflessive e antisimmetriche. <em>Relazioni d'ordine</em> (largo) e relazioni d'ordine stretto. Esempi.  La relazione duale (cio&egrave; capovolta) ad una relazione binaria $\rho$ &egrave; d'ordine se e solo se $\rho$ &egrave; d'ordine, d'ordine stretto se e solo se $\rho$ &egrave; d'ordine stretto.</p>
+<p>
+Notazione: fissato un insieme $a$, $\OL(a)$ e $\OS(a)$ denotano gli insiemi delle relazioni di ordine largo e di ordine stretto nell'insieme $a$. Biezioni (l'una inversa dell'altra) $\rho\in\OL(a)\mapsto\rho_{\ne}\in\OS(a)$ e $\sigma\in \OS(a)\mapsto\sigma_{=}\in\OL(a)$, dove $\rho_{\ne}$ e $\sigma_{=}$ sono descritte da: $(\forall x,y\in a)$$(x\mathrel{\rho_{\ne}}y \iff (x\mathrel\rho y \land x\ne y))$ e $(\forall x,y\in a)$$(x\mathrel{\sigma_{=}}y \iff (x\mathrel\sigma y \lor x=y))$.</p>
+<p>
+Insiemi ordinati. Esempi essenziali (relazione d'ordine usuale in $\R$ e nei suoi sottoinsiemi, relazione di inclusione in qualsiasi insieme, relazione di divisibilit&agrave; in $\N$ (ma non in $\Z$). Relazione d'ordine (stretto o largo) indotta su una parte. Confrontabilit&agrave; ed insiemi totalmente ordinati. Principio di dualit&agrave; per insiemi ordinati.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Calcolare a mente $72543618991175\modbin 9$ e $72543618991175\modbin 3$, poi $(626\cdot 3125)\modbin 3$.</li>
+	<li>Verificare che, per ogni intero positivo $i$, si ha $10^i\equiv_{11} 1$ se $i$ &egrave; pari, $10^i\equiv_{11} -1$ se $i$ &egrave; dispari. Ricavarne il criterio di divisibilit&agrave; per $11$ abitualmente insegnato (solo qualche anno fa? tuttora?) nella scuola elementare: se, nella sua rappresentazione usuale in base $10$, un numero intero positivo $n$ &egrave; scritto come stringa "$c_k c_{k-1}\dots c_1 c_0$" (vale a dire: $n=\sum_{i=0}^k 10^i c_i$, dove $k\in\N$,  per ogni $i\in\set{0,1,2,\dots,k}$, $10>c_i\in\N$ e, inoltre, $c_k\ne 0$), allora $n$ &egrave; divisibile per $11$ se e solo se, in questa stringa, la somma tra le cifre $c_i$ di posto pari e la somma delle cifre di posto dispari differiscono per un multiplo di $11$.</li>
+	<li>Determinare, in $\N$ e poi in $\Z$, i divisori di $3^5\cdot 5^4\cdot 23^3$ ed il loro numero. Ripetere l'esercizio per $3^5\cdot 5^4\cdot 22^3$.</li>
+	<li>Completare nei dettagli la dimostrazione di quanto affermato a proposto della &ldquo;pseudodivisione euclidea&rdquo;: esistenza (per ogni $a,b\in\Z$, se $b\ne 0$ esistono $q,r\in\Z$ tali che $a=bq+r$ e $|r|\le|b/2|$). Osservare che la coppia non &egrave; necessariamente unica (porre $b=2$ ed $a$ un intero dispari).</li>
+	<li>Trovare le soluzioni dell'equazione congruenziale $87x+32\equiv_{100} x+4$.</li>
+	<li>Usando l'algoritmo euclideo esteso, trovare tutte le soluzioni delle equazioni diofantee $14x+6y=1$, &nbsp;$14x+6y=4$ &nbsp;e &nbsp;$140x+60y=20$.</li>
+	<li>Svolgere gli esercizi da 6 a 12 di <a href="/cutolo/didattica/note/esercizi_LIA.pdf">Tautologie, insiemi, aritmetica</a> (la scrittura $ax\equiv c\pmod m$ sta per $ax\equiv_m c$).</li>
+	<li>Dando per nota l'uguaglianza $3=117\cdot 13+66(-23)$, trovare gli insiemi delle soluzioni delle equazioni congruenziali $66 x\equiv_{117}10$, $660 x\equiv_{1170}90$ e $1170 x\equiv_{660}90$.</li>
+	<li>Trovare l'insieme delle (cio&egrave;: di tutte le) soluzioni delle equazioni congruenziali:
+	$2000000055x\equiv_{100} 11$;
+	$2000000055x\equiv_{100} 15$;
+	$100x\equiv_{55} 15$;
+	$300x\equiv_{55} 45$;
+	$80x+2 \equiv_{120} 6x+27$;
+	$80x+1 \equiv_{120} 6x+27$.</li>
+	<li>Autoassegnarsi e risolvere un gran numero di equazioni congruenziali a caso.</li>
+	<li>Si determinino tutti gli interi $u$ tali che $20(u-1)\equiv_{28}4(u-2)$ e tutti gli interi $v$ tali che $20(v-1)\equiv_{28}4v-2$.</li>
+	<li>In $\Z_{48}$ si determini, ove possibile, l'inverso di: $[7]_{48}$, $[9]_{48}$, $[11]_{48}$, $[-13]_{48}$, $[47]_{48}$. Capire perch&eacute; c'&egrave; davvero bisogno di far calcoli in una sola occasione.</li>
+	<li>Delle equazioni congruenziali che seguono, dire quali hanno lo stesso insieme di soluzioni di $18x\equiv_{21}9$ (<em>non calcolare le soluzioni</em>):<br>$6x\equiv_{21}3$, $6x\equiv_{7}3$, $2x\equiv_{7}1$, $x\equiv_{21}4x+9$, $60x\equiv_{7}30$, $60x\equiv_{70}30$, $54x\equiv_{21}27$, $54x\equiv_{63}27$, $-3x\equiv_{21}9$, $3x\equiv_{21}-9$, $x\equiv_{7}-3$, $-3x\equiv_{21}28$.</li>
+	<li>Verificare che ogni relazione di ordine stretto &egrave; antisimmetrica.</li>
+	<li>Verificare in dettaglio che per ogni insieme $a$ le applicazioni  $\OL(a)\to\OS(a)$ e $\OS(a)\to\OL(a)$ descritte a lezione sono effettivamente ben definite ed una inversa dell'altra.</li>
+	<li>Verificare che, in ogni insieme, la relazione di uguaglianza &egrave; d'ordine.</li>
+</ol>
+</section>
+<section><h3>23 &mdash; 28/5</h3>
+<p>
+Elementi minimi e minimali (e, dualmente, massimi e massimali) in insiemi ordinati. Esempi e comparazione tra le propriet&agrave;. Se, in un arbitrario insieme ordinato, un elemento $x$ &egrave; minimo, allora $x$ &egrave; l'unico elemento minimale (e quindi l'unico minimo). Enunciato duale per massimi e massimali. L'enunciato non si inverte: esempio di un insieme ordinato privo di minimo e massimo e dotato di un elemento che &egrave;, allo stesso tempo, l'unico elemento minimale e l'unico elemento massimale (si veda l'esercizio&nbsp;2; solo a titolo di notizia: se un insieme ordinato <em>finito</em> ha un unico elemento minimale, questo ne &egrave; il minimo). In ogni insieme ordinato finito non vuoto esistono sempre elementi minimali ed elementi massimali. </p>
+<p>
+Intervalli (chiusi, aperti o semiaperti) in insiemi ordinati. Relazione di copertura definita da una relazione d'ordine.  Nel caso degli insiemi ordinati finiti, ma non in generale, essa determina l'ordinamento. <em>Diagrammi di Hasse</em> di insiemi ordinati finiti. Esempi.</p>
+<p>
+Applicazioni crescenti ed isomorfismi tra insiemi ordinati. Un esempio di applicazione biettiva crescente tra insiemi ordinati che non &egrave; un isomorfismo.</p>
+ <!-- (una &egrave; l'applicazione identica da $\N^*$, ordinato per divisibilit&agrave; ad $\N^*$ ordinato dall'ordinamento usuale) -->
+<p>
+Date un'applicazione $f\colon S\to T$ ed una relazione d'ordine $\le$ in $T$, relazione d'ordine stretto e relazione d'ordine largo definite in $S$ da $f$ e $\le$: quella stretta (risp. larga) &egrave; definita da: scelti comunque $x$ e $y$ in $S$, $x$ &egrave; in relazione con $y$ se e solo se $f(x)\lt f(y)$, (risp. se e solo se $x=y$ oppure $f(x)\lt f(y)$); descrizione degli elementi minimali o massimali.</p>
+<p>
+Minoranti e (dualmente) maggioranti di una parte $T$ di un insieme ordinato $(S,\rho)$. Notazione: indichiamo gli insiemi da essi formati come $T^{\downarrow_{(S,\rho)}}$ e $T^{\uparrow_{(S,\rho)}}$ rispettivamente. Alcuni esempi; tra questi: se $T=\vuoto$, $T^{\downarrow_{(S,\rho)}}=T^{\uparrow_{(S,\rho)}}= S$;
+se $X$ &egrave; un insieme di numeri naturali, i minoranti ed i maggioranti di $X$ in $(\N,|)$ sono, rispettivamente, gli insiemi dei divisori comuni e dei multipli comuni agli elementi di $X$;
+se $S$ &egrave; un insieme e $T\subseteq\P(S)$, i minoranti ed i maggioranti di $T$ in $(\P(S),\subseteq)$ sono, rispettivamente, i sottoinsiemi di $\bigcap T$ (o di $S$ se $T=\vuoto$) ed i sottoinsiemi di $S$ contenenti $\bigcup T$.</p>
+<p>
+Estremi inferiori ed estremi superiori. Esempi. Per ogni parte $X$ di un insieme ordinato $(S,\rho)$ ed ogni $a\in X$, sono equivalenti: (1) $a=\min (X,\rho)$, (2) $a\in X^{\downarrow_{(S,\rho)}}$, (3) $a=\inf_{(S,\rho)}(X)$. Definizione di reticolo e di reticolo completo. Il duale di un reticolo &egrave; necessariamente un reticolo; principio di dualit&agrave; per reticoli. Sono reticoli tutti gli insiemi totalmente ordinati, sono reticoli completi $(\P(S),\sseq)$ (per qualsiasi insieme $S$) e $(\N,\mid)$.</p>
+<p>
+Un reticolo non pu&ograve; avere pi&ugrave; di un elemento minimale o pi&ugrave; di un elemento massimale, per motivi ovvi. Un motivo meno ovvio: un elemento minimale (risp. massimale) in un reticolo &egrave; necessariamente il minimo (risp. massimo) del reticolo.</p>
+<p>
+Reticoli limitati; lo sono tutti i reticoli finiti non vuoti, ma anche $(\N,\mid)$ e $(\P(S),\subseteq)$ per ogni insieme $S$ (ma non, ad esempio, $(\N,\le)$).</p>
+<p>
+Lemma: se $(S,\rho)$ &egrave; un insieme ordinato e $X$ ne &egrave; una parte con estremo inferiore $a$, allora $X^\downarrow=\set a^\downarrow$; se poi $b\in S$ si ha
+$(X\cup\set b)^\downarrow=\set{a,b}^\downarrow$, quindi le propriet&agrave; di essere, in $(S,\rho)$, estremo inferiore di $X\cup\set b$ o di $\set{a,b}$ sono equivalenti (vale ovviamente anche l'enunciato duale). Conseguenza: tutte le parti finite e non vuote di un (arbitrario) reticolo hanno estremo inferiore ed estremo superiore, dunque: i reticoli finiti non vuoti sono completi.</p>
+<p>
+Le due operazioni (binarie) reticolari (join/sup/unione reticolare/$\lor$ e meet/inf/intersezione reticolare/$\land$) definite in un reticolo. Loro propriet&agrave; algebriche (commutativit&agrave;, associativit&agrave;, leggi di assorbimento, iterativit&agrave;). In generale, come propriet&agrave; algebrica, l'iterativit&agrave; &egrave; conseguenza delle leggi di assorbimento. Reticoli come strutture algebriche: se $(L,\lor,\land)$ &egrave; una struttura algebrica in cui $\lor$ e $\land$ sono operazioni binarie associative e commutative per le quali valgono le leggi di assorbimento, allora esiste una relazione d'ordine $\rho$ in $L$ tale che $(L,\rho)$ sia un reticolo che ha $\lor$ e $\land$ come operazioni reticolari ($\rho$ &egrave; definita ponendo, per ogni $a$, $b\in L$, $a\mathrel\rho b$ se e solo se $a=a\land b$ o, equivalentemente, $b=b\lor a$). Fissato un qualsiasi insieme $L$, questa costruzione definisce un'applicazione biettiva tra l'insieme delle coppie ordinate $(\lor,\land)$ di operazioni binarie in $L$ che verificano le propriet&agrave; indicate e quello delle relazioni d'ordine in $L$ che rendono $L$ un reticolo;
+dunque si possono, in modo equivalente a quanto fatto sinora, definire i reticoli anche come strutture algebriche.  Esempio particolarmente significativo: per ogni insieme $S$, le operazioni reticolari corrispondenti alla relazione di inclusione in $\P(S)$ sono quelle di unione e intersezione.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Posto $a=\set{1,2,3,4,5}$, determinare gli (eventuali) elementi minimali, massimali, minimi e massimi in ciascuno dei seguenti insiemi ordinati dalla relazione di inclusione: (1)&nbsp;l'insieme delle parti di $a$ di cardinalit&agrave; pari; (2)&nbsp;l'insieme delle parti finite di $\N$ contenenti $a$; (3)&nbsp;l'insieme delle parti finite di $\N$ strettamente contenenti $a$; (4)&nbsp;l'insieme delle parti finite di $\N$ non contenute in $a$ (5)&nbsp;l'insieme delle parti infinite di $\N$ contenenti $a$.</li>
+	<li>Verificare in dettaglio che la relazione binaria $\rho$ sull'insieme $a=\R\cup\set h$ (dove $h\notin\R$) discussa a lezione e definita da $\forall x,y\in a$$(x\mathrel\rho y\iff{}$$ ((x,y\in\R \land x\le y) \lor (x=y=h))$ &egrave; effettivamente d'ordine.</li>
+	<li>Siano $\rho$ e $\sigma$ le relazioni binarie in $\Z$ definite ponendo, per ogni $a,b\in\Z$: $a\mathrel\rho b$ se e solo se $a^2+2\le b^2+2$ e $a\mathrel\sigma b$ se e solo se $a=b$ oppure $a^2+a+1\lt b^2+b+1$. Di ciascuna delle due decidere se &egrave; una relazione d'ordine.</li>
+	<li>La relazione binaria $\tau$ definita in $\N$ ponendo, per ogni $a,b\in\N$, $a\mathrel\tau b$ se e solo se $b-a\in\N\setminus\set 1$ &egrave; d'ordine? Nel caso lo sia, disegnare il diagramma di Hasse di $\set{n\in\N\mid n\lt 8}$ ordinato dalla relazione indotta da $\tau$.</li>
+	<li>Siano $A=\set{0,1,2,3}$ e $\rho$ la relazione binaria definita in $\P(A)$ ponendo, per ogni $x,y\in\P(A)$, $x\mathrel\rho y$ se e solo se $x=y \lor (x\cap\set{0,1}\subset y\cap\set{0,1})$. Provare che $\rho$ &egrave; una relazione d'ordine, decidere se &egrave; totale e determinare in $(\P(A),\rho)$ gli (eventuali) elementi minimo, massimo, minimali e massimali.</li>
+	<li>Costruire un esempio di insieme ordinato con esattamente tre elementi minimali.</li>
+	<li>Esiste in $\P(\N)$ una parte infinita che sia totalmente ordinata per inclusione (cio&egrave; dall'ordinamento indotto dall'inclusione in $\P(\N)$)?</li>
+	<li id='ex:parti.di.P(Z).e.Q'>In ciascuno dei seguenti insiemi, ordinati dalla relazione di inclusione, determinare gli eventuali elementi minimali, massimali, minimo, massimo: $\P(\Z)$, $\Pf(\Z)$ (l'insieme delle parti finite di $\Z$), $\P(\Z)\setminus\Pf(\Z)$ (l'insieme delle parti infinite di $\Z$), $\P(\Z)\setminus\P(\N)$, $\P_7(\Z)$,  $\P_4(\Z)\cup\P_9(\Z)$, $\set{\set{1,2,3}, \set{4},\set{n\in\Z\mid n>1}}$. Fare lo stesso per gli insiemi $\set{x\in\Q\mid 0\lt x \le 3}$ e $\set{x\in\Q\mid 0\lt x \le\sqrt 2}$ ordinati dall'ordinamento indotto da quello usuale di $\R$.</li>
+	<li>Completare gli esercizi 1 e 2 da <a href="/cutolo/didattica/note/esercizi_rel.pdf">relazioni binarie</a> (per "ordinamento" si intende "relazione d'ordine stretto o largo") e, dallo stesso file, svolgere l'esercizio 6 sino alla prima occorrenza della parola 'reticolo' (inclusa).</li>
+	<li>Disegnare un diagramma di Hasse dell'insieme $\set{n\in\N\mid n\lt 10}$ ordinato per divisibilit&agrave; in $\N$.</li>
+	<li>Per ogni $n\in\set{8,12,18,30,31,2^{10}}$ disegnare un diagramma di Hasse dell'insieme $D_n$ dei divisori (in $(\N,\cdot)$) di $n$, ordinato per divisibilit&agrave; in $\N$. Trovare, tra questi insiemi ordinati, quali sono isomorfi tra loro.</li>
+	<li>Sia $x$ un elemento di un insieme ordinato $S$. Allora, in $S$, $x$ &egrave; minimale e e solo se $\set x^\downarrow= \set x$.</li>
+	<li>Provare che, per ogni scelta delle parti $X$ e $Y$ di un insieme ordinato, si ha $(X\cup Y)^{\downarrow}=X^{\downarrow}\cap Y^{\downarrow}$ e $(X\cup Y)^{\uparrow}=X^{\uparrow}\cap Y^{\uparrow}$. Inoltre, se $a=\inf(X)$ e $b=\inf(Y)$, allora $(X\cup Y)^\downarrow=\set{a,b}^\downarrow$ e le propriet&agrave; di essere estremo inferiore di $X\cup Y$ o di $\set{a,b}$ sono equivalenti. Verificare anche gli enunciati duali.</li>
+	<li>Verificare: se $a$ e $b$ sono parti di un insieme ordinato $(S,\rho)$, allora $(a\cap b)^{\downarrow_{(S,\rho)}}\supseteq a^{\downarrow_{(S,\rho)}}\cup b^{\downarrow_{(S,\rho)}}$ e $(a\cap b)^{\uparrow_{(S,\rho)}}\supseteq a^{\uparrow_{(S,\rho)}}\cup b^{\uparrow_{(S,\rho)}}$, dove le inclusioni possono essere strette.</li>
+</ol>
+</section>
+<section><h3>24 &mdash; 4/6</h3>
+<p>
+Per il contenuto di questa lezione: <a href="/cutolo/didattica/note/strutturebooleane.pdf">Strutture booleane</a>.</p>
+<p>
+Isomorfismi tra reticoli: per un applicazione tra reticoli sono equivalenti le propriet&agrave; di essere un isomorfismo di insiemi ordinati e quella di essere un isomorfismo tra le strutture algebriche definite dalle operazioni reticolari.</p>
+<p>
+Sottoreticoli (cio&egrave; parti non vuote di un reticolo chiuse rispetto alle operazioni reticolari). Esempi di sottoreticoli; lo sono le parti non vuote totalmente ordinate e, per ogni $x\in S$, i sottoinsiemi $\set x^\downarrow$ e $\set x^\uparrow$, quindi tutti gli intervalli chiusi. Esempio di una parte di un reticolo che, rispetto all'ordinamento indotto, &egrave; un reticolo ma non &egrave; un sottoreticolo.</p>
+<p>
+Complementi in un reticolo limitato; <em>reticoli complementati</em> (esempio: il reticolo delle parti di un insieme lo &egrave;; $(\N,|)$ non lo &egrave;; un insieme totalmente ordinato con pi&ugrave; di due elementi non lo &egrave;). In un reticolo (limitato) un elemento $a$ ha per complemento un elemento $b$ con cui &egrave; confrontabile se e solo se $a$ e $b$ sono il minimo ed il massimo del reticolo; inoltre il minimo &egrave; l'unico complemento del massimo e viceversa. Esempi di reticoli in cui un elemento ha pi&ugrave; di un complemento: reticolo trirettangolo ($M_3$) e reticolo pentagonale ($N_5$).</p>
+<p>
+<em>Reticoli distributivi</em>. Esempi: sono distributivi $(\P(S),\subseteq)$ per ogni insieme $S$, $(\N,\mid)$ (questo non lo abbiamo dimostrato), gli insiemi totalmente ordinati. I sottoreticoli dei reticoli distributivi sono distributivi.
+Unicit&agrave; dei complementi nei reticoli distributivi. Reticolo trirettangolo e reticolo pentagonale; <em>criterio di distributivit&agrave; di Birkhoff</em> (dimostrata solo l'implicazione banale); esempi di applicazione del criterio di Birkhoff.</p>
+<p>
+<em>Reticoli booleani</em> ed <em>algebre di Boole</em>; equivalenza tra le nozioni; dualit&agrave; per algebre di Boole; ogni algebra di Boole &egrave; isomorfa alla sua duale. Sottoalgebre di Boole (non lo sono tutti i sottoreticoli, ma solo quelli chiusi per complementi). Alcune identit&agrave; nelle algebre di Boole: per ogni $a$ e $b$ si ha: $(a')'=a$, $0'=1$, $0\land a=0$, $1\lor a=1$, $(a\land b)'=a'\lor b'$ e $(a\lor b)'=a'\land b'$ (identit&agrave; di De Morgan).</p>
+<p>
+Costruzione di un'algebra di Boole (ovvero, di un reticolo booleano) a partire da un anello booleano e costruzione (inversa) di un'anello booleano a partire da un'algebra di Boole (per la seconda costruzione non sono state effettuate verifiche). I sottoanelli unitari di un anello booleano sono tutte e sole le sottoalgebre della corrispondente algebra di Boole. Equivalenza tra lo studio dei reticoli booleani, delle algebre di Boole, degli anelli booleani. Teorema di Stone per algebre di Boole e per reticoli booleani, con corollari come per gli anelli booleani.</p>
+<p>
+Interpretazione delle funzioni caratteristiche come applicazioni a valori in $\Z_2$. Per ogni $n\in\N^*$, l'anello (booleano) $(\Z_2)^n$ delle $n$-ple di elementi di $\Z_2$, ovvero delle applicazioni da $S=\set{1,2,\dots,n}$ a $\Z_2$.  Identificazione delle "stringhe di zeri e uno" di fissata lunghezza $n$ con gli elementi di $(\Z_2)^n$.  L'applicazione che ad ogni parte di $S$ associa la sua funzione caratteristica &egrave; un isomorfismo di anelli (booleani) da $\P(S)$ a $(\Z_2)^n$. Interpretazione delle operazioni 'bit a bit' (che traducono i connettivi proposizionali $\xor$ e $\land$) alla luce di questo isomorfismo. Corrispondenti strutture di reticolo booleano e di algebra di Boole su $(\Z_2)^n$.</p>
+<p style="margin-top: 1ex;">
+<span class="evidenzia">Ricordo</span> la riunione dedicata alla discussione di esercizi che si terr&agrave;, come da avviso nella <a href="../#avviso">pagina principale del corso</a>, gioved&igrave; 11, a partire dalle ore 14, in aula A7.</p>
+
+<h4>Esercizi proposti:</h4>
+<ol class="ex">
+	<li>Trovare un isomorfismo di reticoli dall'insieme delle parti di $\set{0,1}$ all'insieme delle parti di $\set{3,4}$, ordinati per inclusione.</li>
+	<li>Provare che se due insiemi $a$ e $b$ sono equipotenti, i reticoli $(\P(a),\sseq)$ e $(\P(b),\sseq)$ sono isomorfi.</li>
+	<li>Esercizio 8 da <a href="/cutolo/didattica/note/strutturebooleane.pdf">Strutture booleane</a>.</li>
+	<li>Verificare la distributivit&agrave; del reticolo $(\N,\mid)$. (L'esercizio non &egrave; particolarmente facile; si pu&ograve; procedere sia per via diretta, utilizzando la descrizione dei mcm e MCD derivata dal teorema fondamentale dell'aritmetica, oppure il criterio di Birkhoff.)</li>
+	<li>Provare che, nell'algebra di Boole delle parti di $\N$, l'insieme delle parti finite $\N$ costituisce un sottoreticolo non booleano, e che la sottoalgebra di Boole da esso generata (nel senso gi&agrave; introdotto in altri contesti: la minima sottoalgebra di Boole di $\P(\N)$ che lo contiene) &egrave; costituita dalle parti $x$ di $\N$ tali che uno tra $x$ e $\N\setminus x$ sia finito.</li>
+	<li>Verificare in dettaglio che un'applicazione tra i sostegni di due algebre di Boole &egrave; un isomorfismo di algebre di Boole se e solo se &egrave; un isomorfismo tra i corrispondenti reticoli (visti come insiemi ordinati).</li>
+	<li>Verificare che, in ogni algebra di Boole, per ogni coppia di elementi $a$ e $b$ vale $a\lor b=a\lor(a'\land b)$.</li>
+	<li>Spiegare perché un reticolo complementato di cardinalit&agrave; 1000 non pu&ograve; essere distributivo.</li>
+</ol>
+</section>
+</div>
+</main>
+</div>	<!-- chiude .mid-container -->
+<footer>
+<!-- searchform -->
+<nav id="cerca_sito">
+	<form method="get" id="searchform"  action="http://www.google.com/search">
+	<input type="text" name="q">
+	<input type="hidden" value="http://www.dma.unina.it/cutolo/didattica/" name="as_sitesearch">
+	<input type="hidden" name="ie" value="utf-8">
+</form><div>cerca in queste pagine</div>
+</nav>
+
+<div id="footesto">
+	<div></div>
+<ul>
+<!-- testo per footer standard -->
+	<li>Orario di ricevimento:
+			<!--sospeso per il periodo natalizio-->
+		lun 9-10.
+	</li>
+	<li>studio 31, II liv.  DMA</li>
+</ul>
+<div class="footsep"></div>
+<ul>
+<!-- testo per footer standard -->
+	<li>tel: 0816-76595</li>
+	<li>email: <a href="mailto:cutolo@unina.it">cutolo@unina.it</a></li>
+</ul>
+<div></div>
+</div><!-- footesto -->
+</footer>
+
+</body>
+</html>

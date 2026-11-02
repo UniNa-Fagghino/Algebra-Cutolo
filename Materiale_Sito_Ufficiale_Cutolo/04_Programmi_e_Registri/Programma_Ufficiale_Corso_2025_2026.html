@@ -1,0 +1,234 @@
+           
+<!doctype html>
+<html lang=it-IT>
+<head>
+	<meta charset="utf-8">
+<meta name="description"  content="Giovanni Cutolo: sito per la didattica">
+<meta name="keywords" content="Matematica, Universit&agrave;, Algebra, Corsi, Divulgazione, Appunti, Esercizi">
+<meta name="author" content="Giovanni Cutolo">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/cutolo/didattica/didattica.php" rel="home">
+<link href="/cutolo/img/ico.png" rel="shortcut icon" type="image/x-icon">
+<link href="/cutolo/didattica/stile/css/mobile.css" rel="stylesheet" media="screen and (max-width: 50rem)">
+<link href="/cutolo/didattica/stile/css/default.css" rel="stylesheet" media="not screen and (max-width: 50rem)">
+<link href="/cutolo/didattica/stile/css/print.css" rel="stylesheet" media="print">
+<title>Programma del corso di Algebra</title>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<header>
+<h1><span id="mionome"><a href="/cutolo/didattica/">Cutolo</a></span><span id="separa">
+</span><span id="titolo">Algebra: il programma</span></h1>
+<a  href="http://www.unina.it/" id="logoUNINA"></a>
+</header>
+
+<div class="mid-container hmenu">
+<nav class="principale" onclick="void(0)">
+<input type="radio" name="menu-radio" id="chiudimenu">
+<div class="menuitem" onclick="void(0)">
+	<input type="radio" name="menu-radio" id="toggle-Corsi">
+	<label for="toggle-Corsi" onclick>Corsi</label>
+	<ul>
+		<li><a href="/cutolo/didattica/AlgComm/">Algebra Commutativa (LM&nbsp;Matematica)</a></li>
+		<!-- <li><a href="/cutolo/didattica/ThGalois/">Teoria di Galois (LT&nbsp;Matematica)</a></li> -->
+		<li><a href="/cutolo/didattica/AlgInfo/">Algebra (LT&nbsp;Informatica)</a></li>
+		<li><a href="/cutolo/didattica/SAI/">Strutture Algebriche per l'Informatica (LM&nbsp;Informatica)</a></li>
+		<li class="m-chiudi"><label for="chiudimenu" onclick></label></li>
+	</ul>
+</div>
+<div class="menuitem" onclick="void(0)">
+	<input type="radio" name="menu-radio" id="toggle-Archivio">
+	<label for="toggle-Archivio" onclick>Archivio</label>
+	<ul>
+		<li><a href="/cutolo/didattica/archivio/algebra_comm_arch.php">Algebra Commutativa</a></li>
+		<li><a href="/cutolo/didattica/archivio/algebra_info_arch.php">Algebra per informatica</a></li>
+		<li class="m-chiudi"><label for="chiudimenu" onclick></label></li>
+	</ul>
+</div>
+<a class="menuitem" href="/cutolo/didattica/materialedidattico.php">Materiale&nbsp;diverso</a>
+<a class="menuitem" href="/cutolo/didattica/varia/altro.php">Altro</a>
+<div class="menusep"></div>
+<a class="menuitem" id="m-contenuto" href="/cutolo/didattica/contenuti.php"></a>
+<div class="menuitem" id="m-home">
+<a href="/cutolo/didattica/"></a><a id="m-home-txt" href="/cutolo/didattica/"> Home</a>
+</div>
+</nav>
+<div style="display: none;">
+$
+\let\vuoto\varnothing
+\let\setminus\smallsetminus
+\let\smin\setminus
+\let\iso\simeq
+\let\n\triangleleft
+\let\implica\Rightarrow
+\let\Implica\Longrightarrow
+\let\shiff\Leftrightarrow
+\let\immersione\hookrightarrow
+\let\epi\twoheadrightarrow
+\let\mono\rightarrowtail
+\let\ot\otimes
+\newcommand\set[1]{\{#1\}}
+\newcommand\P{{\mathscr P}}
+\newcommand\U{{\mathscr U}}
+\newcommand\I{{\mathcal I}}
+\newcommand\F{{\mathcal F}}
+% \newcommand\Pf{{\P_{\mbox{\small\textbf {fin}}}}}
+\newcommand\Pf{{\P_{\text{fin}}}}
+\newcommand\N{\mathbb N}
+\newcommand\Z{\mathbb Z}
+\newcommand\Q{\mathbb Q}
+\newcommand\R{\mathbb R}
+\newcommand\C{\mathbb C}
+\newcommand\S{\mathbb S}
+\newcommand\Pr{\mathbb P}
+\newcommand\ds{\mathbin{\scriptstyle\triangle}}
+\newcommand\xor{\mathbin{\mathsf{XOR}}}
+\newcommand\nor{\mathbin{\mathsf{NOR}}}
+\newcommand\nand{\mathbin{\mathsf{NAND}}}
+\newcommand\gen[1]{\langle#1\rangle}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rest}{rest}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\Part}{Part}
+\DeclareMathOperator{\partz}{Partz}
+\DeclareMathOperator{\OS}{OS}
+\DeclareMathOperator{\OL}{OL}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\jac}{Jac}
+\DeclareMathOperator{\nrad}{NilRad}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\ass}{Ass}
+\DeclareMathOperator{\Min}{Min}
+\DeclareMathOperator{\minor}{Minor}
+\DeclareMathOperator{\maggior}{Maggior}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\car}{char}
+\DeclareMathOperator{\cd}{cd}
+\newcommand\Mod{{\mathcal{Mod}}}
+% \DeclareRobustCommand {\modbin}{\mathbin{\textrm {mod}}}
+\newcommand\modbin {\mathbin{\textrm {mod}}}
+\newcommand\antivec[2] {#1^{\raise #2pt\hbox{$\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\antivecf{\antivec f3}
+\newcommand\antivecv{v^{\raise 1.2pt\hbox{$\!\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\antivecg{g^{\raise 2pt\hbox{$\!\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand\vecvuoto {\vec{\phantom{p}}}
+\newcommand\antivecvuoto{\,\antivec {{}}{2}}
+% \newcommand\antivecvuoto{{}^{\raise 2pt\hbox{$\scriptstyle\leftarrow\!\!$}}}
+\newcommand\maxid{\mathbin{{\n}{\cdot}}}
+\let\sseq\subseteq
+$</div>
+<main>
+<h1 class="offbox"><a href="https://informatica.dieti.unina.it/">Corso di laurea triennale in Informatica</a><br />
+Corso di Algebra (secondo gruppo), a.a. 2025/26
+&mdash; prof. G. Cutolo</h1>
+
+<div class="box">
+<h2>Nota</h2>
+<p>
+Quello che segue &egrave; un elenco sintetico (e probabilmente non particolarmente utile) degli argomenti trattati nel corso, non necessariamente in ordine cronologico.  &Egrave; sicuramente utile, invece, consultare il pi&ugrave; dettagliato <a href="/cutolo/didattica/AlgInfo/registri/registro25-26.php">registro delle lezioni</a>, che propone anche un numero di esercizi che, pur non essendo generalmente intesi come parte integrante del corso, possono essere (interessanti di per s&eacute; e) di aiuto per la verifica della propria preparazione. Il registro &egrave; accessibile dalla <a href="/cutolo/didattica/AlgInfo/">pagina web del corso</a> (<span class="url-algebra"></span>), che contiene anche ulteriori materiali e informazioni, comprese quelle sui testi ed altre note utilizzabili per la preparazione.</p>
+</div>
+
+<div class="box">
+<h2>Programma svolto nel corso</h2>
+
+<h3>Logica  intuitiva e linguaggio insiemistico.</h3>
+
+<p>
+Connettivi proposizionali e tavole di verit&agrave;; tautologie e contraddizioni; iterativit&agrave;, associativit&agrave;, commutativit&agrave; distributivit&agrave; e leggi di De Morgan per connettivi proposizionali. Tautologie relative all'implicazione. Cenni alla logica dei predicati: quantificatori e loro uso; negazione di formule universali o esistenziali.</p>
+<p>
+Insiemi: nozione insiemistica di appartenenenza e principio di estensionalit&agrave;. Cenni allo schema di assiomi di separazione. Inclusione tra insiemi. Le operazioni insiemistiche fondamentali: unione e intersezione di arbitrari insiemi, complemento e differenza simmetrica tra due insiemi. Legami tra operazioni insiemistiche e connettivi proposizionali. Diagrammi di Euler-Venn.</p>
+
+<h3>Corrispondenze, relazioni, applicazioni</h3>
+<p>
+Coppie ordinate; prodotto cartesiano tra due insiemi. Corrispondenze tra insiemi. Relazioni binarie in un insieme: propriet&agrave; riflessiva, antiriflessiva, simmetrica, antisimmetrica, transitiva; prodotto relazionale e sua associativit&agrave;. Relazioni d'ordine (stretto o largo) e di equivalenza.</p>
+<p>
+Applicazioni tra insiemi:  famiglie; le applicazioni immagine  e antiimmagine definite da un'applicazione; restrizioni, prolungamenti e ridotte. Applicazioni  iniettive, suriettive,  biettive; il caso particolare delle applicazioni tra insiemi finiti della stessa cardinalit&agrave;. Applicazioni componibili, composizione di applicazioni (prodotto  operativo). Diagrammi commutativi di applicazioni. Sezioni e retrazioni. Rapporti tra iniettivit&agrave;, suriettivit&agrave; e composizione di applicazioni. Applicazioni invertibili, inversa di un'applicazione biettiva. Nozione di equipotenza tra insiemi.</p>
+<p>
+Relazioni di equivalenza e partizioni di un insieme. Classi di equivalenza, insiemi quoziente, proiezioni canoniche. Il nucleo di equivalenza di (o equivalenza associata a) un'applicazione.</p>
+<p>
+Insiemi ordinati: isomorfismi tra insiemi ordinati; ordinamento duale; insiemi totalmente ordinati (catene); minimo, massimo, elementi minimali, elementi massimali; minoranti, maggioranti, estremo inferiore, estremo superiore.  Esistenza di elementi minimali e massimali in insiemi ordinati finiti non vuoti.  Relazione di copertura e diagrammi di Hasse di insiemi ordinati finiti.</p>
+
+<h3>Calcolo combinatorio</h3>
+<p>
+Buon ordinamento dei naturali; dimostrazioni per controesempio minimo e principio di induzione (in due forme). Calcolo delle cardinalit&agrave; per insiemi finiti: prodotti cartesiani; unioni tra insiemi (principio di inclusione-esclusione); insieme delle applicazioni ed insieme delle applicazioni iniettive tra due insiemi; fattoriali e fattoriali discendenti; insieme delle parti ed insieme delle $k$-parti di un insieme (per un numero naturale $k$), coefficienti binomiali e loro prime propriet&agrave;, il triangolo di Tartaglia-Pascal.</p>
+
+<h3>Operazioni e strutture algebriche</h3>
+<p>
+Operazioni nullarie, unarie, binarie (interne). Propriet&agrave; associativa e propriet&agrave; commutativa.  Elementi neutri a destra o a sinistra, elementi neutri e loro unicit&agrave;.  Simmetrici destri e sinistri, elementi simmetrizzabili.</p>
+<p>
+Definizioni delle strutture algebriche fondamentali: semigruppi, monoidi, gruppi (e gruppi abeliani), anelli, corpi, campi. Regole di calcolo nelle diverse strutture; multipli e potenze secondo interi. Parti chiuse (o stabili), strutture indotte. Sottostrutture generate. Gruppi ciclici.
+Omomorfismi, omomorfismi suriettivi ed isomorfismi. Equivalenze compatibili (anche a sinistra o a destra) con un'operazione binaria, congruenze in una struttura algebrica, strutture quoziente e corrispondenti proiezioni canoniche.</p>
+<!-- epimorfismi canonici.</p> -->
+<p>
+Traslazioni destre e sinistre determinate da un elemento in un semigruppo; cancellabilit&agrave;.  Il gruppo degli invertibili in un monoide e in un anello unitario.  Il monoide delle trasformazioni ed il gruppo simmetrico su un insieme.</p>
+<p>
+Propriet&agrave; degli anelli. Anelli commutativi, anelli unitari e loro elementi invertibili. Elementi cancellabili e divisori dello zero in un anello. Anelli integri e domini di integrit&agrave;.</p>
+
+<h3>Aritmetica</h3>
+<p>
+Relazione di divisibilit&agrave;, in un monoide commutativo ed in un anello commutativo; elementi irriducibili, elementi tra loro associati. Massimi comuni divisori e minimi comuni multipli.</p>
+<p>
+L'anello $\Z$ degli interi.  Equivalenze compatibili con un'operazione binaria ed operazioni quoziente; congruenze in $\Z$. L'operazione parziale mod in $\Z$ e divisione aritmetica (con resto). Algoritmo euclideo per la ricerca di un massimo comun divisore in $\Z$; teorema di B&eacute;zout. Equazioni congruenziali (di primo grado, ad una incognita)
+ed equazioni diofantee (di primo grado, a due incognite) in $\Z$, elementi cancellabili ed invertibili nei quozienti
+di $\Z$; struttura di questi ultimi.</p>
+<p>
+Interi primi, invertibili ed interi tra loro associati, interi coprimi e lemma di Euclide.
+Teorema fondamentale dell'aritmetica. Aritmetica modulare.</p>
+
+<h3>Reticoli, algebre di Boole, anelli booleani</h3>
+<p>
+Reticoli come particolari insiemi ordinati e come strutture algebriche; equivalenza tra le nozioni. Principio di dualit&agrave; per reticoli.  Isomorfismi tra reticoli. Reticoli limitati, reticoli completi. Intervalli e sottoreticoli. Complementi e reticoli complementati, reticoli distributivi. Enunciato del criterio di distributivit&agrave; di Birkhoff. Anelli booleani, reticoli booleani, algebre di Boole; equivalenza tra queste nozioni (con dimostrazioni solo parziali). Enunciato del teorema di Stone e descrizione delle strutture booleane finite; loro occorrenza in informatica.</p>
+
+</div><!-- box -->
+</main>
+
+<aside class="nota-programma">
+Informazioni aggiuntive e materiale utile per la preparazione all'esame
+sono all'indirizzo
+<a class="url-algebra" href="http://www.dma.unina.it/cutolo/didattica/AlgInfo/"></a>.
+</aside>
+</div>	<!-- chiude .mid-container -->
+<footer>
+<!-- searchform -->
+<nav id="cerca_sito">
+	<form method="get" id="searchform"  action="http://www.google.com/search">
+	<input type="text" name="q">
+	<input type="hidden" value="http://www.dma.unina.it/cutolo/didattica/" name="as_sitesearch">
+	<input type="hidden" name="ie" value="utf-8">
+</form><div>cerca in queste pagine</div>
+</nav>
+
+<div id="footesto">
+	<div></div>
+<ul>
+<!-- testo per footer standard -->
+	<li>Orario di ricevimento:
+			<!--sospeso per il periodo natalizio-->
+		lun 9-10.
+	</li>
+	<li>studio 31, II liv.  DMA</li>
+</ul>
+<div class="footsep"></div>
+<ul>
+<!-- testo per footer standard -->
+	<li>tel: 0816-76595</li>
+	<li>email: <a href="mailto:cutolo@unina.it">cutolo@unina.it</a></li>
+</ul>
+<div></div>
+</div><!-- footesto -->
+</footer>
+
+</body>
+</html>
