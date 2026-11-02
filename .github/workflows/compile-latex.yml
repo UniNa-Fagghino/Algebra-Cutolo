@@ -1,0 +1,33 @@
+name: Compile LaTeX Lecture Notes
+
+on:
+  push:
+    paths:
+      - 'Dispense_Algebra_Cutolo/**'
+      - '.github/workflows/compile-latex.yml'
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    name: Build PDF with TeX Live
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX Document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: Dispense_Algebra_Cutolo
+          args: -pdf -file-line-error -interaction=nonstopmode
+
+      - name: Rename compiled PDF
+        run: |
+          cp Dispense_Algebra_Cutolo/main.pdf Dispense_Algebra_Cutolo/Istituzioni_di_Algebra_Cutolo_UniNa.pdf
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Istituzioni_di_Algebra_Cutolo_UniNa
+          path: Dispense_Algebra_Cutolo/Istituzioni_di_Algebra_Cutolo_UniNa.pdf
