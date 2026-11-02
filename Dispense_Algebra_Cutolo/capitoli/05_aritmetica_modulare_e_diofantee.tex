@@ -1,0 +1,271 @@
+\chapter{Aritmetica Modulare, Teorema di Bézout ed Equazioni Diofantee}
+\label{chap:aritmetica}
+
+L'aritmetica nell'anello $\Z$ e nei suoi quozienti modulari $\Z_m$ è al centro di quasi ogni prova scritta del Prof. Cutolo. In questo capitolo presentiamo l'algoritmo euclideo esteso, la risoluzione formale delle equazioni congruenziali, i sistemi cinesi del resto e i teoremi di Eulero e Fermat.
+
+\section{Divisione con Resto e Divisibilità in $\Z$}
+
+\begin{teorema}{Teorema della Divisione Aritmetica con Resto (Divisione Euclidea)}{div_resto}
+Siano $a, b \in \Z$ con $b \neq 0$. Esiste un'\textbf{unica} coppia di interi $q, r \in \Z$ (detti rispettivamente \textbf{quoziente} e \textbf{resto}) tali che:
+\[
+    a = bq + r \qquad \text{con } 0 \le r < |b|
+\]
+\end{teorema}
+
+\begin{proof}
+Dimostriamo esistenza e unicità:
+\begin{enumerate}
+    \item \emph{Esistenza:} Consideriamo l'insieme $S = \{a - bx \mid x \in \Z, a - bx \ge 0\}$.
+    $S$ è un sottoinsieme non vuoto di $\N$. Per il Principio del Buon Ordinamento (Teorema~\ref{teo:buon_ord}), $S$ ammette un minimo elemento $r = a - bq \ge 0$ per un opportuno $q \in \Z$.
+    Mostriamo che $r < |b|$. Se per assurdo fosse $r \ge |b|$, potremmo considerare $r' = r - |b| = a - b(q \pm 1) \ge 0$. Allora $r' \in S$ con $r' < r$, contraddicendo la minimalità di $r$ in $S$. Dunque $0 \le r < |b|$.
+    \item \emph{Unicità:} Siano $(q, r)$ e $(q', r')$ due coppie soddisfacenti le condizioni: $a = bq + r = bq' + r'$ con $0 \le r, r' < |b|$.
+    Allora $b(q - q') = r' - r$. Prendendo i valori assoluti: $|b| \cdot |q - q'| = |r' - r|$.
+    Poiché $0 \le r, r' < |b|$, la loro distanza deve soddisfare $|r' - r| < |b|$.
+    Ne segue che $|b| \cdot |q - q'| < |b|$, il che è possibile solo se $|q - q'| = 0$, da cui $q = q'$ e di conseguenza $r = r'$.
+\end{enumerate}
+\end{proof}
+
+\begin{definizione}{Divisibilità in $\Z$}{divisibilita}
+Dati due interi $a, b \in \Z$, diciamo che $a$ \textbf{divide} $b$ (e scriviamo $a \mid b$) se esiste un intero $c \in \Z$ tale che $b = ac$.
+Gli elementi invertibili di $\Z$ sono $\mathcal{U}(\Z) = \{1, -1\}$.
+Due interi $a, b$ si dicono \textbf{associati} in $\Z$ ($a \sim b$) se $a \mid b$ e $b \mid a$, ovvero se $a = \pm b$.
+\end{definizione}
+
+\section{Massimo Comune Divisore e Teorema di Bézout}
+
+\begin{definizione}{Massimo Comune Divisore}{mcd}
+Siano $a, b \in \Z$ non entrambi nulli. Un intero $d \ge 1$ è detto \textbf{massimo comune divisore} di $a$ e $b$ (e si denota con $\mcd(a, b)$ o $\gcd(a, b)$) se:
+\begin{enumerate}
+    \item $d$ è un divisore comune: $d \mid a$ e $d \mid b$;
+    \item ogni divisore comune di $a$ e $b$ divide $d$: per ogni $c \in \Z$, se $c \mid a$ e $c \mid b$, allora $c \mid d$.
+\end{enumerate}
+Se $\mcd(a, b) = 1$, $a$ e $b$ si dicono \textbf{coprimi} (o primi tra loro).
+\end{definizione}
+
+\begin{teorema}{Teorema di Bézout}{bezout}
+Siano $a, b \in \Z$ non entrambi nulli e sia $d = \mcd(a, b)$. Allora esistono due interi $u, v \in \Z$ (detti \textbf{coefficienti di Bézout}) tali che:
+\[
+    d = au + bv
+\]
+Inoltre, l'insieme delle combinazioni lineari a coefficienti interi di $a$ e $b$ coincide esattamente con l'insieme di tutti i multipli del loro massimo comune divisore:
+\[
+    \{ax + by \mid x, y \in \Z\} = d\Z
+\]
+\end{teorema}
+
+\subsection{L'Algoritmo Euclideo Esteso (Metodo a Tabella di Cutolo)}
+L'algoritmo euclideo calcola $\mcd(a, b)$ eseguendo divisioni con resto successive fino ad ottenere resto nullo. L'ultimo resto non nullo è esattamente $\mcd(a, b)$.
+Sia $a > b > 0$:
+\begin{align*}
+    a &= b q_1 + r_1 && 0 < r_1 < b \\
+    b &= r_1 q_2 + r_2 && 0 < r_2 < r_1 \\
+    r_1 &= r_2 q_3 + r_3 && 0 < r_3 < r_2 \\
+    &\;\;\vdots && \\
+    r_{k-2} &= r_{k-1} q_k + r_k && r_k = \mcd(a, b) \\
+    r_{k-1} &= r_k q_{k+1} + 0 && (\text{resto nullo})
+\end{align*}
+
+Per ricavare i coefficienti $u, v$ di Bézout si procede a ritroso oppure si compila la \textbf{tabella matriciale} passo per passo:
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$i$ & Resto $r_i$ & $u_i$ (coord. $a$) & $v_i$ (coord. $b$) \\
+\hline
+$-1$ & $a$ & $1$ & $0$ \\
+$0$ & $b$ & $0$ & $1$ \\
+$1$ & $r_1 = a - q_1 b$ & $1$ & $-q_1$ \\
+$\vdots$ & $r_i = r_{i-2} - q_i r_{i-1}$ & $u_i = u_{i-2} - q_i u_{i-1}$ & $v_i = v_{i-2} - q_i v_{i-1}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{teorema}{Lemma di Euclide e Teorema Fondamentale dell'Aritmetica}{fond_aritmetica}
+Un intero $p > 1$ è detto \textbf{primo} se i suoi unici divisori positivi sono $1$ e $p$.
+\begin{enumerate}
+    \item \textbf{Lemma di Euclide:} se $p$ è primo e $p \mid ab$, allora $p \mid a$ oppure $p \mid b$.
+    Più in generale: se $\mcd(a, b) = 1$ e $a \mid bc$, allora $a \mid c$.
+    \item \textbf{Teorema Fondamentale dell'Aritmetica:} ogni intero $n \ge 2$ si fattorizza in modo unico (a meno dell'ordine dei fattori) come prodotto di potenze di numeri primi distinti:
+    \[
+        n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k} \qquad (p_i \text{ primi distinti}, e_i \ge 1)
+    \]
+\end{enumerate}
+\end{teorema}
+
+\section{Congruenze Modulari e l'Anello $\Z_m$}
+
+\begin{definizione}{Relazione di Congruenza Modulo $m$}{congruenza}
+Sia $m \in \N^*$ fissato. Due interi $a, b \in \Z$ si dicono \textbf{congrui modulo $m$} (scritto $a \equiv b \pmod m$) se la loro differenza è multiplo di $m$:
+\[
+    a \equiv b \pmod m \quad \Shiff \quad m \mid (a - b) \quad \Shiff \quad a \text{ e } b \text{ hanno lo stesso resto diviso } m
+\]
+\end{definizione}
+
+La congruenza modulo $m$ è una \textbf{relazione di equivalenza} su $\Z$. Inoltre, è una \textbf{congruenza algebrica}, ovvero compatibile con la somma e con il prodotto in $\Z$:
+\[
+    a_1 \equiv b_1 \pmod m \;\wedge\; a_2 \equiv b_2 \pmod m \Implica \begin{cases}
+        a_1 + a_2 \equiv b_1 + b_2 \pmod m \\
+        a_1 \cdot a_2 \equiv b_1 \cdot b_2 \pmod m
+    \end{cases}
+\]
+
+\begin{definizione}{L'Anello Quoziente $\Z_m$}{anello_zm}
+L'insieme quoziente $\Z/\equiv_m$ è denotato con $\Z_m$ (oppure $\Z/m\Z$) ed è costituito da esattamente $m$ classi di equivalenza distinte:
+\[
+    \Z_m = \{[0]_m, [1]_m, [2]_m, \dots, [m-1]_m\}
+\]
+Dotato delle operazioni quoziente $[a] + [b] = [a + b]$ e $[a] \cdot [b] = [ab]$, $\Z_m$ è un \textbf{anello commutativo unitario}.
+\end{definizione}
+
+\begin{teorema}{Elementi Invertibili e Divisori dello Zero in $\Z_m$}{inv_zm}
+Sia $m \ge 2$ e sia $[a] \in \Z_m$.
+\begin{enumerate}
+    \item $[a]$ è un \textbf{elemento invertibile} di $\Z_m$ se e solo se $\mcd(a, m) = 1$:
+    \[
+        \mathcal{U}(\Z_m) = \{[a] \in \Z_m \mid \mcd(a, m) = 1\}
+    \]
+    L'inverso aritmetico $[a]^{-1} = [u]$ è dato dal coefficiente di Bézout $au + mv = 1$.
+    \item $[a]$ è \textbf{cancellabile} in $\Z_m$ se e solo se è invertibile.
+    \item $[a]$ è un \textbf{divisore dello zero} di $\Z_m$ se e solo se $[a] \neq [0]$ e $\mcd(a, m) > 1$.
+    \item L'anello $\Z_m$ è un \textbf{campo} (e un dominio d'integrità) se e solo se $m$ è un numero \textbf{primo}.
+\end{enumerate}
+\end{teorema}
+
+\section{Risoluzione di Equazioni Congruenziali Lineari}
+
+Un'equazione congruenziale lineare a una incognita ha la forma:
+\begin{equation}
+\label{eq:congruenza_lin}
+    ax \equiv b \pmod m
+\end{equation}
+Risolvere l'equazione~\eqref{eq:congruenza_lin} equivale a determinare le soluzioni intere $(x, y)$ dell'\textbf{equazione diofantea lineare}:
+\[
+    ax - my = b
+\]
+
+\begin{teorema}{Criterio di Solvibilità per Equazioni Congruenziali Lineari}{solv_congr}
+Sia $d = \mcd(a, m)$.
+\begin{enumerate}
+    \item L'equazione $ax \equiv b \pmod m$ ammette soluzioni se e solo se $d$ divide $b$:
+    \[
+        d \mid b
+    \]
+    Se $d \nmid b$, l'equazione è \textbf{impossibile} (non ha soluzioni).
+    \item Se $d \mid b$, l'equazione ammette infinite soluzioni in $\Z$, le quali formano esattamente \textbf{$d$ classi di equivalenza distinte modulo $m$}.
+\end{enumerate}
+\end{teorema}
+
+\subsection{Procedura di Risoluzione Passo per Passo}
+Data l'equazione $ax \equiv b \pmod m$:
+\begin{enumerate}
+    \item \textbf{Calcolo del MCD:} Si calcola $d = \mcd(a, m)$ con l'algoritmo euclideo. Se $d \nmid b$, stop (nessuna soluzione).
+    \item \textbf{Semplificazione:} Se $d \mid b$, si divide l'intera congruenza per $d$:
+    \[
+        a' x \equiv b' \pmod{m'}, \qquad \text{ove } a' = \frac{a}{d}, \quad b' = \frac{b}{d}, \quad m' = \frac{m}{d}
+    \]
+    Per costruzione, $\mcd(a', m') = 1$, dunque $[a']$ è invertibile modulo $m'$.
+    \item \textbf{Ricerca dell'inverso:} Tramite l'algoritmo di Bézout esteso si trovano $u, v \in \Z$ tali che $a'u + m'v = 1$, da cui $a'u \equiv 1 \pmod{m'}$. L'inverso di $a'$ modulo $m'$ è $u$.
+    \item \textbf{Soluzione particolare:} Moltiplicando per $u$:
+    \[
+        x_0 \equiv u \cdot b' \pmod{m'}
+    \]
+    \item \textbf{Tutte le $d$ soluzioni distinte modulo $m$:}
+    \[
+        x_k = x_0 + k \cdot m' = x_0 + k \cdot \frac{m}{d}, \qquad \text{per } k = 0, 1, 2, \dots, d-1
+    \]
+\end{enumerate}
+
+\section{Sistemi di Congruenze e Teorema Cinese del Resto (CRT)}
+
+Consideriamo un sistema di $k$ equazioni congruenziali lineari:
+\[
+\begin{cases}
+    x \equiv c_1 \pmod{m_1} \\
+    x \equiv c_2 \pmod{m_2} \\
+    \quad \vdots \\
+    x \equiv c_k \pmod{m_k}
+\end{cases}
+\]
+
+\begin{teorema}{Teorema Cinese del Resto (Chinese Remainder Theorem)}{crt}
+Siano $m_1, m_2, \dots, m_k \in \N_{\ge 2}$ moduli \textbf{a due a due coprimi}, ovvero:
+\[
+    \mcd(m_i, m_j) = 1 \quad \text{per ogni } i \neq j
+\]
+Allora, per qualunque scelta dei resti $c_1, c_2, \dots, c_k \in \Z$, il sistema ammette soluzione in $\Z$.
+Tale soluzione è \textbf{unica modulo il prodotto dei moduli} $M = m_1 m_2 \cdots m_k$.
+\end{teorema}
+
+\begin{proof}[Dimostrazione Costruttiva]
+Poniamo $M = m_1 m_2 \cdots m_k$ e per ciascun $i \in \{1, \dots, k\}$ definiamo:
+\[
+    M_i = \frac{M}{m_i} = \prod_{j \neq i} m_j
+\]
+Poiché i moduli sono a due a due coprimi, si ha $\mcd(M_i, m_i) = 1$.
+Dunque per il Teorema~\ref{teo:inv_zm}, ciascun $M_i$ è invertibile modulo $m_i$. Esiste quindi un intero $N_i \in \Z$ tale che:
+\[
+    M_i N_i \equiv 1 \pmod{m_i}
+\]
+Definiamo la combinazione:
+\[
+    x_0 = \sum_{i=1}^k c_i M_i N_i
+\]
+Verifichiamo che $x_0$ soddisfa la $j$-esima congruenza del sistema:
+Per $i \neq j$, $M_i$ contiene il fattore $m_j$, quindi $M_i \equiv 0 \pmod{m_j}$.
+Dunque nella sommatoria tutti i termini con $i \neq j$ si annullano modulo $m_j$:
+\[
+    x_0 \equiv c_j M_j N_j \equiv c_j \cdot 1 = c_j \pmod{m_j}
+\]
+Ciò vale per ogni $j \in \{1, \dots, k\}$. Dunque $x_0$ è soluzione del sistema. Tutte le soluzioni sono date da $x \equiv x_0 \pmod M$.
+\end{proof}
+
+\subsection{Sistemi con Moduli non Coprimi}
+Se $\mcd(m_i, m_j) = d > 1$, il sistema ammette soluzione se e solo se per ogni coppia vale la condizione di compatibilità $c_i \equiv c_j \pmod{\mcd(m_i, m_j)}$.
+In tal caso si decompone ciascuna congruenza nelle sue componenti prime mediante fattorizzazione.
+
+\section{La Funzione $\varphi$ di Eulero e i Teoremi di Eulero e Fermat}
+
+\begin{definizione}{Funzione $\varphi$ di Eulero}{eulerphi}
+La \textbf{funzione $\varphi$ di Eulero} (o indicatore di Eulero) $\varphi: \N^* \to \N^*$ conta quanti numeri interi positivi minori o uguali a $m$ sono coprimi con $m$:
+\[
+    \varphi(m) = |\{a \in \{1, 2, \dots, m\} \mid \mcd(a, m) = 1\}| = |\mathcal{U}(\Z_m)|
+\]
+\end{definizione}
+
+\begin{teorema}{Calcolo della Funzione $\varphi$}{calcolo_phi}
+La funzione $\varphi$ gode delle seguenti proprietà:
+\begin{enumerate}
+    \item Se $p$ è un numero primo, $\varphi(p) = p - 1$.
+    \item Per ogni potenza di un primo $p^k$ ($k \ge 1$):
+    \[
+        \varphi(p^k) = p^k - p^{k-1} = p^k \left(1 - \frac{1}{p}\right)
+    \]
+    \item È \textbf{moltiplicativa}: se $\mcd(m, n) = 1$, allora $\varphi(mn) = \varphi(m)\varphi(n)$.
+    \item In generale, se $m = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$, allora:
+    \[
+        \varphi(m) = m \prod_{i=1}^k \left(1 - \frac{1}{p_i}\right) = \prod_{i=1}^k p_i^{e_i - 1}(p_i - 1)
+    \]
+\end{enumerate}
+\end{teorema}
+
+\begin{teorema}{Teorema di Eulero-Fermat e Piccolo Teorema di Fermat}{teoremi_fermat}
+\begin{enumerate}
+    \item \textbf{Teorema di Eulero-Fermat:} Per ogni intero $a \in \Z$ coprimo con $m$ ($\mcd(a, m) = 1$):
+    \[
+        a^{\varphi(m)} \equiv 1 \pmod m
+    \]
+    \item \textbf{Piccolo Teorema di Fermat:} Se $p$ è un numero primo e $p \nmid a$, allora:
+    \[
+        a^{p-1} \equiv 1 \pmod p
+    \]
+    Inoltre, per qualunque intero $a \in \Z$ vale $a^p \equiv a \pmod p$.
+\end{enumerate}
+\end{teorema}
+
+\subsection{Applicazione al Calcolo di Grandi Potenze Modulari}
+Per calcolare il resto della divisione di $a^N$ per $m$ con $\mcd(a, m) = 1$:
+\begin{enumerate}
+    \item Si calcola $\varphi(m)$.
+    \item Si divide l'esponente $N$ per $\varphi(m)$: $N = q \cdot \varphi(m) + r$ con $0 \le r < \varphi(m)$.
+    \item Si applica il teorema: $a^N = (a^{\varphi(m)})^q \cdot a^r \equiv 1^q \cdot a^r = a^r \pmod m$.
+\end{enumerate}
+Si riduce così un esponente astronomico a un esponente $r < \varphi(m)$ facilmente calcolabile!
