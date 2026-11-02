@@ -1,0 +1,276 @@
+\chapter{Operazioni Interne e Strutture Algebriche Fondamentali}
+\label{chap:strutture_algebriche}
+
+Le strutture algebriche costituiscono l'oggetto centrale dell'Algebra Astratta. In questo capitolo studiamo assiomaticamente le operazioni binarie interne, gli elementi notevoli (neutri, simmetrici, cancellabili), i semigruppi, i monoidi, i gruppi, gli anelli, i domini d'integrità e i campi.
+
+\section{Operazioni Binarie Interne ed Assiomi}
+
+\begin{definizione}{Operazione Binaria Interna}{operazione}
+Sia $S$ un insieme. Un'\textbf{operazione binaria interna} su $S$ è un'applicazione:
+\[
+    * : S \times S \longrightarrow S, \qquad (a, b) \longmapsto a * b
+\]
+Un sottoinsieme non vuoto $T \sseq S$ si dice \textbf{chiuso} (o \textbf{stabile}) rispetto a $*$ se:
+\[
+    \forall a, b \in T, \quad a * b \in T
+\]
+In tal caso, la restrizione $*|_T : T \times T \to T$ è detta \textbf{operazione indotta} su $T$.
+\end{definizione}
+
+\subsection{Proprietà delle Operazioni}
+L'operazione $*$ su $S$ può godere delle seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Associatività:} $\forall a, b, c \in S, \quad (a * b) * c = a * (b * c)$.
+    In virtù del \emph{Teorema di Associatività Generalizzata}, quando un'operazione è associativa è possibile omettere le parentesi per qualunque numero di operandi: $a_1 * a_2 * \dots * a_n$.
+    \item \textbf{Commutatività:} $\forall a, b \in S, \quad a * b = b * a$.
+    \item \textbf{Elemento Neutro:}
+    \begin{itemize}
+        \item $e_d \in S$ è un \textbf{neutro a destra} se $\forall a \in S, a * e_d = a$.
+        \item $e_s \in S$ è un \textbf{neutro a sinistra} se $\forall a \in S, e_s * a = a$.
+        \item $e \in S$ è un \textbf{neutro (bilatero)} se è simultaneamente neutro a destra e a sinistra:
+        \[
+            \forall a \in S, \quad a * e = e * a = a
+        \]
+    \end{itemize}
+\end{enumerate}
+
+\begin{teorema}{Unicità dell'Elemento Neutro}{unicita_neutro}
+Se in una struttura $(S, *)$ esistono un elemento neutro a sinistra $e_s$ e un elemento neutro a destra $e_d$, allora essi \textbf{coincidono}:
+\[
+    e_s = e_d = e
+\]
+In particolare, se una struttura possiede un elemento neutro bilatero, questo è \textbf{unico}.
+\end{teorema}
+\begin{proof}
+Calcoliamo l'espressione $e_s * e_d$:
+\begin{itemize}
+    \item Poiché $e_s$ è neutro a sinistra: $e_s * e_d = e_d$.
+    \item Poiché $e_d$ è neutro a destra: $e_s * e_d = e_s$.
+\end{itemize}
+Uguagliando i due risultati: $e_s = e_d$.
+\end{proof}
+
+\begin{avvisoCutolo}
+    Possono esistere più neutri a destra in assenza di un neutro a sinistra!
+    \emph{Controesempio classico di Cutolo:} Si consideri un insieme $S$ con almeno due elementi con l'operazione proiettiva $a * b \coloneqq a$.
+    Allora per ogni elemento $x \in S$ si ha $a * x = a$, dunque \textbf{ogni elemento di $S$ è un neutro a destra}! Tuttavia non esiste alcun neutro a sinistra, poiché $x * a = x \neq a$ se $x \neq a$.
+\end{avvisoCutolo}
+
+\subsection{Elementi Simmetrici (Inversi)}
+Sia $(S, *)$ una struttura dotata di elemento neutro bilatero $e$. Sia $a \in S$:
+\begin{itemize}
+    \item $a'_d \in S$ è un \textbf{simmetrico destro} di $a$ se $a * a'_d = e$.
+    \item $a'_s \in S$ è un \textbf{simmetrico sinistro} di $a$ se $a'_s * a = e$.
+    \item $a' \in S$ è un \textbf{simmetrico (o inverso bilatero)} di $a$ se $a * a' = a' * a = e$.
+    Un elemento che ammette simmetrico bilatero si dice \textbf{simmetrizzabile} (o \textbf{invertibile}).
+\end{itemize}
+
+\begin{teorema}{Unicità del Simmetrico sotto Associatività}{unicita_simmetrico}
+Sia $(S, *)$ una struttura con operazione \textbf{associativa} e dotata di elemento neutro $e$.
+Se un elemento $a \in S$ ammette un simmetrico sinistro $a'_s$ e un simmetrico destro $a'_d$, allora essi \textbf{coincidono}:
+\[
+    a'_s = a'_d = a'
+\]
+Di conseguenza, il simmetrico bilatero (se esiste) è \textbf{unico} e viene denotato con $a^{-1}$ (nella notazione moltiplicativa) o con $-a$ (nella notazione additiva).
+\end{teorema}
+\begin{proof}
+Calcoliamo il prodotto triplo $(a'_s * a) * a'_d$:
+\[
+    a'_s = a'_s * e = a'_s * (a * a'_d) \overset{\text{assoc.}}{=} (a'_s * a) * a'_d = e * a'_d = a'_d
+\]
+\end{proof}
+
+\subsection{Elementi Cancellabili}
+
+\begin{definizione}{Elemento Cancellabile}{cancellabile}
+Sia $(S, *)$ una struttura algebrica. Un elemento $a \in S$ si dice:
+\begin{itemize}
+    \item \textbf{Cancellabile a sinistra} se l'applicazione traslazione sinistra $\lambda_a: S \to S$, $\lambda_a(x) = a * x$ è iniettiva:
+    \[
+        \forall x, y \in S, \quad a * x = a * y \Implica x = y
+    \]
+    \item \textbf{Cancellabile a destra} se la traslazione destra $\rho_a: S \to S$, $\rho_a(x) = x * a$ è iniettiva:
+    \[
+        \forall x, y \in S, \quad x * a = y * a \Implica x = y
+    \]
+    \item \textbf{Cancellabile (bilatero)} se è cancellabile sia a destra che a sinistra.
+\end{itemize}
+\end{definizione}
+
+\begin{teorema}{Simmetrizzabilità e Cancellabilità}{simm_canc}
+Sia $(M, *, e)$ un monoide (operazione associativa con neutro).
+\begin{enumerate}
+    \item Ogni elemento \textbf{simmetrizzabile} è \textbf{cancellabile}:
+    \[
+        a \in \mathcal{U}(M) \Implica a \text{ è cancellabile}
+    \]
+    \item Il viceversa è falso in generale per monoidi infiniti (ad es. in $(\Z, \cdot)$, $2$ è cancellabile ma non invertibile).
+    \item Se $M$ è un \textbf{monoide finito}, allora ogni elemento cancellabile è \textbf{invertibile}:
+    \[
+        M \text{ finito } \Implica (a \text{ è cancellabile } \iff a \text{ è invertibile})
+    \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+1. Se $a$ ha inverso $a^{-1}$, allora $a * x = a * y \implies a^{-1} * (a * x) = a^{-1} * (a * y) \implies (a^{-1} * a) * x = (a^{-1} * a) * y \implies e * x = e * y \implies x = y$.
+3. Se $M$ è finito e $a$ è cancellabile, la traslazione sinistra $\lambda_a: M \to M$ è iniettiva. Per il Teorema~\ref{teo:teo_finiti_uguali}, un'applicazione iniettiva tra insiemi finiti della stessa cardinalità è anche \textbf{suriettiva}. Poiché $e \in M$, deve esistere un elemento $b \in M$ tale che $\lambda_a(b) = e$, cioè $a * b = e$. Dunque $a$ ammette inverso destro $b$. Analogamente la traslazione destra fornisce un inverso sinistro, da cui $a \in \mathcal{U}(M)$.
+\end{proof}
+
+\section{Semigruppi, Monoidi e Gruppi}
+
+\begin{definizione}{Gerarchia delle Strutture ad una Operazione}{gerarchia_gruppi}
+Una struttura algebrica $(G, *)$ si dice:
+\begin{enumerate}
+    \item \textbf{Semigruppo:} se $*$ è associativa.
+    \item \textbf{Monoide:} se è un semigruppo dotato di elemento neutro.
+    L'insieme degli elementi invertibili di un monoide $M$ si indica con $\mathcal{U}(M)$ e forma un gruppo rispetto a $*$.
+    \item \textbf{Gruppo:} se è un monoide in cui \textbf{ogni elemento è simmetrizzabile}:
+    \[
+        \forall a \in G, \quad \exists a^{-1} \in G : a * a^{-1} = a^{-1} * a = e
+    \]
+    Se l'operazione è commutativa, $G$ è detto \textbf{gruppo abeliano} (o commutativo).
+\end{enumerate}
+\end{definizione}
+
+\subsection{Sottogruppi}
+Sia $(G, \cdot)$ un gruppo. Un sottoinsieme non vuoto $H \sseq G$ si dice \textbf{sottogruppo} di $G$ (e si scrive $H \le G$) se $H$ è un gruppo rispetto all'operazione indotta.
+
+\begin{teorema}{Criterio di Caratterizzazione dei Sottogruppi}{criterio_sottogruppi}
+Sia $G$ un gruppo e sia $H \sseq G$ un sottoinsieme non vuoto ($H \neq \vuoto$). Allora:
+\[
+    H \le G \quad \Shiff \quad \forall a, b \in H, \quad a b^{-1} \in H
+\]
+Se $H$ è un sottoinsieme \textbf{finito}, la condizione si semplifica nella sola chiusura:
+\[
+    H \text{ finito non vuoto} \Implica (H \le G \iff \forall a, b \in H, ab \in H)
+\]
+\end{teorema}
+
+\subsection{Gruppi Ciclici e Teorema di Lagrange}
+Dato un elemento $a \in G$, il \textbf{sottogruppo ciclico generato} da $a$ è:
+\[
+    \gen{a} = \{a^k \mid k \in \Z\}
+\]
+L'\textbf{ordine} di $a$, denotato con $\operatorname{ord}(a)$, è la cardinalità $|\gen{a}|$. Se $\gen{a}$ è finito, $\operatorname{ord}(a)$ coincide con il minimo intero positivo $k \ge 1$ tale che $a^k = e$.
+
+\begin{teorema}{Teorema di Lagrange}{lagrange}
+Sia $G$ un gruppo finito e sia $H \le G$ un sottogruppo. Allora la cardinalità di $H$ \textbf{divide} la cardinalità di $G$:
+\[
+    |H| \text{ divide } |G|
+\]
+Il quoziente $[G : H] \coloneqq |G| / |H|$ è detto \textbf{indice} di $H$ in $G$ e conta il numero delle classi laterali $gH = \{gh \mid h \in H\}$.
+\end{teorema}
+
+\begin{proposizione}{Corollari Fondamentali del Teorema di Lagrange}{corollari_lagrange}
+Sia $G$ un gruppo finito di ordine $n = |G|$.
+\begin{enumerate}
+    \item Per ogni elemento $a \in G$, l'ordine dell'elemento $\operatorname{ord}(a)$ divide $|G|$.
+    \item Per ogni $a \in G$, si ha $a^{|G|} = e$.
+    \item Ogni gruppo di ordine $p$ con $p$ \textbf{numero primo} è un \textbf{gruppo ciclico} (e quindi abeliano), privo di sottogruppi propri non banali.
+\end{enumerate}
+\end{proposizione}
+
+\subsection{Omomorfismi di Gruppi}
+
+\begin{definizione}{Omomorfismo di Gruppi}{omom_gruppi}
+Dati due gruppi $(G, \cdot)$ e $(G', *)$, un'applicazione $\varphi: G \to G'$ è detta \textbf{omomorfismo di gruppi} se preserva l'operazione:
+\[
+    \forall a, b \in G, \quad \varphi(ab) = \varphi(a) * \varphi(b)
+\]
+\end{definizione}
+
+Per ogni omomorfismo di gruppi si ha $\varphi(e_G) = e_{G'}$ e $\varphi(a^{-1}) = (\varphi(a))^{-1}$.
+\begin{itemize}
+    \item Il \textbf{nucleo} di $\varphi$ è il sottogruppo $\Ker(\varphi) = \{x \in G \mid \varphi(x) = e_{G'}\} \le G$.
+    \item L'\textbf{immagine} di $\varphi$ è il sottogruppo $\im(\varphi) = \{\varphi(x) \mid x \in G\} \le G'$.
+\end{itemize}
+
+\begin{teorema}{Caratterizzazione dell'Iniettività tramite il Nucleo}{nucleo_iniettivita}
+Un omomorfismo di gruppi $\varphi: G \to G'$ è \textbf{iniettivo} se e solo se il suo nucleo è banale:
+\[
+    \varphi \text{ è iniettivo} \quad \Shiff \quad \Ker(\varphi) = \{e_G\}
+\]
+\end{teorema}
+\begin{proof}
+$(\implica)$ Se $\varphi$ è iniettivo, poiché $\varphi(e_G) = e_{G'}$, nessun altro elemento può essere mappato in $e_{G'}$, quindi $\Ker(\varphi) = \{e_G\}$.
+$(\impliedby)$ Sia $\Ker(\varphi) = \{e_G\}$. Siano $a, b \in G$ tali che $\varphi(a) = \varphi(b)$.
+Moltiplicando per $\varphi(b)^{-1}$: $\varphi(a) * \varphi(b)^{-1} = e_{G'} \implies \varphi(ab^{-1}) = e_{G'}$.
+Ne segue che $ab^{-1} \in \Ker(\varphi) = \{e_G\}$, da cui $ab^{-1} = e_G$, cioè $a = b$. Dunque $\varphi$ è iniettivo.
+\end{proof}
+
+\section{Anelli, Domini d'Integrità e Campi}
+
+\begin{definizione}{Anello}{anello}
+Una struttura algebrica $(R, +, \cdot)$ dotata di due operazioni binarie interne (dette \emph{addizione} e \emph{moltiplicazione}) si dice \textbf{anello} se:
+\begin{enumerate}
+    \item $(R, +)$ è un \textbf{gruppo abeliano} (con elemento neutro denotato con $0$ e opposto $-a$);
+    \item $(R, \cdot)$ è un \textbf{semigruppo} (la moltiplicazione è associativa);
+    \item La moltiplicazione è \textbf{distributiva} rispetto all'addizione (a sinistra e a destra):
+    \[
+        \forall a, b, c \in R, \quad a \cdot (b + c) = a \cdot b + a \cdot c, \qquad (a + b) \cdot c = a \cdot c + b \cdot c
+    \]
+\end{enumerate}
+Un anello $R$ si dice:
+\begin{itemize}
+    \item \textbf{Commutativo:} se la moltiplicazione è commutativa ($ab = ba$).
+    \item \textbf{Unitario:} se possiede un elemento neutro moltiplicativo (denotato con $1 \neq 0$).
+\end{itemize}
+\end{definizione}
+
+In ogni anello l'elemento $0$ è moltiplicativamente \textbf{assorbente}: per ogni $a \in R$, $a \cdot 0 = 0 \cdot a = 0$. Infatti $a \cdot 0 = a \cdot (0 + 0) = a \cdot 0 + a \cdot 0 \implies a \cdot 0 = 0$ per cancellabilità nel gruppo additivo.
+
+\subsection{Divisori dello Zero e Domini d'Integrità}
+
+\begin{definizione}{Divisori dello Zero e Dominio d'Integrità}{div_zero}
+Sia $R$ un anello commutativo unitario.
+\begin{itemize}
+    \item Un elemento non nullo $a \in R \smin \{0\}$ si dice \textbf{divisore dello zero} se esiste un elemento non nullo $b \in R \smin \{0\}$ tale che:
+    \[
+        a \cdot b = 0
+    \]
+    \item Un elemento $a \in R$ è \textbf{cancellabile} (rispetto al prodotto) se e solo se \textbf{non è un divisore dello zero}.
+    \item Un anello commutativo unitario $R$ privo di divisori dello zero (cioè in cui $ab = 0 \implica a = 0 \vee b = 0$) è detto \textbf{dominio d'integrità} (o anello integro).
+\end{itemize}
+\end{definizione}
+
+\begin{definizione}{Corpi e Campi}{campi}
+Un anello unitario $(K, +, \cdot)$ si dice:
+\begin{itemize}
+    \item \textbf{Corpo} (o anello con divisione) se ogni elemento non nullo ammette inverso moltiplicativo:
+    \[
+        \mathcal{U}(K) = K \smin \{0\} = K^*
+    \]
+    \item \textbf{Campo} (in inglese \emph{field}) se è un corpo commutativo.
+\end{itemize}
+\end{definizione}
+
+Ogni campo è un dominio d'integrità. Infatti, se $ab = 0$ con $a \neq 0$, moltiplicando per $a^{-1}$ si ha $a^{-1}(ab) = a^{-1} \cdot 0 \implies (a^{-1}a)b = 0 \implies 1 \cdot b = 0 \implies b = 0$.
+
+\begin{teorema}{Teorema di Wedderburn per Domini Finiti}{domini_finiti}
+Ogni dominio d'integrità \textbf{finito} è un \textbf{campo}.
+\end{teorema}
+\begin{proof}
+Sia $R$ un dominio d'integrità finito e sia $a \in R$ con $a \neq 0$.
+Consideriamo la traslazione moltiplicativa $\lambda_a: R \to R$ definita da $\lambda_a(x) = ax$.
+Mostriamo che $\lambda_a$ è iniettiva: se $ax_1 = ax_2$, allora $a(x_1 - x_2) = 0$. Poiché $R$ è un dominio e $a \neq 0$, deve essere $x_1 - x_2 = 0$, da cui $x_1 = x_2$.
+Essendo $R$ finito, per il Teorema~\ref{teo:teo_finiti_uguali} ogni applicazione iniettiva $\lambda_a: R \to R$ è anche suriettiva.
+Poiché $1 \in R$, deve esistere un elemento $b \in R$ tale che $\lambda_a(b) = 1$, cioè $ab = 1$. Dunque $a$ è invertibile.
+Essendo $a$ un generico elemento non nullo, ogni elemento non nullo è invertibile, dunque $R$ è un campo.
+\end{proof}
+
+\subsection{Sottoanelli ed Ideali}
+Sia $R$ un anello commutativo unitario.
+\begin{itemize}
+    \item Un sottoinsieme $S \sseq R$ è un \textbf{sottoanello} se $(S, +) \le (R, +)$ e $S$ è chiuso rispetto al prodotto ($s_1 s_2 \in S$) e contiene $1_R$.
+    \item Un sottoinsieme $I \sseq R$ è un \textbf{ideale} (scritto $I \trianglelefteq R$) se:
+    \begin{enumerate}
+        \item $(I, +)$ è un sottogruppo di $(R, +)$ ($0 \in I$ e $\forall x, y \in I, x - y \in I$);
+        \item Proprietà assorbente: per ogni $r \in R$ e ogni $x \in I$, si ha $rx \in I$.
+    \end{enumerate}
+\end{itemize}
+
+Dato un ideale $I \trianglelefteq R$, l'insieme quoziente $R/I = \{a + I \mid a \in R\}$ eredita una struttura di anello con le operazioni $(a + I) + (b + I) = (a + b) + I$ e $(a + I)(b + I) = ab + I$.
+Se $\varphi: R \to R'$ è un omomorfismo di anelli, il suo nucleo $\Ker(\varphi) = \{x \in R \mid \varphi(x) = 0\}$ è un ideale di $R$, e vale il \textbf{Primo Teorema di Isomorfismo per Anelli}:
+\[
+    R/\Ker(\varphi) \cong \im(\varphi)
+\]

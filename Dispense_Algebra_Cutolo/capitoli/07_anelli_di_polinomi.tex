@@ -1,0 +1,189 @@
+\chapter{Anelli di Polinomi e Loro Aritmetica}
+\label{chap:polinomi}
+
+In questo capitolo studiamo l'anello dei polinomi $K[x]$ a coefficienti in un campo $K$. L'aritmetica dei polinomi presenta profonde analogie con l'aritmetica di $\Z$: divisione euclidea, algoritmo di Bézout, elementi irriducibili e costruzione di campi quoziente.
+
+\section{Costruzione dell'Anello dei Polinomi}
+
+Sia $A$ un anello commutativo unitario.
+
+\begin{definizione}{Polinomio a Coefficienti in $A$}{polinomio}
+Un \textbf{polinomio} nell'indeterminata $x$ a coefficienti in $A$ è una successione di elementi di $A$, $f = (a_0, a_1, a_2, \dots, a_n, \dots)$, definitivamente nulla (ovvero tale che esiste $N \in \N$ per cui $a_k = 0$ per ogni $k > N$).
+
+Denotando con $x = (0, 1, 0, 0, \dots)$ l'indeterminata, ogni polinomio non nullo si scrive in modo unico nella forma canonica:
+\[
+    f(x) = a_0 + a_1 x + a_2 x^2 + \dots + a_n x^n = \sum_{i=0}^n a_i x^i \qquad (a_n \neq 0)
+\]
+L'insieme di tutti i polinomi nell'indeterminata $x$ a coefficienti in $A$ si denota con $A[x]$.
+\end{definizione}
+
+\begin{definizione}{Grado e Coefficiente Direttivo}{grado}
+Sia $f(x) = \sum_{i=0}^n a_i x^i \in A[x]$ un polinomio non nullo ($f \neq 0$):
+\begin{itemize}
+    \item Il massimo indice $n \in \N$ per cui $a_n \neq 0$ è detto \textbf{grado} del polinomio e si denota con $\degpoly(f) = n$.
+    \item $a_n \in A \smin \{0\}$ è detto \textbf{coefficiente direttivo} (o principale).
+    \item Se $a_n = 1$, il polinomio si dice \textbf{monico}.
+    \item Il polinomio nullo $0$ non ha coefficienti non nulli: per convenzione formale si pone $\degpoly(0) = -\infty$.
+\end{itemize}
+\end{definizione}
+
+\begin{teorema}{Proprietà del Grado e Integrità di $A[x]$}{grado_integrita}
+Siano $f, g \in A[x]$:
+\begin{enumerate}
+    \item $\degpoly(f + g) \le \max(\degpoly(f), \degpoly(g))$ (l'uguaglianza vale se $\degpoly(f) \neq \degpoly(g)$).
+    \item $\degpoly(f \cdot g) \le \degpoly(f) + \degpoly(g)$.
+    \item Se l'anello dei coefficienti $A$ è un \textbf{dominio d'integrità}, allora per ogni $f, g \in A[x] \smin \{0\}$:
+    \[
+        \degpoly(f \cdot g) = \degpoly(f) + \degpoly(g)
+    \]
+    Di conseguenza, $A[x]$ è anch'esso un \textbf{dominio d'integrità}.
+    \item Inoltre, gli elementi invertibili di $A[x]$ coincidono con le sole costanti invertibili di $A$:
+    \[
+        \mathcal{U}(A[x]) = \mathcal{U}(A)
+    \]
+    In particolare, se $K$ è un campo, $\mathcal{U}(K[x]) = K^* = K \smin \{0\}$ (tutti i polinomi di grado 0).
+\end{enumerate}
+\end{teorema}
+
+\section{Divisione Euclidea e Algoritmo di Bézout in $K[x]$}
+
+Sia $K$ un campo (ad esempio $\Q, \R, \C$ oppure $\Z_p$ con $p$ primo).
+
+\begin{teorema}{Divisione con Resto in $K[x]$}{div_polinomi}
+Siano $f(x), g(x) \in K[x]$ con $g(x) \neq 0$. Esiste un'\textbf{unica} coppia di polinomi $q(x), r(x) \in K[x]$ (detti rispettivamente \textbf{quoziente} e \textbf{resto}) tali che:
+\[
+    f(x) = g(x) q(x) + r(x) \qquad \text{con } \degpoly(r) < \degpoly(g)
+\]
+\end{teorema}
+
+\begin{definizione}{Massimo Comune Divisore tra Polinomi}{mcd_polinomi}
+Dati $f, g \in K[x]$ non entrambi nulli, un polinomio \textbf{monico} $d(x) \in K[x]$ è detto \textbf{massimo comune divisore} di $f$ e $g$ (denotato con $\mcd(f, g)$) se:
+\begin{enumerate}
+    \item $d(x) \mid f(x)$ e $d(x) \mid g(x)$;
+    \item Per ogni $c(x) \in K[x]$, se $c(x) \mid f(x)$ e $c(x) \mid g(x)$, allora $c(x) \mid d(x)$.
+\end{enumerate}
+Per il \textbf{Teorema di Bézout per polinomi}, esistono $u(x), v(x) \in K[x]$ tali che:
+\[
+    d(x) = f(x)u(x) + g(x)v(x)
+\]
+\end{definizione}
+
+Il calcolo di $\mcd(f, g)$ e dei polinomi di Bézout $u, v$ avviene applicando l'algoritmo euclideo formale per polinomi.
+
+\section{Radici di un Polinomio e Teorema di Ruffini}
+
+Sia $f(x) = \sum_{i=0}^n a_i x^i \in K[x]$. L'\textbf{omomorfismo di valutazione} associato a un elemento $c \in K$ è:
+\[
+    \operatorname{ev}_c: K[x] \longrightarrow K, \qquad f(x) \longmapsto f(c) = \sum_{i=0}^n a_i c^i
+\]
+Un elemento $c \in K$ si dice \textbf{radice} (o zero) di $f(x)$ se $f(c) = 0$.
+
+\begin{teorema}{Teorema del Resto e Teorema di Ruffini}{ruffini}
+Siano $f(x) \in K[x]$ e $c \in K$.
+\begin{enumerate}
+    \item \textbf{Teorema del Resto:} Il resto della divisione di $f(x)$ per il binomio $(x - c)$ è la costante $f(c) \in K$:
+    \[
+        f(x) = (x - c)q(x) + f(c)
+    \]
+    \item \textbf{Teorema di Ruffini:} Un elemento $c \in K$ è radice di $f(x)$ se e solo se il binomio $(x - c)$ divide $f(x)$:
+    \[
+        f(c) = 0 \quad \Shiff \quad (x - c) \mid f(x) \text{ in } K[x]
+    \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Dividendo $f(x)$ per $(x - c)$ tramite il Teorema~\ref{teo:div_polinomi}, otteniamo $f(x) = (x - c)q(x) + r(x)$ con $\degpoly(r) < \degpoly(x - c) = 1$.
+Dunque $r(x) = r_0$ è una costante appartenente a $K$.
+Valutando l'uguaglianza in $x = c$:
+\[
+    f(c) = (c - c)q(c) + r_0 = 0 \cdot q(c) + r_0 = r_0
+\]
+Ne segue che $f(x) = (x - c)q(x) + f(c)$. Da ciò discende immediatamente che $(x - c) \mid f(x) \iff f(c) = 0$.
+\end{proof}
+
+\begin{definizione}{Molteplicità di una Radice}{molteplicita}
+Sia $c \in K$ una radice di $f(x) \in K[x] \smin \{0\}$. La \textbf{molteplicità} di $c$ è il massimo intero positivo $m \ge 1$ tale che $(x - c)^m$ divide $f(x)$ in $K[x]$:
+\[
+    f(x) = (x - c)^m g(x) \qquad \text{con } g(c) \neq 0
+\]
+\end{definizione}
+
+\begin{teorema}{Numero Massimo di Radici}{max_radici}
+Un polinomio non nullo $f(x) \in K[x]$ di grado $n = \degpoly(f)$ a coefficienti in un campo $K$ ammette \textbf{al più $n$ radici} in $K$, contate con la loro molteplicità.
+\end{teorema}
+
+\section{Polinomi Irriducibili e Fattorizzazione}
+
+\begin{definizione}{Polinomio Irriducibile}{irriducibile}
+Un polinomio non costante $f(x) \in K[x]$ ($\degpoly(f) \ge 1$) si dice \textbf{irriducibile} in $K[x]$ se non può essere espresso come prodotto di due polinomi di grado strettamente positivo:
+\[
+    f(x) = g(x) h(x) \Implica (\degpoly(g) = 0 \vee \degpoly(h) = 0)
+\]
+Un polinomio non costante che non è irriducibile si dice \textbf{riducibile}.
+\end{definizione}
+
+\begin{proposizione}{Irriducibilità per Gradi 2 e 3}{criterio_grado_2_3}
+Sia $f(x) \in K[x]$ un polinomio di grado $2$ oppure $3$. Allora:
+\[
+    f(x) \text{ è irriducibile in } K[x] \quad \Shiff \quad f(x) \text{ non ammette alcuna radice in } K
+\]
+\end{proposizione}
+\begin{proof}
+Se $f$ è riducibile, allora $f(x) = g(x)h(x)$ con $\degpoly(g), \degpoly(h) \ge 1$.
+Poiché $\degpoly(g) + \degpoly(h) \in \{2, 3\}$, almeno uno dei due fattori deve avere grado $1$, cioè $g(x) = ax + b$ con $a \neq 0$.
+Allora $c = -a^{-1}b \in K$ è una radice di $g(x)$ e quindi di $f(x)$.
+Per contrapposizione, se $f$ non ha radici in $K$, non può ammettere fattori lineari, dunque è irriducibile.
+\end{proof}
+
+\begin{avvisoCutolo}
+    \textbf{Attenzione: Il criterio delle radici NON vale per grado $\ge 4$!}
+    Un polinomio di grado 4 può non avere alcuna radice ed essere comunque riducibile, spezzandosi nel prodotto di due polinomi irriducibili di secondo grado!
+    \emph{Esempio classico in $\R[x]$:} $f(x) = x^4 + 2x^2 + 1 = (x^2 + 1)^2$. Non ha radici in $\R$, ma è riducibile!
+\end{avvisoCutolo}
+
+\subsection{Criteri di Irriducibilità nei Vari Campi}
+\begin{enumerate}
+    \item \textbf{In $\C[x]$:} per il \emph{Teorema Fondamentale dell'Algebra}, gli unici polinomi irriducibili sono quelli di \textbf{primo grado} ($ax + b$).
+    \item \textbf{In $\R[x]$:} gli unici polinomi irriducibili sono quelli di \textbf{primo grado} e quelli di \textbf{secondo grado con discriminante negativo} ($\Delta = b^2 - 4ac < 0$).
+    \item \textbf{In $\Q[x]$:}
+    \begin{itemize}
+        \item \textbf{Criterio delle radici razionali:} se $f(x) = a_n x^n + \dots + a_0 \in \Z[x]$ ha radice razionale $p/q$ con $\mcd(p, q) = 1$, allora $p \mid a_0$ e $q \mid a_n$.
+        \item \textbf{Criterio di Eisenstein:} se esiste un primo $p$ tale che $p \nmid a_n$, $p \mid a_i$ per ogni $i \in \{0, \dots, n-1\}$ e $p^2 \nmid a_0$, allora $f(x)$ è irriducibile in $\Q[x]$.
+        \item \textbf{Riduzione modulo $p$:} se riducendo i coefficienti modulo un primo $p$ il grado si conserva e il polinomio è irriducibile in $\Z_p[x]$, allora è irriducibile in $\Q[x]$.
+    \end{itemize}
+    \item \textbf{In $\Z_p[x]$ ($p$ primo):} l'insieme $\Z_p = \{0, 1, \dots, p-1\}$ è finito. Per testare l'irriducibilità di un polinomio di secondo o terzo grado, si valuta il polinomio in tutti i $p$ elementi: se $f(c) \not\equiv 0 \pmod p$ per ogni $c \in \Z_p$, il polinomio è irriducibile.
+\end{enumerate}
+
+\section{L'Anello Quoziente $K[x]/(f(x))$ e Costruzione di Campi}
+
+Dato un polinomio non costante $f(x) \in K[x]$, consideriamo l'ideale principale generato da $f$:
+\[
+    (f(x)) = \{f(x) \cdot g(x) \mid g(x) \in K[x]\}
+\]
+L'anello quoziente $K[x]/(f(x))$ è costituito dalle classi di equivalenza dei resti della divisione per $f(x)$:
+\[
+    K[x]/(f(x)) = \{[r(x)] \mid r(x) \in K[x], \degpoly(r) < \degpoly(f)\}
+\]
+Se $\degpoly(f) = n$, come spazio vettoriale su $K$ ha dimensione $n$, con base $\{[1], [x], [x^2], \dots, [x^{n-1}]\}$.
+
+\begin{teorema}{Caratterizzazione dei Campi Quoziente di Polinomi}{campo_quoziente}
+Sia $K$ un campo e sia $f(x) \in K[x]$ un polinomio non costante.
+L'anello quoziente $K[x]/(f(x))$ è un \textbf{campo} se e solo se $f(x)$ è un polinomio \textbf{irriducibile} in $K[x]$:
+\[
+    K[x]/(f(x)) \text{ è un campo} \quad \Shiff \quad f(x) \text{ è irriducibile in } K[x]
+\]
+\end{teorema}
+\begin{proof}
+$(\implica)$ Se $f$ fosse riducibile, $f(x) = g(x)h(x)$ con $1 \le \degpoly(g), \degpoly(h) < \degpoly(f)$.
+Passando alle classi nel quoziente: $[g(x)] \cdot [h(x)] = [f(x)] = [0]$.
+Poiché $\degpoly(g), \degpoly(h) < \degpoly(f)$, si ha $[g] \neq [0]$ e $[h] \neq [0]$.
+Dunque $[g]$ e $[h]$ sarebbero divisori dello zero, impedendo a $K[x]/(f(x))$ di essere un dominio, e tanto meno un campo.
+$(\impliedby)$ Sia $f$ irriducibile e sia $[g(x)] \in K[x]/(f(x))$ con $[g] \neq [0]$.
+Allora $f(x) \nmid g(x)$. Poiché $f(x)$ è irriducibile, i suoi unici divisori sono le costanti e i suoi associati, dunque $\mcd(f(x), g(x)) = 1$.
+Per il Teorema di Bézout per polinomi, esistono $u(x), v(x) \in K[x]$ tali che $f(x)u(x) + g(x)v(x) = 1$.
+Passando al quoziente modulo $f(x)$:
+\[
+    [g(x)] \cdot [v(x)] = [1]
+\]
+Dunque $[g(x)]$ è invertibile con inverso $[v(x)]$. Ne segue che ogni elemento non nullo è invertibile, quindi $K[x]/(f(x))$ è un campo.
+\end{proof}

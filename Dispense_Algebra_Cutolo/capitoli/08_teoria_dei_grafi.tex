@@ -1,0 +1,173 @@
+\chapter{Elementi di Teoria dei Grafi}
+\label{chap:grafi}
+
+La teoria dei grafi fornisce modelli matematici per descrivere relazioni binarie simmetriche tra oggetti discreti. In questo capitolo presentiamo la teoria fondamentale: gradi dei vertici, lemma delle strette di mano, alberi, grafi bipartiti, cammini euleriani e isomorfismi.
+
+\section{Definizioni Fondamentali}
+
+\begin{definizione}{Grafo Semplice non Orientato}{grafo}
+Un \textbf{grafo semplice non orientato} è una coppia ordinata $G = (V, E)$, dove:
+\begin{itemize}
+    \item $V$ è un insieme non vuoto, i cui elementi sono detti \textbf{vertici} (o nodi);
+    \item $E \sseq \P_2(V) = \{\{u, v\} \sseq V \mid u \neq v\}$ è un insieme di sottoinsiemi a due elementi di $V$, detti \textbf{spigoli} (o archi, \emph{edges}).
+\end{itemize}
+Se $\{u, v\} \in E$, si dice che i vertici $u$ e $v$ sono \textbf{adiacenti} (o vicini) e che lo spigolo $\{u, v\}$ è \textbf{incidente} sui vertici $u$ e $v$.
+\end{definizione}
+
+Un grafo si dice \textbf{finito} se l'insieme dei vertici $V$ è finito.
+L'\textbf{ordine} del grafo è il numero dei vertici $n = |V|$; la \textbf{dimensione} è il numero degli spigoli $m = |E|$.
+
+\subsection{Grado di un Vertice e Lemma delle Strette di Mano}
+
+\begin{definizione}{Grado di un Vertice}{grado_vertice}
+Sia $G = (V, E)$ un grafo e sia $v \in V$. Il \textbf{grado} (o valenza) di $v$, denotato con $\deg(v)$ o $d(v)$, è il numero di spigoli incidenti su $v$:
+\[
+    \deg(v) = |\{e \in E \mid v \in e\}|
+\]
+Un vertice con $\deg(v) = 0$ si dice \textbf{isolato}; un vertice con $\deg(v) = 1$ si dice \textbf{pendente} (o foglia).
+\end{definizione}
+
+\begin{teorema}{Lemma delle Strette di Mano (Handshaking Lemma)}{handshaking}
+In ogni grafo finito $G = (V, E)$, la somma dei gradi di tutti i vertici è uguale al \textbf{doppio del numero degli spigoli}:
+\[
+    \sum_{v \in V} \deg(v) = 2 |E|
+\]
+\end{teorema}
+\begin{proof}
+Ogni spigolo $e = \{u, v\} \in E$ possiede esattamente due estremi, $u$ e $v$. Di conseguenza, nel conteggio della somma $\sum_{v \in V} \deg(v)$, ogni spigolo viene conteggiato esattamente due volte (una per l'estremo $u$ e una per l'estremo $v$). Dunque la somma coincide con $2|E|$.
+\end{proof}
+
+\begin{proposizione}{Parità dei Vertici di Grado Dispari}{vertici_dispari}
+In qualunque grafo finito, il numero di vertici aventi grado dispari è sempre \textbf{pari}.
+\end{proposizione}
+\begin{proof}
+Partizioniamo l'insieme dei vertici $V$ in due sottoinsiemi disgiunti: $V_{\text{pari}} = \{v \in V \mid \deg(v) \text{ è pari}\}$ e $V_{\text{dispari}} = \{v \in V \mid \deg(v) \text{ è dispari}\}$.
+Per il Lemma delle Strette di Mano:
+\[
+    \sum_{v \in V_{\text{pari}}} \deg(v) + \sum_{v \in V_{\text{dispari}}} \deg(v) = \sum_{v \in V} \deg(v) = 2|E| \quad (\text{numero pari})
+\]
+La prima sommatoria è somma di numeri pari, dunque è pari. Ne segue che anche la seconda sommatoria $\sum_{v \in V_{\text{dispari}}} \deg(v)$ deve essere un numero pari.
+Poiché una somma di numeri dispari è pari se e solo se il numero degli addendi è pari, deduciamo che la cardinalità $|V_{\text{dispari}}|$ è necessariamente un numero pari.
+\end{proof}
+
+\section{Connessione, Cammini e Cicli}
+
+\begin{definizione}{Cammini e Cicli}{cammini_cicli}
+Sia $G = (V, E)$ un grafo.
+\begin{itemize}
+    \item Un \textbf{cammino} di lunghezza $k \ge 0$ tra $v_0$ e $v_k$ è una successione di vertici $(v_0, v_1, \dots, v_k)$ tale che $\{v_{i-1}, v_i\} \in E$ per ogni $i \in \{1, \dots, k\}$.
+    \item Il cammino si dice \textbf{semplice} se non ripete alcun vertice (tutti i $v_i$ sono distinti).
+    \item Un cammino si dice \textbf{chiuso} se $v_0 = v_k$.
+    \item Un \textbf{ciclo} di lunghezza $k \ge 3$ è un cammino chiuso $(v_0, v_1, \dots, v_{k-1}, v_0)$ in cui i vertici $v_0, v_1, \dots, v_{k-1}$ sono a due a due distinti.
+    Un grafo privo di cicli si dice \textbf{aciclico} (o foresta).
+\end{itemize}
+\end{definizione}
+
+\begin{definizione}{Grafo Connesso e Componenti Connesse}{connessione}
+Un grafo $G$ si dice \textbf{connesso} se per ogni coppia di vertici distinti $u, v \in V$ esiste almeno un cammino che li congiunge.
+La relazione binaria $\sim$ su $V$ definita da:
+\[
+    u \sim v \quad \Shiff \quad u = v \;\vee\; \text{esiste un cammino tra } u \text{ e } v
+\]
+è una \textbf{relazione di equivalenza}. Le sue classi di equivalenza inducono i sottografi connessi massimali di $G$, detti \textbf{componenti connesse}.
+\end{definizione}
+
+\section{Alberi e Loro Caratterizzazioni}
+
+\begin{definizione}{Albero}{albero}
+Un grafo finito $G = (V, E)$ si dice \textbf{albero} se è \textbf{connesso} e \textbf{privo di cicli} (aciclico).
+\end{definizione}
+
+\begin{teorema}{Caratterizzazioni Equivalenti degli Alberi}{teo_alberi}
+Sia $G = (V, E)$ un grafo finito con $n = |V| \ge 1$ vertici. Le seguenti affermazioni sono tra loro \textbf{logicamente equivalenti}:
+\begin{enumerate}
+    \item $G$ è un albero (connesso e aciclico).
+    \item Per ogni coppia di vertici distinti $u, v \in V$, esiste un \textbf{unico} cammino semplice che li congiunge.
+    \item $G$ è connesso e possiede esattamente $n - 1$ spigoli:
+    \[
+        |E| = |V| - 1
+    \]
+    \item $G$ è aciclico e possiede esattamente $n - 1$ spigoli.
+    \item $G$ è aciclico, ma aggiungendo un qualunque nuovo spigolo non presente in $E$ si crea esattamente un ciclo.
+    \item $G$ è connesso, ma rimuovendo un qualunque spigolo si ottiene un grafo non connesso.
+\end{enumerate}
+\end{teorema}
+
+\begin{proposizione}{Presenza di Foglie negli Alberi}{foglie_albero}
+Ogni albero finito $T = (V, E)$ con almeno due vertici ($|V| \ge 2$) ammette \textbf{almeno due vertici di grado 1} (foglie).
+\end{proposizione}
+
+\section{Grafi Bipartiti e Teorema di Kőnig}
+
+\begin{definizione}{Grafo Bipartito}{grafo_bipartito}
+Un grafo $G = (V, E)$ si dice \textbf{bipartito} se l'insieme dei suoi vertici $V$ può essere partizionato in due sottoinsiemi disgiunti $V_1$ e $V_2$ ($V = V_1 \cup V_2, V_1 \cap V_2 = \vuoto$) in modo tale che ogni spigolo di $G$ congiunga un vertice di $V_1$ con un vertice di $V_2$:
+\[
+    \forall e \in E, \quad e \cap V_1 \neq \vuoto \;\wedge\; e \cap V_2 \neq \vuoto
+\]
+In altre parole, non esiste alcuno spigolo interno a $V_1$ o interno a $V_2$.
+\end{definizione}
+
+\begin{teorema}{Criterio di Bipartizione di Kőnig}{konig}
+Un grafo $G$ è bipartito \textbf{se e solo se non contiene alcun ciclo di lunghezza dispari}.
+\end{teorema}
+\begin{proof}
+$(\implica)$ Sia $G$ bipartito con partizione $(V_1, V_2)$. Sia $C = (v_0, v_1, \dots, v_k = v_0)$ un ciclo.
+Partendo da $v_0 \in V_1$, per definizione di bipartizione si ha $v_1 \in V_2, v_2 \in V_1, v_3 \in V_2$, e in generale i vertici di indice pari stanno in $V_1$ e quelli di indice dispari in $V_2$.
+Poiché il ciclo si chiude su $v_k = v_0 \in V_1$, l'indice $k$ deve essere necessariamente un numero \textbf{pari}. Dunque ogni ciclo ha lunghezza pari.
+$(\impliedby)$ Si assume $G$ privo di cicli dispari (possiamo supporre $G$ connesso). Fissato un vertice radice $v_0$, si definisce la distanza $d(v_0, x)$ come la lunghezza minima di un cammino tra $v_0$ e $x$. Ponendo $V_1 = \{x \in V \mid d(v_0, x) \text{ è pari}\}$ e $V_2 = \{x \in V \mid d(v_0, x) \text{ è dispari}\}$, l'assenza di cicli dispari garantisce che nessun vertice di $V_1$ sia adiacente a un altro vertice di $V_1$, né in $V_2$. Dunque $G$ è bipartito.
+\end{proof}
+
+\section{Cammini e Circuiti Euleriani}
+
+Il problema dei ponti di Königsberg diede origine alla teoria dei grafi nel 1736 ad opera di Leonhard Euler.
+
+\begin{definizione}{Cammino e Circuito Euleriano}{euleriano}
+Sia $G = (V, E)$ un grafo finito:
+\begin{itemize}
+    \item Un \textbf{cammino euleriano} è un cammino che attraversa \textbf{ogni spigolo di $G$ esattamente una volta}.
+    \item Un \textbf{circuito euleriano} è un cammino euleriano chiuso (che inizia e termina nello stesso vertice).
+    Un grafo che ammette un circuito euleriano è detto \textbf{grafo euleriano}.
+\end{itemize}
+\end{definizione}
+
+\begin{teorema}{Teorema di Eulero per i Grafi Euleriani}{teo_eulero_grafi}
+Sia $G = (V, E)$ un grafo connesso (a meno di vertici isolati):
+\begin{enumerate}
+    \item $G$ ammette un \textbf{circuito euleriano} se e solo se \textbf{tutti i vertici hanno grado pari}:
+    \[
+        \forall v \in V, \quad \deg(v) \text{ è pari}
+    \]
+    \item $G$ ammette un \textbf{cammino euleriano aperto} (con estremi distinti) se e solo se ammette \textbf{esattamente due vertici di grado dispari}. In tal caso, il cammino deve necessariamente iniziare in uno dei due vertici dispari e terminare nell'altro.
+\end{enumerate}
+\end{teorema}
+
+\section{Isomorfismo di Grafi ed Invarianti}
+
+\begin{definizione}{Isomorfismo di Grafi}{isomorfismo_grafi}
+Due grafi $G_1 = (V_1, E_1)$ e $G_2 = (V_2, E_2)$ si dicono \textbf{isomorfi} (e si scrive $G_1 \cong G_2$) se esiste una \textbf{biiezione} tra i rispettivi insiemi di vertici:
+\[
+    f: V_1 \longrightarrow V_2
+\]
+tale che due vertici sono adiacenti in $G_1$ se e solo se le loro immagini sono adiacenti in $G_2$:
+\[
+    \forall u, v \in V_1, \quad \{u, v\} \in E_1 \quad \Shiff \quad \{f(u), f(v)\} \in E_2
+\]
+L'applicazione $f$ è detta \textbf{isomorfismo di grafi}.
+\end{definizione}
+
+\subsection{Invarianti di Isomorfismo}
+Dimostrare che due grafi sono isomorfi richiede di esibire esplicitamente la biiezione $f$.
+Per dimostrare che due grafi \textbf{non sono isomorfi}, la strategia più rapida consiste nell'individuare una proprietà strutturale (detta \textbf{invariante di isomorfismo}) posseduta da uno ma non dall'altro.
+
+\begin{proposizione}{Principali Invarianti di Isomorfismo}{invarianti}
+Se due grafi $G_1$ e $G_2$ sono isomorfi ($G_1 \cong G_2$), allora devono condividere:
+\begin{enumerate}
+    \item Lo stesso numero di vertici: $|V_1| = |V_2|$;
+    \item Lo stesso numero di spigoli: $|E_1| = |E_2|$;
+    \item La stessa \textbf{sequenza dei gradi} ordinata (ad es. $(3, 3, 2, 2, 2)$);
+    \item Lo stesso numero di componenti connesse;
+    \item Lo stesso numero di cicli di ciascuna lunghezza prefissata $k$ (in particolare, triangoli di lunghezza 3 e quadrati di lunghezza 4);
+    \item La stessa lunghezza del ciclo minimo (\emph{girth});
+    \item La proprietà di essere o meno bipartito (o euleriano).
+\end{enumerate}
+\end{proposizione}
