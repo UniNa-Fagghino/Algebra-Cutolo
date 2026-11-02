@@ -1,0 +1,47 @@
+\chapter*{Prefazione e Metodologia di Studio}
+\addcontentsline{toc}{chapter}{Prefazione e Metodologia di Studio}
+
+\section*{Origine e Scopo di Questa Opera}
+Questo testo nasce con un obiettivo preciso e ambizioso: fornire allo studente del Corso di Laurea Triennale in Informatica dell'Università degli Studi di Napoli Federico II **il trattato più completo, rigoroso e autosufficiente possibile** per la preparazione dell'esame di \textbf{Algebra} tenuto dal \textbf{Prof. Giovanni Cutolo}.
+
+La disciplina dell'Algebra Astratta rappresenta spesso il primo vero impatto dello studente universitario con la matematica pura e formale. A differenza dell'analisi o del calcolo numerico, l'algebra non si focalizza sul ``calcolare numeri'', bensì sull'identificare \emph{strutture}, \emph{invarianti}, \emph{simmetrie} e \emph{relazioni formali}.
+
+Il corso del Prof. Cutolo è noto per il suo elevatissimo grado di rigore: ogni affermazione dev'essere motivata a partire dagli assiomi, ogni quantificatore deve trovarsi al posto giusto e ogni dimostrazione deve possedere una struttura logica ineccepibile. Questa dispensa raccoglie, unifica e armonizza:
+\begin{enumerate}
+    \item Tutte le \textbf{monografie ufficiali} pubblicate dal docente sul portale del Dipartimento di Matematica ed Applicazioni (DMA) ``Renato Caccioppoli''.
+    \item Il \textbf{registro analitico delle lezioni} svolte giorno per giorno per l'a.a. 2025/2026.
+    \item Il patrimonio di note, appunti manoscritti e risoluzioni di prove scritte condivisi negli anni dalla comunità studentesca della Federico II.
+    \item Il censimento dettagliato di tutte le \textbf{domande d'orale ricorrenti}, dei trabocchetti terminologici e degli errori concettuali più frequenti rilevati nelle sessioni d'esame.
+\end{enumerate}
+
+\section*{Le Convenzioni Notazionali di Cutolo}
+Nel corso del testo si adotta rigorosamente la notazione ufficiale utilizzata dal docente a lezione e nelle prove scritte. Si evidenziano fin da ora alcune convenzioni cardine:
+\begin{itemize}
+    \item \textbf{I Numeri Naturali $\N$:} per convenzione fissata dal docente, l'insieme dei numeri naturali \textbf{include lo zero}:
+    \[
+        \N = \{0, 1, 2, 3, \dots\}
+    \]
+    I naturali strettamente positivi vengono denotati con $\N^* = \N \smin \{0\} = \{1, 2, 3, \dots\}$.
+    \item \textbf{Immagine e Controimmagine ($\vecf$ vs $\antivecf$):} Sia $f: A \to B$ un'applicazione. Per indicare l'immagine di un sottoinsieme $X \sseq A$, si usa la notazione con freccia in avanti:
+    \[
+        \vecf(X) = \{f(x) \in B \mid x \in X\}
+    \]
+    Per la controimmagine (o anti-immagine) di un sottoinsieme $Y \sseq B$, il Prof. Cutolo utilizza sistematicamente la freccia all'indietro:
+    \[
+        \antivecf(Y) = \{x \in A \mid f(x) \in Y\}
+    \]
+    \begin{avvisoCutolo}
+        \textbf{Mai usare $f^{-1}(Y)$ all'orale se $f$ non è biettiva!} Il docente ribadisce costantemente che scrivere $f^{-1}$ evoca l'applicazione inversa, che \emph{non esiste} se $f$ non è biettiva. L'operazione di controimmagine $\antivecf: \P(B) \to \P(A)$ è invece sempre definita per qualunque applicazione.
+    \end{avvisoCutolo}
+    \item \textbf{Composizione di Applicazioni (Prodotto Operativo):} Dati $f: A \to B$ e $g: B \to C$, l'applicazione composta si indica con $g \circ f$ (o semplicemente $gf$), ove $(g \circ f)(a) = g(f(a))$.
+    \item \textbf{Relazioni d'Equivalenza e Quozienti:} La classe d'equivalenza di un elemento $a$ modulo una relazione $\mathcal{R}$ si denota con $[a]_\mathcal{R}$ o $[a]$. L'insieme quoziente è $A/\mathcal{R}$. La proiezione canonica è $\pi_\mathcal{R}: a \mapsto [a]_\mathcal{R}$.
+\end{itemize}
+
+\section*{Struttura dell'Esame e Come Usare Questa Dispensa}
+L'esame di Algebra (codice U6282, 6 CFU) per il Corso di Laurea in Informatica prevede:
+\begin{enumerate}
+    \item \textbf{Prova Scritta:} della durata di 2 ore (secondo il regolamento aggiornato del nuovo ordinamento), articolata in una prima sezione di quesiti a risposta sintetica/teorica su definizioni e proprietà, seguita da esercizi applicativi (studio di una relazione o poset con diagramma di Hasse, equazioni congruenziali lineari con algoritmo di Bézout o sistemi cinesi, decomposizione di polinomi o studio di una struttura algebrica).
+    \item \textbf{Prova Orale:} colloquio individuale approfondito. Il punto di partenza può essere la discussione del compito scritto, ma la verifica verte sistematicamente sulla padronanza formale delle definizioni, degli enunciati dei teoremi e delle rispettive dimostrazioni.
+\end{enumerate}
+
+Si raccomanda vivamente di non limitarsi alla risoluzione meccanica degli esercizi: ogni passaggio di calcolo (ad esempio nella risoluzione di un'equazione diofantea o nella determinazione degli elementi invertibili di un anello) poggia su un solido teorema algebrico che all'orale vi verrà puntualmente chiesto di enunciare e dimostrare.

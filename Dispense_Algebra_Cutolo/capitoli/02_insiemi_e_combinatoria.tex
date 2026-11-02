@@ -1,0 +1,219 @@
+\chapter{Teoria degli Insiemi e Calcolo Combinatorio}
+\label{chap:insiemi_combinatoria}
+
+In questo capitolo introduciamo i concetti fondamentali della teoria ingenua degli insiemi, il principio del buon ordinamento di $\N$, il principio di induzione matematica e gli strumenti essenziali del calcolo combinatorio.
+
+\section{Insiemi, Appartenenza e Inclusione}
+
+La teoria degli insiemi assume come nozioni primitive quelle di \textbf{insieme} e di \textbf{appartenenza} ($\in$). Se $x$ è un elemento e $A$ è un insieme, scriviamo $x \in A$ per indicare che $x$ appartiene ad $A$, e $x \notin A$ in caso contrario.
+
+\begin{definizione}{Principio di Estensionalità e Inclusione}{estensionalita}
+Due insiemi $A$ e $B$ sono \textbf{uguali} ($A = B$) se e solo se contengono esattamente gli stessi elementi:
+\[
+    A = B \quad \Shiff \quad \forall x, (x \in A \shiff x \in B)
+\]
+Dati due insiemi $A$ e $B$, diciamo che $A$ è un \textbf{sottoinsieme} di $B$ (o che $A$ è \textbf{incluso} in $B$), e scriviamo $A \sseq B$, se:
+\[
+    A \sseq B \quad \Shiff \quad \forall x, (x \in A \implica x \in B)
+\]
+Si dice che $A$ è un sottoinsieme \textbf{proprio} di $B$ ($A \subset B$) se $A \sseq B$ e $A \neq B$.
+\end{definizione}
+
+\begin{proposizione}{Doppia Inclusione}{doppia_inclusione}
+Per ogni coppia di insiemi $A$ e $B$, si ha:
+\[
+    A = B \quad \Shiff \quad (A \sseq B \wedge B \sseq A)
+\]
+\end{proposizione}
+
+\subsection{L'Insieme Vuoto e lo Schema di Separazione}
+Esiste un unico insieme privo di elementi, detto \textbf{insieme vuoto} e denotato con $\vuoto$ oppure $\emptyset$.
+Per ogni insieme $A$, vale sempre $\vuoto \sseq A$. Infatti, l'implicazione $x \in \vuoto \implica x \in A$ ha l'antecedente sempre falso, dunque è banalmente vera.
+
+Per evitare contraddizioni logiche (come il celebre \emph{Paradosso di Russell} sull'insieme di tutti gli insiemi che non appartengono a se stessi, $R = \{x \mid x \notin x\}$), non è lecito formare insiemi tramite proprietà arbitrarie senza specificare un insieme universo di riferimento. Si adotta lo \textbf{Schema di Assiomi di Separazione (di Zermelo)}: dato un insieme $A$ e un predicato $P(x)$, è possibile costruire il sottoinsieme:
+\[
+    \{x \in A \mid P(x)\}
+\]
+
+\section{Operazioni Insiemistiche Fondamentali}
+
+Dati due insiemi $A$ e $B$ appartenenti a un prefissato universo $\mathcal{U}$, si definiscono le seguenti operazioni:
+\begin{enumerate}
+    \item \textbf{Unione:} $A \cup B = \{x \in \mathcal{U} \mid x \in A \vee x \in B\}$.
+    \item \textbf{Intersezione:} $A \cap B = \{x \in \mathcal{U} \mid x \in A \wedge x \in B\}$. Se $A \cap B = \vuoto$, $A$ e $B$ si dicono \textbf{disgiunti}.
+    \item \textbf{Differenza Insiemistica:} $A \smin B = \{x \in \mathcal{U} \mid x \in A \wedge x \notin B\}$.
+    \item \textbf{Complementare (Assoluto):} $\mathcal{C}_\mathcal{U}(A) = A^c = \mathcal{U} \smin A$.
+    \item \textbf{Differenza Simmetrica:}
+    \[
+        A \ds B = (A \smin B) \cup (B \smin A) = (A \cup B) \smin (A \cap B)
+    \]
+    La differenza simmetrica corrisponde insiemisticamente al connettivo logico $\xor$:
+    \[
+        x \in A \ds B \quad \Shiff \quad (x \in A) \xor (x \in B)
+    \]
+\end{enumerate}
+
+\begin{teorema}{Proprietà delle Operazioni Insiemistiche}{prop_insiemi}
+Le operazioni insiemistiche godono delle seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Leggi di De Morgan:} $(A \cup B)^c = A^c \cap B^c$ \quad e \quad $(A \cap B)^c = A^c \cup B^c$.
+    \item \textbf{Distributività:} 
+    \[
+        A \cap (B \cup C) = (A \cap B) \cup (A \cap C), \qquad A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+    \]
+    \item \textbf{Proprietà della Differenza Simmetrica:} $(A \ds B) \ds C = A \ds (B \ds C)$ (associatività), $A \ds B = B \ds A$ (commutatività), $A \ds \vuoto = A$ (elemento neutro), $A \ds A = \vuoto$ (ogni elemento è il simmetrico di se stesso).
+\end{enumerate}
+\end{teorema}
+
+\section{L'Insieme delle Parti e il Prodotto Cartesiano}
+
+\begin{definizione}{Insieme delle Parti (Power Set)}{power_set}
+Dato un insieme $S$, l'\textbf{insieme delle parti} (o booleano di $S$), denotato con $\P(S)$ (oppure $2^S$ o $\mathcal{P}(S)$), è l'insieme di tutti i possibili sottoinsiemi di $S$:
+\[
+    \P(S) = \{X \mid X \sseq S\}
+\]
+\end{definizione}
+
+Per qualunque insieme $S$, si ha sempre $\vuoto \in \P(S)$ e $S \in \P(S)$.
+\begin{itemize}
+    \item Se $S = \vuoto$, allora $\P(\vuoto) = \{\vuoto\}$, dunque $|\P(\vuoto)| = 1$.
+    \item Se $S = \{a\}$, allora $\P(S) = \{\vuoto, \{a\}\}$, dunque $|\P(S)| = 2$.
+    \item Se $S$ è un insieme finito con $|S| = n$ elementi, allora $|\P(S)| = 2^n$.
+\end{itemize}
+
+\subsection{Coppie Ordinate e Prodotto Cartesiano}
+Nella teoria degli insiemi l'ordine degli elementi non conta: $\{a, b\} = \{b, a\}$. Per definire una coppia in cui l'ordine sia rilevante, si usa la \textbf{definizione di Kuratowski}:
+\[
+    (a, b) \coloneqq \{\{a\}, \{a, b\}\}
+\]
+Tale definizione assicura la proprietà caratteristica fondamentale:
+\[
+    (a, b) = (c, d) \quad \Shiff \quad (a = c \wedge b = d)
+\]
+
+\begin{definizione}{Prodotto Cartesiano}{prod_cartesiano}
+Dati due insiemi $A$ e $B$, il loro \textbf{prodotto cartesiano} $A \times B$ è l'insieme delle coppie ordinate:
+\[
+    A \times B = \{(a, b) \mid a \in A \wedge b \in B\}
+\]
+Se $A$ o $B$ è vuoto, allora $A \times B = \vuoto$. Se $A$ e $B$ sono finiti, $|A \times B| = |A| \cdot |B|$.
+\end{definizione}
+
+\section{Il Buon Ordinamento di $\N$ e il Principio di Induzione}
+
+Ricordiamo la convenzione adottata nel corso del Prof. Cutolo: $\N = \{0, 1, 2, 3, \dots\}$.
+
+\begin{teorema}{Principio del Buon Ordinamento di $\N$}{buon_ord}
+Ogni sottoinsieme non vuoto $S \sseq \N$ ammette \textbf{minimo}, ovvero esiste un elemento $m \in S$ tale che $m \le s$ per ogni $s \in S$.
+\end{teorema}
+
+Dal buon ordinamento deriva la tecnica di dimostrazione per \textbf{controesempio minimo}: per dimostrare che una proprietà $P(n)$ vale per ogni $n \in \N$, si suppone per assurdo che l'insieme dei controesempi $C = \{n \in \N \mid \neg P(n)\}$ sia non vuoto. Per il principio del buon ordinamento, $C$ deve ammettere un minimo elemento $m = \min(C)$. Analizzando le proprietà di $m$, si deduce una contraddizione logica.
+
+\begin{teorema}{Principio di Induzione Matematica}{induzione}
+Sia $P(n)$ un predicato definito per $n \in \N$. Supponiamo che:
+\begin{enumerate}
+    \item \textbf{Base dell'induzione:} $P(0)$ è vera;
+    \item \textbf{Passo induttivo:} per ogni $n \in \N$, se $P(n)$ è vera, allora $P(n+1)$ è vera:
+    \[
+        \forall n \in \N, (P(n) \implica P(n+1))
+    \]
+\end{enumerate}
+Allora $P(n)$ è vera per ogni $n \in \N$.
+\end{teorema}
+
+\begin{proof}
+Supponiamo per assurdo che non per tutti gli $n \in \N$ valga $P(n)$. Allora l'insieme dei controesempi $S = \{k \in \N \mid \neg P(k)\}$ è non vuoto. Per il Principio del Buon Ordinamento, $S$ ammette un minimo elemento $m \in S$.
+Poiché per ipotesi (1) $P(0)$ è vera, deduciamo che $0 \notin S$, dunque $m > 0$. Ne segue che $m - 1 \in \N$.
+Essendo $m - 1 < m$, ed essendo $m$ il minimo di $S$, deve necessariamente accadere che $m - 1 \notin S$, vale a dire che $P(m-1)$ è vera.
+Ma per l'ipotesi induttiva (2), $P(m-1) \implica P((m-1)+1) = P(m)$. Dunque $P(m)$ è vera, il che contraddice l'assunzione che $m \in S$.
+L'assurdo prova che $S = \vuoto$, quindi $P(n)$ è vera per ogni $n \in \N$.
+\end{proof}
+
+\subsection{Induzione Completa (o Forte)}
+Nella forma forte dell'induzione, il passo induttivo assume come ipotesi che la proprietà sia vera per \textbf{tutti} gli interi $k \le n$:
+\[
+    (\forall k \le n, P(k)) \Implica P(n+1)
+\]
+Le due forme sono logicamente equivalenti tra loro e al principio del buon ordinamento.
+
+\section{Elementi di Calcolo Combinatorio}
+
+Sia $S$ un insieme finito. Denotiamo con $|S|$ la sua \textbf{cardinalità} (il numero dei suoi elementi).
+
+\subsection{Principi Fondamentali del Conteggio}
+\begin{itemize}
+    \item \textbf{Regola della Somma:} se $A$ e $B$ sono insiemi finiti disgiunti ($A \cap B = \vuoto$), allora $|A \cup B| = |A| + |B|$.
+    \item \textbf{Regola del Prodotto:} per due insiemi finiti qualsiasi, $|A \times B| = |A| \cdot |B|$.
+    \item \textbf{Principio di Inclusione-Esclusione (PIE):} per due insiemi qualsiasi:
+    \[
+        |A \cup B| = |A| + |B| - |A \cap B|
+    \]
+    Per tre insiemi $A, B, C$:
+    \[
+        |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+    \]
+\end{itemize}
+
+\subsection{Disposizioni, Permutazioni e Combinazioni}
+Sia $S$ un insieme di $n$ elementi. Consideriamo il problema di selezionare $k$ elementi da $S$:
+
+\begin{enumerate}
+    \item \textbf{Disposizioni Semplici ($D_{n, k}$):} sequenze ordinate di $k$ elementi \emph{distinti} scelti tra gli $n$ disponibili ($0 \le k \le n$):
+    \[
+        D_{n, k} = n(n-1)(n-2)\cdots(n-k+1) = \frac{n!}{(n-k)!} = n^{\underline{k}}
+    \]
+    \item \textbf{Permutazioni Semplici ($P_n$):} disposizioni di tutti gli $n$ elementi ($k = n$):
+    \[
+        P_n = D_{n, n} = n! = n \cdot (n-1) \cdots 2 \cdot 1, \qquad \text{con } 0! = 1
+    \]
+    \item \textbf{Disposizioni con Ripetizione ($D'_{n, k}$):} sequenze ordinate di $k$ elementi in cui ciascun elemento può ripetersi:
+    \[
+        D'_{n, k} = n^k = |A^B| \quad (\text{con } |A| = n, |B| = k)
+    \]
+    Esso conta il numero totale di applicazioni da un insieme di cardinalità $k$ a un insieme di cardinalità $n$.
+    \item \textbf{Combinazioni Semplici ($C_{n, k}$ o $\binom{n}{k}$):} sottoinsiemi non ordinati di $k$ elementi distinti scelti tra gli $n$ disponibili:
+    \[
+        \binom{n}{k} = \frac{D_{n, k}}{P_k} = \frac{n!}{k!(n-k)!}
+    \]
+    Il simbolo $\binom{n}{k}$ si legge ``$n$ su $k$'' ed è detto \textbf{coefficiente binomiale}.
+\end{enumerate}
+
+\subsection{Proprietà dei Coefficienti Binomiali e Triangolo di Tartaglia}
+
+\begin{teorema}{Proprietà dei Coefficienti Binomiali}{prop_binomio}
+Per ogni $n, k \in \N$ con $0 \le k \le n$:
+\begin{enumerate}
+    \item \textbf{Simmetria:} $\binom{n}{k} = \binom{n}{n-k}$.
+    \item \textbf{Formula di Ricorrenza di Tartaglia-Pascal:}
+    \[
+        \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \quad (\text{per } 1 \le k \le n-1)
+    \]
+    \item \textbf{Somma per riga (Numero totale di sottoinsiemi):}
+    \[
+        \sum_{k=0}^n \binom{n}{k} = \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n} = 2^n = |\P(S)|
+    \]
+\end{enumerate}
+\end{teorema}
+
+\begin{proof}[Dimostrazione combinatoria della formula di Tartaglia-Pascal]
+Sia $S$ un insieme di $n$ elementi e fissiamo un elemento arbitrario $x_0 \in S$. Vogliamo contare i sottoinsiemi di $S$ aventi esattamente $k$ elementi (il cui numero è per definizione $\binom{n}{k}$).
+I $k$-sottoinsiemi di $S$ si partizionano naturalmente in due classi disgiunte:
+\begin{itemize}
+    \item I sottoinsiemi che \textbf{contengono} $x_0$: per formarli, dobbiamo scegliere i restanti $k-1$ elementi tra gli $n-1$ elementi di $S \smin \{x_0\}$. Ce ne sono $\binom{n-1}{k-1}$.
+    \item I sottoinsiemi che \textbf{non contengono} $x_0$: sono formati scegliendo tutti i $k$ elementi direttamente in $S \smin \{x_0\}$. Ce ne sono $\binom{n-1}{k}$.
+\end{itemize}
+Per la regola della somma, $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
+\end{proof}
+
+\begin{teorema}{Formula del Binomio di Newton}{binomio_newton}
+Dati due elementi $a, b$ appartenenti a un anello commutativo (o numeri reali), per ogni $n \in \N$ vale:
+\[
+    (a + b)^n = \sum_{k=0}^n \binom{n}{k} a^{n-k} b^k = \binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \dots + \binom{n}{n}b^n
+\]
+\end{teorema}
+
+\subsection{Il Principio dei Cassetti (Pigeonhole Principle)}
+\begin{teorema}{Principio dei Cassetti}{pigeonhole}
+Se si collocano $n$ oggetti in $k$ contenitori (cassetti) con $n > k$, allora almeno un cassetto conterrà almeno $\lceil n/k \rceil \ge 2$ oggetti.
+\end{teorema}
+Questo principio, apparentemente elementare, è uno strumento dimostrativo potentissimo in algebra (ad esempio per provare che ogni applicazione iniettiva tra insiemi finiti della stessa cardinalità è suriettiva, o che ogni dominio d'integrità finito è un campo).

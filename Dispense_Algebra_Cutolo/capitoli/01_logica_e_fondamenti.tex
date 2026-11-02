@@ -1,0 +1,176 @@
+\chapter{Logica Proposizionale e Calcolo dei Predicati}
+\label{chap:logica}
+
+La logica matematica costituisce il linguaggio fondamentale su cui poggia l'intero edificio dell'algebra moderna. In questo capitolo introduciamo gli strumenti del calcolo proposizionale e del calcolo dei predicati, indispensabili per formulare definizioni rigorose ed elaborare dimostrazioni formali ineccepibili.
+
+\section{Proposizioni e Valori di Verità}
+
+\begin{definizione}{Proposizione}{proposizione}
+Una \textbf{proposizione} (o enunciato) è una frase dichiarativa per la quale ha senso affermare in modo univoco se sia \emph{vera} oppure \emph{falsa}.
+
+Convenzionalmente, denotiamo i due \textbf{valori di verità} con i simboli:
+\[
+    1 \quad (\text{Vero}, \top), \qquad 0 \quad (\text{Falso}, \bot)
+\]
+L'insieme dei valori di verità è indicato con $\mathbb{V} = \{0, 1\}$.
+\end{definizione}
+
+Il calcolo proposizionale classico si fonda su due principi cardine della logica aristotelica:
+\begin{enumerate}
+    \item \textbf{Principio di Non Contraddizione:} una proposizione non può essere contemporaneamente vera e falsa.
+    \item \textbf{Principio del Terzo Escluso (\emph{Tertium non datur}):} una proposizione è necessariamente o vera o falsa; non esiste un terzo valore di verità intermedio.
+\end{enumerate}
+
+\section{Connettivi Proposizionali}
+I connettivi proposizionali consentono di costruire nuove proposizioni (dette \emph{composte}) a partire da proposizioni date (dette \emph{atomiche}). Formalmente, un connettivo a $n$ argomenti è una funzione $\mathbb{V}^n \to \mathbb{V}$.
+
+\subsection{Connettivo Unario: La Negazione}
+L'unico connettivo unario non banale è la \textbf{negazione} ($\neg$ oppure $\sim$):
+\[
+    \neg: \mathbb{V} \to \mathbb{V}, \quad \neg 1 = 0, \quad \neg 0 = 1
+\]
+
+\subsection{Connettivi Binari Fondamentali}
+Dati due enunciati $p$ e $q$, i principali connettivi binari sono:
+\begin{enumerate}
+    \item \textbf{Congiunzione ($\wedge$):} $p \wedge q$ è vera se e solo se sia $p$ che $q$ sono vere.
+    \item \textbf{Disgiunzione Inclusiva ($\vee$):} $p \vee q$ è vera se almeno una tra $p$ e $q$ è vera (falsa solo se entrambe sono false).
+    \item \textbf{Disgiunzione Esclusiva ($\xor$ o $\dot{\vee}$):} $p \xor q$ è vera se esattamente una tra $p$ e $q$ è vera (corrisponde all'operazione di addizione modulo 2).
+    \item \textbf{Implicazione Materiale ($\implica$):} la proposizione condizionale $p \implica q$ (``se $p$, allora $q$'') è definita come equivalente a:
+    \[
+        (p \implica q) \iff (\neg p \vee q)
+    \]
+    Di conseguenza, $p \implica q$ è \textbf{falsa unicamente quando l'antecedente $p$ è vero e il conseguente $q$ è falso}. Se la premessa $p$ è falsa, l'implicazione $p \implica q$ è sempre formalmente vera (\emph{ex falso quodlibet}).
+    \item \textbf{Coimplicazione o Doppia Implicazione ($\shiff$):} $p \shiff q$ (``$p$ se e solo se $q$'') è vera se $p$ e $q$ possiedono il medesimo valore di verità.
+    \item \textbf{Incompatibilità (NAND, $\uparrow$):} $\neg (p \wedge q)$.
+    \item \textbf{Negazione congiunta (NOR, $\downarrow$):} $\neg (p \vee q)$.
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\caption{Tavola di verità dei principali connettivi logici binari}
+\label{tab:tavola_verita}
+\begin{tabular}{|cc||c|c|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $\neg p$ & $p \wedge q$ & $p \vee q$ & $p \xor q$ & $p \implica q$ & $p \shiff q$ & $p \uparrow q$ \\
+\hline
+$1$ & $1$ & $0$ & $1$ & $1$ & $0$ & $1$ & $1$ & $0$ \\
+$1$ & $0$ & $0$ & $0$ & $1$ & $1$ & $0$ & $0$ & $1$ \\
+$0$ & $1$ & $1$ & $0$ & $1$ & $1$ & $1$ & $0$ & $1$ \\
+$0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $1$ & $1$ & $1$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{avvisoCutolo}
+    \textbf{Attenzione alla definizione di Implicazione Materiale!}
+    All'orale il Prof. Cutolo sottolinea costantemente che l'implicazione logica non presuppone alcun legame di causa-effetto tra $p$ e $q$. L'affermazione ``Se la Luna è di formaggio, allora $2+2=5$'' è \textbf{logicamente vera}, poiché la premessa è falsa.
+\end{avvisoCutolo}
+
+\section{Tautologie, Contraddizioni ed Equivalenze Logiche}
+
+\begin{definizione}{Tautologia e Contraddizione}{tautologia}
+Una formula proposizionale si dice:
+\begin{itemize}
+    \item \textbf{Tautologia} se assume valore di verità $1$ per qualunque assegnazione dei valori di verità delle variabili proposizionali costituenti.
+    \item \textbf{Contraddizione} se assume valore di verità $0$ per qualunque assegnazione.
+\end{itemize}
+Due formule $P$ e $Q$ si dicono \textbf{logicamente equivalenti} (scritto $P \equiv Q$) se la formula $P \shiff Q$ è una tautologia.
+\end{definizione}
+
+\begin{teorema}{Equivalenze Logiche Fondamentali}{equiv_fondamentali}
+Per ogni variabile proposizionale $p, q, r$, sussistono le seguenti equivalenze tautologiche:
+\begin{enumerate}
+    \item \textbf{Idempotenza:} $p \wedge p \equiv p$, \quad $p \vee p \equiv p$.
+    \item \textbf{Commutatività:} $p \wedge q \equiv q \wedge p$, \quad $p \vee q \equiv q \vee p$.
+    \item \textbf{Associatività:} 
+    \[
+        (p \wedge q) \wedge r \equiv p \wedge (q \wedge r), \qquad (p \vee q) \vee r \equiv p \vee (q \vee r)
+    \]
+    \item \textbf{Distributività:}
+    \[
+        p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r), \qquad p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)
+    \]
+    \item \textbf{Leggi di De Morgan:}
+    \[
+        \neg(p \wedge q) \equiv \neg p \vee \neg q, \qquad \neg(p \vee q) \equiv \neg p \wedge \neg q
+    \]
+    \item \textbf{Assorbimento:}
+    \[
+        p \wedge (p \vee q) \equiv p, \qquad p \vee (p \wedge q) \equiv p
+    \]
+    \item \textbf{Doppia Negazione:} $\neg(\neg p) \equiv p$.
+\end{enumerate}
+\end{teorema}
+
+\subsection{Tautologie Notevoli sull'Implicazione}
+L'implicazione materiale gode di proprietà cruciali per le dimostrazioni matematiche:
+\begin{itemize}
+    \item \textbf{Legge di Contrapposizione:}
+    \[
+        (p \implica q) \equiv (\neg q \implica \neg p)
+    \]
+    Dimostrare un teorema del tipo ``Se $p$, allora $q$'' equivale logicamente a dimostrare ``Se non $q$, allora non $p$''.
+    \item \textbf{Transitività dell'Implicazione (Sillogismo Ipotetico):}
+    \[
+        ((p \implica q) \wedge (q \implica r)) \implica (p \implica r)
+    \]
+    \item \textbf{Modus Ponens:} $((p \implica q) \wedge p) \implica q$.
+    \item \textbf{Modus Tollens:} $((p \implica q) \wedge \neg q) \implica \neg p$.
+    \item \textbf{Legge di Peirce:} $((p \implica q) \implica p) \implica p$ (tautologia valida solo nella logica classica bivalente).
+    \item \textbf{Riduzione all'Assurdo:} $(p \implica (q \wedge \neg q)) \implica \neg p$.
+\end{itemize}
+
+\section{Calcolo dei Predicati e Quantificatori}
+
+\begin{definizione}{Predicato e Dominio}{predicato}
+Un \textbf{predicato} $P(x)$ su un dominio (o universo del discorso) $\mathcal{U}$ è una frase dichiarativa contenente una o più variabili $x \in \mathcal{U}$ che diviene una proposizione non appena a ciascuna variabile viene sostituito un elemento specifico di $\mathcal{U}$.
+\end{definizione}
+
+\subsection{I Quantificatori Logici}
+Per trasformare un predicato $P(x)$ in una proposizione possiamo ricorrere ai \textbf{quantificatori}:
+\begin{enumerate}
+    \item \textbf{Quantificatore Universale ($\forall$, ``per ogni''):}
+    $\forall x \in \mathcal{U}, P(x)$ asserisce che la proprietà $P(x)$ sussiste per \textbf{tutti} gli elementi del dominio $\mathcal{U}$. È falsa non appena esiste anche un solo elemento $x_0 \in \mathcal{U}$ per cui $P(x_0)$ è falsa (\emph{controesempio}).
+    \item \textbf{Quantificatore Esistenziale ($\exists$, ``esiste almeno un''):}
+    $\exists x \in \mathcal{U} : P(x)$ asserisce che esiste \textbf{almeno un} elemento in $\mathcal{U}$ che verifica $P(x)$. È vera se si esibisce almeno un elemento soddisfacente.
+    \item \textbf{Esistenza ed Unicità ($\exists!$, ``esiste un unico''):}
+    $\exists! x \in \mathcal{U} : P(x)$ significa:
+    \[
+        (\exists x \in \mathcal{U} : P(x)) \wedge (\forall x, y \in \mathcal{U}, (P(x) \wedge P(y)) \implica x = y)
+    \]
+\end{enumerate}
+
+\subsection{Regole di Negazione dei Quantificatori}
+La negazione di un'asserzione quantificata scambia la natura del quantificatore e nega il predicato:
+\begin{align}
+    \neg (\forall x \in \mathcal{U}, P(x)) &\equiv \exists x \in \mathcal{U} : \neg P(x) \label{eq:neg_all} \\
+    \neg (\exists x \in \mathcal{U} : P(x)) &\equiv \forall x \in \mathcal{U}, \neg P(x) \label{eq:neg_ex}
+\end{align}
+
+\begin{avvisoCutolo}
+    \textbf{L'Ordine dei Quantificatori è Fondamentale!}
+    Quantificatori dello stesso tipo commutano: $\forall x \forall y \equiv \forall y \forall x$ e $\exists x \exists y \equiv \exists y \exists x$.
+    
+    Al contrario, \textbf{quantificatori di tipo diverso non commutano in generale}:
+    \[
+        \exists y \in \mathcal{U} : \forall x \in \mathcal{U}, P(x, y) \quad \Implica \quad \forall x \in \mathcal{U}, \exists y \in \mathcal{U} : P(x, y)
+    \]
+    ma l'implicazione inversa è \textbf{falsa}.
+    
+    \emph{Esempio Classico di Cutolo:} Si consideri il dominio $\N$.
+    \begin{itemize}
+        \item L'enunciato $\forall x \in \N, \exists y \in \N : y > x$ è \textbf{vero} (per ogni numero naturale esiste un naturale strettamente maggiore, ad es. $y = x+1$).
+        \item L'enunciato $\exists y \in \N : \forall x \in \N, y > x$ è \textbf{falso} (asserisce l'esistenza di un singolo numero naturale $y$ maggiore di tutti i numeri naturali, compreso se stesso!).
+    \end{itemize}
+\end{avvisoCutolo}
+
+\section{Metodologie di Dimostrazione Matematica}
+Nel corso di Algebra si incontrano prevalentemente le seguenti strategie di dimostrazione:
+\begin{enumerate}
+    \item \textbf{Dimostrazione Diretta:} Si assume vera la premessa $P$ e, attraverso una catena di implicazioni logiche giustificate da assiomi o teoremi noti, si giunge a dedurre la tesi $Q$.
+    \item \textbf{Dimostrazione per Contrapposizione:} Si sfrutta l'equivalenza $(P \implica Q) \equiv (\neg Q \implica \neg P)$. Si assume $\neg Q$ e si dimostra $\neg P$.
+    \item \textbf{Dimostrazione per Assurdo (\emph{Reductio ad absurdum}):} Si assume vera l'ipotesi $P$ e contemporaneamente si nega la tesi $\neg Q$. Da $(P \wedge \neg Q)$ si deriva una contraddizione logica (del tipo $R \wedge \neg R$). Ciò prova che l'assunzione $\neg Q$ era insostenibile, dunque $Q$ è vera.
+    \item \textbf{Dimostrazione per Induzione:} Utilizzata per proprietà quantificate su $\N$; la analizzeremo diffusamente nel prossimo capitolo.
+    \item \textbf{Dimostrazione per Controesempio:} Per confutare una proposizione universale $\forall x, P(x)$, è sufficiente esibire un singolo elemento $x_0$ tale che $\neg P(x_0)$.
+\end{enumerate}
