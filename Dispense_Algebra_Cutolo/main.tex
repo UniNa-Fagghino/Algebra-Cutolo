@@ -1,0 +1,118 @@
+% ==============================================================================
+% ISTITUZIONI DI ALGEBRA
+% Teoria Rigorosa, Dimostrazioni, Eserciziario e Guida all'Esame
+%
+% Basato sui corsi, monografie e registri ufficiali del Prof. Giovanni Cutolo
+% Dipartimento di Matematica e Applicazioni "Renato Caccioppoli"
+% Università degli Studi di Napoli Federico II
+%
+% Curatore: Fagghino
+% Anno Accademico: 2025/2026
+% ==============================================================================
+
+\documentclass[11pt,a4paper,twoside,openright]{book}
+
+\input{preamble.tex}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% FRONTESPIZIO
+% ------------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    
+    {\scshape\LARGE Università degli Studi di Napoli Federico II \par}
+    \vspace{0.3cm}
+    {\scshape\Large Corso di Laurea Triennale in Informatica \par}
+    \vspace{0.2cm}
+    {\large Dipartimento di Matematica e Applicazioni ``Renato Caccioppoli'' \par}
+    
+    \vspace{1.8cm}
+    \rule{\linewidth}{1.2pt} \\[0.4cm]
+    {\Huge \bfseries ISTITUZIONI DI ALGEBRA \par}
+    \vspace{0.3cm}
+    {\Large \bfseries Teoria, Dimostrazioni Complete, Esercizi e Guida all'Esame \par}
+    \rule{\linewidth}{1.2pt} \\[0.5cm]
+    
+    {\large \itshape Dalle lezioni frontali, monografie DMA e registri ufficiali del \par}
+    \vspace{0.2cm}
+    {\Large \bfseries Prof. Giovanni Cutolo \par}
+    
+    \vfill
+    
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft} \large
+            \emph{Insegnamento:}\\
+            \textbf{Algebra (LT Informatica)}\\
+            Codice: \textbf{U6282} (6 CFU)\\
+            Canale 2 (a.a. 2025/2026)
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright} \large
+            \emph{A cura di:}\\
+            \textbf{Fagghino}\\
+            \href{https://github.com/UniNa-Fagghino/Algebra-Cutolo}{\texttt{UniNa-Fagghino}}
+        \end{flushright}
+    \end{minipage}
+    
+    \vspace{1.5cm}
+    {\large Versione Ufficiale Integrata e Verificata \par}
+    {\large Anno Accademico 2025--2026 \par}
+\end{titlepage}
+
+% ------------------------------------------------------------------------------
+% PREFAZIONE E INDICE
+% ------------------------------------------------------------------------------
+\frontmatter
+
+\input{capitoli/00_prefazione.tex}
+
+\tableofcontents
+
+% ------------------------------------------------------------------------------
+% PARTE I: FONDAMENTI, INSIEMI E COMBINATORIA
+% ------------------------------------------------------------------------------
+\mainmatter
+
+\part{Logica, Insiemi e Fondamenti del Calcolo}
+\input{capitoli/01_logica_e_fondamenti.tex}
+\input{capitoli/02_insiemi_e_combinatoria.tex}
+
+% ------------------------------------------------------------------------------
+% PARTE II: RELAZIONI, APPLICAZIONI E RETICOLI
+% ------------------------------------------------------------------------------
+\part{Relazioni, Applicazioni, Ordini e Strutture Booleane}
+\input{capitoli/03_relazioni_e_applicazioni.tex}
+\input{capitoli/04_relazioni_d_ordine_e_reticoli.tex}
+
+% ------------------------------------------------------------------------------
+% PARTE III: TEORIA DEI NUMERI ED ARITMETICA MODULARE
+% ------------------------------------------------------------------------------
+\part{Aritmetica, Congruenze e Teoria dei Numeri}
+\input{capitoli/05_aritmetica_modulare_e_diofantee.tex}
+
+% ------------------------------------------------------------------------------
+% PARTE IV: STRUTTURE ALGEBRICHE E POLINOMI
+% ------------------------------------------------------------------------------
+\part{Strutture Algebriche, Gruppi, Anelli e Polinomi}
+\input{capitoli/06_strutture_algebriche.tex}
+\input{capitoli/07_anelli_di_polinomi.tex}
+
+% ------------------------------------------------------------------------------
+% PARTE V: TEORIA DEI GRAFI
+% ------------------------------------------------------------------------------
+\part{Teoria dei Grafi}
+\input{capitoli/08_teoria_dei_grafi.tex}
+
+% ------------------------------------------------------------------------------
+% PARTE VI: PREPARAZIONE ESAME ED ESERCIZIARIO RISOLTO
+% ------------------------------------------------------------------------------
+\part{Vademecum d'Esame ed Eserciziario Svolto}
+\input{capitoli/09_guida_strategica_esame_e_orale.tex}
+\input{capitoli/10_raccolta_esercizi_svolti_tipo.tex}
+
+\end{document}

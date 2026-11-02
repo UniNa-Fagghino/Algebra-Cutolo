@@ -1,0 +1,198 @@
+% ==============================================================================
+% PREAMBLE - ISTITUZIONI DI ALGEBRA (PROF. GIOVANNI CUTOLO)
+% Corso di Laurea in Informatica - Università degli Studi di Napoli Federico II
+% Curatore: Fagghino
+% ==============================================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% Geometria pagina e margini
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=14.5pt]{geometry}
+
+% Matematica e simboli
+\usepackage{amsmath,amssymb,amsthm,mathtools,amsfonts,mathrsfs}
+\usepackage{bm}
+
+% Grafica e diagrammi
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{shapes,arrows,positioning,calc,matrix,fit,backgrounds}
+
+% Box decorati per definizioni, teoremi ed osservazioni
+\usepackage[most]{tcolorbox}
+
+% Gestione elenchi
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Intestazioni e piè di pagina
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Collegamenti ipertestuali e riferimenti
+\usepackage{xcolor}
+\definecolor{UniNaBlue}{RGB}{0, 48, 135}
+\definecolor{CutoloRed}{RGB}{160, 20, 20}
+\definecolor{DefGreen}{RGB}{20, 110, 60}
+\definecolor{ExOrange}{RGB}{180, 80, 0}
+\definecolor{NoteGray}{RGB}{80, 80, 90}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=UniNaBlue,
+    citecolor=CutoloRed,
+    urlcolor=UniNaBlue,
+    pdftitle={Istituzioni di Algebra - Appunti Ufficiali Prof. Cutolo},
+    pdfauthor={Fagghino},
+    pdfsubject={Corso di Algebra - Università degli Studi di Napoli Federico II}
+}
+
+\usepackage{cleveref}
+
+% ==============================================================================
+% MACRO MATEMATICHE E NOTAZIONI UFFICIALI CUTOLO
+% ==============================================================================
+
+% Insiemi numerici standard
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+
+% Insieme delle parti
+\renewcommand{\P}{\mathscr{P}}
+\newcommand{\Pfin}{\mathscr{P}_{\text{fin}}}
+
+% Relazioni e connettivi speciali
+\newcommand{\vuoto}{\varnothing}
+\newcommand{\smin}{\setminus}
+\newcommand{\implica}{\Rightarrow}
+\newcommand{\Implica}{\Longrightarrow}
+\newcommand{\shiff}{\Leftrightarrow}
+\newcommand{\Shiff}{\Longleftrightarrow}
+\newcommand{\sseq}{\subseteq}
+\newcommand{\ds}{\mathbin{\scriptstyle\triangle}} % Differenza simmetrica
+\newcommand{\xor}{\mathbin{\mathsf{XOR}}}
+\newcommand{\nor}{\mathbin{\mathsf{NOR}}}
+\newcommand{\nand}{\mathbin{\mathsf{NAND}}}
+
+% Notazione specifica del Prof. Cutolo per immagini e controimmagini
+% Freccia verso destra per l'immagine f(X)
+\newcommand{\vecf}{\vec{f}}
+% Freccia verso sinistra per la controimmagine / anti-immagine (NON f^-1!)
+\newcommand{\antivec}[2]{#1^{\raise #2pt\hbox{$\!\!\scriptstyle\leftarrow\!\!$}}}
+\newcommand{\antivecf}{\antivec{f}{3}}
+\newcommand{\antivecg}{\antivec{g}{2}}
+
+% Operatori e insiemi di strutture
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\Part}{Part}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\car}{char}
+\DeclareMathOperator{\mcd}{MCD}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\minor}{Minor}
+\DeclareMathOperator{\maggior}{Maggior}
+\DeclareMathOperator{\degpoly}{deg}
+
+% Generatori e classi resto
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\classe}[1]{[#1]}
+\newcommand{\modulo}[1]{\ (\mathrm{mod}\ #1)}
+
+% ==============================================================================
+% AMBIENTI TCOLORBOX (Definizioni, Teoremi, Proposizioni, Esercizi)
+% ==============================================================================
+
+% Stile per Definizioni
+\newtcbtheorem[number within=chapter]{definizione}{Definizione}{
+    enhanced,
+    colback=DefGreen!5!white,
+    colframe=DefGreen!80!black,
+    fonttitle=\bfseries,
+    separator sign dash,
+    boxrule=0.8pt,
+    arc=3pt,
+    top=6pt,bottom=6pt,left=8pt,right=8pt
+}{def}
+
+% Stile per Teoremi
+\newtcbtheorem[use counter from=definizione]{teorema}{Teorema}{
+    enhanced,
+    colback=UniNaBlue!5!white,
+    colframe=UniNaBlue!90!black,
+    fonttitle=\bfseries,
+    separator sign dash,
+    boxrule=0.8pt,
+    arc=3pt,
+    top=6pt,bottom=6pt,left=8pt,right=8pt
+}{teo}
+
+% Stile per Proposizioni / Lemmi
+\newtcbtheorem[use counter from=definizione]{proposizione}{Proposizione}{
+    enhanced,
+    colback=UniNaBlue!3!white,
+    colframe=UniNaBlue!60!black,
+    fonttitle=\bfseries,
+    separator sign dash,
+    boxrule=0.6pt,
+    arc=2pt,
+    top=5pt,bottom=5pt,left=7pt,right=7pt
+}{prop}
+
+% Stile per Esercizi e Problemi Svolti
+\newtcbtheorem[number within=chapter]{esercizio}{Esercizio d'Esame}{
+    enhanced,
+    colback=ExOrange!4!white,
+    colframe=ExOrange!85!black,
+    fonttitle=\bfseries,
+    separator sign dash,
+    boxrule=0.8pt,
+    arc=3pt,
+    top=6pt,bottom=6pt,left=8pt,right=8pt
+}{es}
+
+% Box per i Tranelli dell'Orale e le Osservazioni di Cutolo
+\newtcolorbox{avvisoCutolo}[1][]{
+    enhanced,
+    colback=CutoloRed!5!white,
+    colframe=CutoloRed!85!black,
+    fonttitle=\bfseries,
+    title={\textbf{All'Orale con Cutolo: Attenzione al Rigore!}},
+    boxrule=0.8pt,
+    arc=3pt,
+    top=6pt,bottom=6pt,left=8pt,right=8pt,
+    #1
+}
+
+% Box per l'intuizione o la panoramica
+\newtcolorbox{intuizione}[1][]{
+    enhanced,
+    colback=gray!5!white,
+    colframe=gray!60!black,
+    fonttitle=\bfseries,
+    title={Intuizione e Quadro Generale},
+    boxrule=0.6pt,
+    arc=2pt,
+    top=5pt,bottom=5pt,left=7pt,right=7pt,
+    #1
+}
