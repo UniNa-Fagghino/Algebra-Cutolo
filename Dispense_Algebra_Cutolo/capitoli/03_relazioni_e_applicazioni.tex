@@ -1,0 +1,330 @@
+\chapter{Relazioni Binarie, Applicazioni e Cardinalità}
+\label{chap:relazioni_applicazioni}
+
+In questo capitolo affrontiamo uno dei cardini dell'intero programma di Algebra: la teoria delle corrispondenze e delle relazioni binarie, lo studio formale delle applicazioni, la teoria delle sezioni e retrazioni, il Teorema fondamentale di omomorfismo per insiemi e la nozione di cardinalità.
+
+\section{Corrispondenze e Relazioni Binarie}
+
+\begin{definizione}{Corrispondenza}{corrispondenza}
+Dati due insiemi $A$ e $B$, una \textbf{corrispondenza} da $A$ a $B$ è una terna ordinata $\mathcal{C} = (A, B, G)$, dove:
+\begin{itemize}
+    \item $A$ è detto \textbf{insieme di partenza} (o dominio);
+    \item $B$ è detto \textbf{insieme di arrivo} (o codominio);
+    \item $G \sseq A \times B$ è un sottoinsieme del prodotto cartesiano, detto \textbf{grafo} della corrispondenza.
+\end{itemize}
+Se $(a, b) \in G$, si scrive frequentemente $a \mathcal{C} b$ e si dice che $a$ è in corrispondenza con $b$.
+
+La \textbf{corrispondenza inversa} di $\mathcal{C}$ è la terna $\mathcal{C}^{-1} = (B, A, G^{-1})$, ove:
+\[
+    G^{-1} = \{(b, a) \in B \times A \mid (a, b) \in G\}
+\]
+\end{definizione}
+
+\begin{definizione}{Relazione Binaria}{relazione_binaria}
+Una corrispondenza in cui l'insieme di partenza coincide con l'insieme di arrivo, cioè del tipo $\mathcal{R} = (A, A, G)$ con $G \sseq A \times A$, è detta \textbf{relazione binaria omogenea} sull'insieme $A$.
+L'insieme di tutte le relazioni binarie su $A$ si denota con $\Rel(A) = \P(A \times A)$. Se $|A| = n$, allora $|\Rel(A)| = 2^{n^2}$.
+\end{definizione}
+
+\subsection{Proprietà delle Relazioni Binarie}
+Sia $\mathcal{R}$ una relazione binaria su un insieme $A$. Essa può godere delle seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Riflessività:} ogni elemento è in relazione con se stesso:
+    \[
+        \forall x \in A, \quad x \mathcal{R} x \quad (\text{ovvero } \id_A \sseq G)
+    \]
+    \item \textbf{Antiriflessività:} nessun elemento è in relazione con se stesso:
+    \[
+        \forall x \in A, \quad \neg(x \mathcal{R} x) \quad (\text{ovvero } \id_A \cap G = \vuoto)
+    \]
+    \begin{avvisoCutolo}
+        \textbf{Antiriflessivo NON significa ``non riflessivo''!}
+        Una relazione non riflessiva è una relazione per cui \emph{esiste almeno un} elemento $x \in A$ tale che $\neg(x \mathcal{R} x)$. Una relazione antiriflessiva richiede invece che \emph{per tutti} gli elementi valga $\neg(x \mathcal{R} x)$. Esistono relazioni che non sono né riflessive né antiriflessive (ad esempio quando alcuni elementi sono in relazione con se stessi ed altri no).
+    \end{avvisoCutolo}
+    \item \textbf{Simmetria:} se $x$ è in relazione con $y$, allora anche $y$ è in relazione con $x$:
+    \[
+        \forall x, y \in A, \quad x \mathcal{R} y \Implica y \mathcal{R} x \quad (\text{ovvero } G = G^{-1})
+    \]
+    \item \textbf{Antisimmetria:} due elementi distinti non possono essere reciprocamente in relazione:
+    \[
+        \forall x, y \in A, \quad (x \mathcal{R} y \wedge y \mathcal{R} x) \Implica x = y \quad (\text{ovvero } G \cap G^{-1} \sseq \id_A)
+    \]
+    Equivalentemente, per contrapposizione: $\forall x \neq y, x \mathcal{R} y \implica \neg(y \mathcal{R} x)$.
+    \item \textbf{Transitività:} se $x$ è in relazione con $y$ e $y$ è in relazione con $z$, allora $x$ è in relazione con $z$:
+    \[
+        \forall x, y, z \in A, \quad (x \mathcal{R} y \wedge y \mathcal{R} z) \Implica x \mathcal{R} z \quad (\text{ovvero } G \circ G \sseq G)
+    \]
+    \item \textbf{Totalità (o Connessione):} per ogni coppia di elementi, almeno uno è in relazione con l'altro:
+    \[
+        \forall x, y \in A, \quad x \mathcal{R} y \vee y \mathcal{R} x
+    \]
+\end{enumerate}
+
+\subsection{Prodotto Relazionale}
+Date due corrispondenze $\mathcal{R} = (A, B, G_\mathcal{R})$ e $\mathcal{S} = (B, C, G_\mathcal{S})$, il loro \textbf{prodotto relazionale} (o composizione) $\mathcal{S} \circ \mathcal{R}$ è la corrispondenza $(A, C, G_{\mathcal{S}\circ\mathcal{R}})$ definita da:
+\[
+    x (\mathcal{S} \circ \mathcal{R}) z \quad \Shiff \quad \exists y \in B : (x \mathcal{R} y \wedge y \mathcal{S} z)
+\]
+Il prodotto relazionale è un'operazione \textbf{associativa}: per ogni terna di relazioni componibili vale $\mathcal{T} \circ (\mathcal{S} \circ \mathcal{R}) = (\mathcal{T} \circ \mathcal{S}) \circ \mathcal{R}$.
+
+\section{Relazioni di Equivalenza e Partizioni}
+
+\begin{definizione}{Relazione di Equivalenza}{rel_equivalenza}
+Una relazione binaria $\mathcal{R}$ su un insieme $A$ si dice \textbf{relazione di equivalenza} se è:
+\begin{enumerate}
+    \item \textbf{Riflessiva:} $\forall x \in A, x \mathcal{R} x$;
+    \item \textbf{Simmetrica:} $\forall x, y \in A, x \mathcal{R} y \implica y \mathcal{R} x$;
+    \item \textbf{Transitiva:} $\forall x, y, z \in A, (x \mathcal{R} y \wedge y \mathcal{R} z) \implica x \mathcal{R} z$.
+\end{enumerate}
+L'insieme di tutte le relazioni di equivalenza su $A$ si denota con $\Eq(A)$.
+\end{definizione}
+
+\begin{definizione}{Classe di Equivalenza e Insieme Quoziente}{classe_eq}
+Sia $\mathcal{R} \in \Eq(A)$ e sia $a \in A$. La \textbf{classe di equivalenza} determinata da $a$ modulo $\mathcal{R}$ è il sottoinsieme degli elementi di $A$ equivalenti ad $a$:
+\[
+    [a]_\mathcal{R} = \{x \in A \mid x \mathcal{R} a\}
+\]
+L'elemento $a$ è detto \textbf{rappresentante} della classe $[a]_\mathcal{R}$.
+L'insieme avente come elementi tutte le classi di equivalenza è detto \textbf{insieme quoziente} di $A$ rispetto a $\mathcal{R}$ e si denota con:
+\[
+    A/\mathcal{R} = \{[a]_\mathcal{R} \mid a \in A\}
+\]
+L'applicazione suriettiva $\pi_\mathcal{R}: A \to A/\mathcal{R}$ definita da $\pi_\mathcal{R}(a) = [a]_\mathcal{R}$ è detta \textbf{proiezione canonica}.
+\end{definizione}
+
+\begin{proposizione}{Proprietà delle Classi di Equivalenza}{prop_classi}
+Sia $\mathcal{R}$ una relazione di equivalenza su $A$. Allora:
+\begin{enumerate}
+    \item Per ogni $a \in A$, si ha $a \in [a]_\mathcal{R}$ (ogni classe è non vuota).
+    \item Per ogni coppia $a, b \in A$, le seguenti affermazioni sono equivalenti:
+    \[
+        a \mathcal{R} b \quad \Shiff \quad [a]_\mathcal{R} = [b]_\mathcal{R} \quad \Shiff \quad [a]_\mathcal{R} \cap [b]_\mathcal{R} \neq \vuoto
+    \]
+    \item Due classi di equivalenza o coincidono oppure sono completamente disgiunte:
+    \[
+        [a]_\mathcal{R} \neq [b]_\mathcal{R} \quad \Implica \quad [a]_\mathcal{R} \cap [b]_\mathcal{R} = \vuoto
+    \]
+    \item L'unione di tutte le classi di equivalenza coincide con l'intero insieme $A$:
+    \[
+        \bigcup_{a \in A} [a]_\mathcal{R} = A
+    \]
+\end{enumerate}
+\end{proposizione}
+
+\subsection{Partizioni di un Insieme}
+
+\begin{definizione}{Partizione}{partizione}
+Una \textbf{partizione} di un insieme non vuoto $A$ è una famiglia $\mathcal{F} \sseq \P(A)$ di sottoinsiemi di $A$ (detti \emph{blocchi} della partizione) tale che:
+\begin{enumerate}
+    \item Nessun blocco è vuoto: $\forall X \in \mathcal{F}, X \neq \vuoto$;
+    \item I blocchi sono a due a due disgiunti: $\forall X, Y \in \mathcal{F}, (X \neq Y \implica X \cap Y = \vuoto)$;
+    \item L'unione di tutti i blocchi ricopre $A$: $\bigcup_{X \in \mathcal{F}} X = A$.
+\end{enumerate}
+L'insieme di tutte le partizioni di $A$ si denota con $\Part(A)$.
+\end{definizione}
+
+\begin{teorema}{Teorema Fondamentale delle Relazioni di Equivalenza}{teo_fond_equiv}
+Per ogni insieme $A$, esiste una \textbf{biiezione naturale} tra l'insieme delle relazioni di equivalenza su $A$ e l'insieme delle partizioni di $A$:
+\[
+    \Phi: \Eq(A) \longrightarrow \Part(A), \qquad \mathcal{R} \longmapsto A/\mathcal{R}
+\]
+La cui applicazione inversa $\Psi: \Part(A) \to \Eq(A)$ associa a ciascuna partizione $\mathcal{F}$ la relazione d'equivalenza $\mathcal{R}_\mathcal{F}$ definita da:
+\[
+    x \mathcal{R}_\mathcal{F} y \quad \Shiff \quad \exists X \in \mathcal{F} : (x \in X \wedge y \in X)
+\]
+\end{teorema}
+
+\begin{proof}
+La dimostrazione si articola in due verifiche:
+\begin{enumerate}
+    \item \emph{$\Phi$ è ben posta:} Per la Proposizione~\ref{prop:prop_classi}, per ogni $\mathcal{R} \in \Eq(A)$, l'insieme quoziente $A/\mathcal{R}$ è formato da blocchi non vuoti, disgiunti e che ricoprono $A$. Quindi $A/\mathcal{R} \in \Part(A)$.
+    \item \emph{$\Psi$ è ben posta:} Sia $\mathcal{F} \in \Part(A)$. La relazione $\mathcal{R}_\mathcal{F}$ è:
+    \begin{itemize}
+        \item \emph{Riflessiva:} poiché $\bigcup_{X \in \mathcal{F}} X = A$, ogni $x \in A$ appartiene a qualche $X \in \mathcal{F}$, dunque $x$ e $x$ stanno nello stesso blocco, cioè $x \mathcal{R}_\mathcal{F} x$.
+        \item \emph{Simmetrica:} banale per commutatività logica di $x \in X \wedge y \in X$.
+        \item \emph{Transitiva:} se $x \mathcal{R}_\mathcal{F} y$ e $y \mathcal{R}_\mathcal{F} z$, esistono $X, Y \in \mathcal{F}$ tali che $x, y \in X$ e $y, z \in Y$. Allora $y \in X \cap Y$, dunque $X \cap Y \neq \vuoto$. Essendo $\mathcal{F}$ una partizione, deve essere $X = Y$. Ne segue che $x, z \in X$, quindi $x \mathcal{R}_\mathcal{F} z$.
+    \end{itemize}
+    \item \emph{Composizione inversa:} Verifichiamo che $\Psi \circ \Phi = \id_{\Eq(A)}$ e $\Phi \circ \Psi = \id_{\Part(A)}$:
+    Data $\mathcal{R} \in \Eq(A)$, $x \mathcal{R}_{A/\mathcal{R}} y \iff \exists [a] \in A/\mathcal{R} : x, y \in [a] \iff [x] = [y] \iff x \mathcal{R} y$.
+    Data $\mathcal{F} \in \Part(A)$, per ogni $X \in \mathcal{F}$ e $x \in X$, la classe $[x]_{\mathcal{R}_\mathcal{F}}$ coincide esattamente con l'unico blocco $X$ contenente $x$.
+\end{enumerate}
+\end{proof}
+
+\section{Applicazioni (Funzioni) tra Insiemi}
+
+\begin{definizione}{Applicazione}{applicazione}
+Un'applicazione (o funzione) $f: A \to B$ è una corrispondenza $(A, B, G_f)$ che è:
+\begin{itemize}
+    \item \textbf{Ovunque definita:} per ogni elemento $a \in A$ esiste almeno un $b \in B$ tale che $(a, b) \in G_f$;
+    \item \textbf{Univalente (o funzionale):} se $(a, b) \in G_f$ e $(a, c) \in G_f$, allora $b = c$.
+\end{itemize}
+In sintesi: $\forall a \in A, \exists! b \in B : (a, b) \in G_f$. Tale unico elemento $b$ si indica con $f(a)$ ed è detto \textbf{immagine} di $a$ tramite $f$.
+L'insieme di tutte le applicazioni da $A$ a $B$ si indica con $\Map(A, B)$ o $B^A$. Se $|A| = m$ e $|B| = n$, allora $|B^A| = n^m$.
+\end{definizione}
+
+\subsection{Immagine e Controimmagine di Sottoinsiemi}
+Data $f: A \to B$:
+\begin{itemize}
+    \item Per ogni $X \sseq A$, l'\textbf{immagine} di $X$ è l'insieme:
+    \[
+        \vecf(X) = \{f(x) \in B \mid x \in X\}
+    \]
+    In particolare, $\im(f) = \vecf(A)$ è l'immagine globale di $f$.
+    \item Per ogni $Y \sseq B$, l'\textbf{anti-immagine} (o controimmagine) di $Y$ è l'insieme:
+    \[
+        \antivecf(Y) = \{x \in A \mid f(x) \in Y\}
+    \]
+\end{itemize}
+
+\begin{teorema}{Comportamento delle Operazioni Insiemistiche sotto $\vecf$ e $\antivecf$}{teo_immagini}
+Sia $f: A \to B$. Per ogni $X_1, X_2 \sseq A$ e ogni $Y_1, Y_2 \sseq B$:
+\begin{enumerate}
+    \item $\vecf(X_1 \cup X_2) = \vecf(X_1) \cup \vecf(X_2)$.
+    \item $\vecf(X_1 \cap X_2) \sseq \vecf(X_1) \cap \vecf(X_2)$ (l'uguaglianza vale in generale \textbf{se e solo se $f$ è iniettiva}).
+    \item $\antivecf(Y_1 \cup Y_2) = \antivecf(Y_1) \cup \antivecf(Y_2)$.
+    \item $\antivecf(Y_1 \cap Y_2) = \antivecf(Y_1) \cap \antivecf(Y_2)$.
+    \item $\antivecf(B \smin Y) = A \smin \antivecf(Y)$ (la controimmagine preserva il complemento).
+\end{enumerate}
+\end{teorema}
+
+\begin{avvisoCutolo}
+    La controimmagine $\antivecf: \P(B) \to \P(A)$ è un omomorfismo completo di strutture booleane: commuta sia con l'unione che con l'intersezione e il complemento!
+    L'immagine diretta $\vecf$, invece, commuta solo con l'unione: per l'intersezione vale solo l'inclusione $\vecf(X_1 \cap X_2) \sseq \vecf(X_1) \cap \vecf(X_2)$.
+\end{avvisoCutolo}
+
+\subsection{Iniettività, Suriettività e Biiettività}
+Sia $f: A \to B$:
+\begin{enumerate}
+    \item $f$ è \textbf{iniettiva} se elementi distinti hanno immagini distinte:
+    \[
+        \forall x_1, x_2 \in A, \quad f(x_1) = f(x_2) \Implica x_1 = x_2
+    \]
+    Equivalentemente, $\forall y \in B$, la fibra $|\antivecf(\{y\})| \le 1$.
+    \item $f$ è \textbf{suriettiva} se ogni elemento del codominio è immagine di almeno un elemento del dominio:
+    \[
+        \forall y \in B, \quad \exists x \in A : f(x) = y \quad (\text{cioè } \im(f) = B)
+    \]
+    Equivalentemente, $\forall y \in B$, la fibra $|\antivecf(\{y\})| \ge 1$.
+    \item $f$ è \textbf{biettiva} (o una biiezione) se è sia iniettiva che suriettiva. In tal caso, $\forall y \in B, |\antivecf(\{y\})| = 1$.
+\end{enumerate}
+
+\begin{teorema}{Applicazioni tra Insiemi Finiti di Uguale Cardinalità}{teo_finiti_uguali}
+Siano $A$ e $B$ insiemi finiti tali che $|A| = |B|$. Per ogni applicazione $f: A \to B$, le seguenti condizioni sono equivalenti:
+\[
+    f \text{ è iniettiva} \quad \Shiff \quad f \text{ è suriettiva} \quad \Shiff \quad f \text{ è biettiva}
+\]
+\end{teorema}
+
+\section{Sezioni, Retrazioni e Applicazioni Invertibili}
+
+Siano $f: A \to B$ e $g: B \to C$. L'applicazione composta $g \circ f: A \to C$ è definita da $(g \circ f)(a) = g(f(a))$. La composizione è associativa e ammette le applicazioni identiche $\id_A, \id_B$ come elementi neutri.
+
+\begin{definizione}{Sezioni e Retrazioni}{sezioni_retrazioni}
+Sia $f: A \to B$ un'applicazione con $A \neq \vuoto$. Un'applicazione $g: B \to A$ si dice:
+\begin{itemize}
+    \item Una \textbf{sezione} di $f$ se $f \circ g = \id_B$ ($g$ è inversa a destra di $f$).
+    \item Una \textbf{retrazione} di $f$ se $g \circ f = \id_A$ ($g$ è inversa a sinistra di $f$).
+\end{itemize}
+\end{definizione}
+
+\begin{teorema}{Caratterizzazione di Iniettività e Suriettività tramite Sezioni e Retrazioni}{teo_sez_retraz}
+Sia $f: A \to B$ con $A \neq \vuoto$.
+\begin{enumerate}
+    \item $f$ è \textbf{suriettiva} se e solo se ammette almeno una \textbf{sezione} $s: B \to A$.
+    \item $f$ è \textbf{iniettiva} se e solo se ammette almeno una \textbf{retrazione} $r: B \to A$.
+    \item $f$ è \textbf{biettiva} se e solo se è \textbf{invertibile}, ovvero ammette un'unica applicazione $f^{-1}: B \to A$ che è contemporaneamente sezione e retrazione:
+    \[
+        f \circ f^{-1} = \id_B \quad \text{e} \quad f^{-1} \circ f = \id_A
+    \]
+\end{enumerate}
+\end{teorema}
+
+\begin{proof}
+Dimostriamo le due equivalenze fondamentali:
+\begin{enumerate}
+    \item $(\implica)$ Sia $f$ suriettiva. Allora per ogni $b \in B$, la fibra $\antivecf(\{b\}) \neq \vuoto$. Scegliendo per ciascun $b \in B$ un elemento $x_b \in \antivecf(\{b\})$ e ponendo $s(b) \coloneqq x_b$, si ottiene un'applicazione $s: B \to A$ tale che $(f \circ s)(b) = f(s(b)) = f(x_b) = b = \id_B(b)$. Dunque $s$ è una sezione.
+    $(\impliedby)$ Se esiste $s: B \to A$ tale che $f \circ s = \id_B$, allora per ogni $b \in B$ si ha $b = f(s(b))$, dunque $b \in \im(f)$ con preimmagine $s(b)$. Quindi $f$ è suriettiva.
+    \item $(\implica)$ Sia $f$ iniettiva. Poiché $A \neq \vuoto$, fissiamo un elemento arbitrario $a_0 \in A$. Definiamo $r: B \to A$ ponendo:
+    \[
+        r(b) = \begin{cases}
+            a & \text{se } b \in \im(f), \text{ dove } a \in A \text{ è l'unico elemento tale che } f(a) = b \\
+            a_0 & \text{se } b \notin \im(f)
+        \end{cases}
+    \]
+    Per ogni $a \in A$, $(r \circ f)(a) = r(f(a)) = a = \id_A(a)$, quindi $r$ è una retrazione.
+    $(\impliedby)$ Se esiste $r$ con $r \circ f = \id_A$, siano $x_1, x_2 \in A$ tali che $f(x_1) = f(x_2)$. Applicando $r$ a entrambi i membri: $r(f(x_1)) = r(f(x_2)) \implies \id_A(x_1) = \id_A(x_2) \implies x_1 = x_2$. Quindi $f$ è iniettiva.
+\end{enumerate}
+\end{proof}
+
+\section{Teorema di Omomorfismo per Insiemi}
+
+\begin{definizione}{Nucleo di Equivalenza di un'Applicazione}{nucleo_eq}
+Data un'applicazione $f: A \to B$, la relazione $\ker(f)$ (denotata anche con $\sim_f$ o $\mathcal{R}_f$) definita su $A$ da:
+\[
+    x \sim_f y \quad \Shiff \quad f(x) = f(y)
+\]
+è una relazione di equivalenza su $A$, detta \textbf{nucleo di equivalenza} associato ad $f$.
+La classe di equivalenza di $a \in A$ è la fibra $[a]_{\sim_f} = \antivecf(\{f(a)\})$.
+\end{definizione}
+
+\begin{teorema}{Teorema Fondamentale di Omomorfismo per Insiemi}{teo_omom_insiemi}
+Sia $f: A \to B$ un'applicazione. Esiste un'\textbf{unica biiezione} $\tilde{f}: A/\ker(f) \to \im(f)$ tale che il seguente diagramma commuti:
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+A \arrow[r, "f"] \arrow[d, "\pi", swap] & B \\
+A/\ker(f) \arrow[r, "\tilde{f}", swap] & \im(f) \arrow[u, "j", swap, hook]
+\end{tikzcd}
+\]
+ovvero tale che $f = j \circ \tilde{f} \circ \pi$, dove:
+\begin{itemize}
+    \item $\pi: A \to A/\ker(f)$ è la proiezione canonica sul quoziente (suriettiva);
+    \item $\tilde{f}: [a] \mapsto f(a)$ è la biiezione canonica;
+    \item $j: \im(f) \hookrightarrow B$ è l'immersione canonica (iniettiva).
+\end{itemize}
+\end{teorema}
+
+\begin{proof}
+Verifichiamo che $\tilde{f}: A/\ker(f) \to \im(f)$, definita da $\tilde{f}([a]) = f(a)$, è ben posta e biettiva:
+\begin{enumerate}
+    \item \emph{Buona positura:} siano $a, b \in A$ con $[a] = [b]$. Allora per definizione $a \sim_f b \implies f(a) = f(b)$. Quindi il valore $\tilde{f}([a])$ non dipende dal rappresentante scelto.
+    \item \emph{Iniettività:} $\tilde{f}([a]) = \tilde{f}([b]) \implies f(a) = f(b) \implies a \sim_f b \implies [a] = [b]$.
+    \item \emph{Suriettività:} per ogni $y \in \im(f)$, esiste $x \in A$ tale che $f(x) = y$. Allora $\tilde{f}([x]) = f(x) = y$.
+\end{enumerate}
+\end{proof}
+
+\section{Equipotenza e Cardinalità}
+
+\begin{definizione}{Equipotenza}{equipotenza}
+Due insiemi $A$ e $B$ si dicono \textbf{equipotenti} (e si scrive $A \sim B$ o $|A| = |B|$) se esiste una biiezione $f: A \to B$.
+L'equipotenza è una relazione di equivalenza sulla classe di tutti gli insiemi.
+\end{definizione}
+
+Un insieme $A$ si dice:
+\begin{itemize}
+    \item \textbf{Finito} se $A = \vuoto$ oppure esiste $n \in \N^*$ tale che $A \sim \{1, 2, \dots, n\}$.
+    \item \textbf{Infinito} se non è finito (equivalentemente, se è equipotente a un suo sottoinsieme proprio, secondo la definizione di Dedekind).
+    \item \textbf{Numerabile} se $A \sim \N$.
+    \item \textbf{Al più numerabile} se è finito oppure numerabile.
+    \item \textbf{Continuo} se $A \sim \R$.
+\end{itemize}
+
+Gli insiemi $\Z$ e $\Q$ sono numerabili ($|\Z| = |\Q| = \aleph_0$). Al contrario, $\R$ ha la potenza del continuo ($2^{\aleph_0} > \aleph_0$) e non è numerabile.
+
+\begin{teorema}{Teorema di Cantor}{cantor}
+Per ogni insieme $A$, non esiste alcuna applicazione \textbf{suriettiva} da $A$ a $\P(A)$. Di conseguenza, $|A| < |\P(A)|$.
+\end{teorema}
+
+\begin{proof}[Dimostrazione con l'Argomento Diagonale di Cantor]
+Sia $f: A \to \P(A)$ un'applicazione arbitraria. Vogliamo dimostrare che $\im(f) \neq \P(A)$.
+Definiamo il sottoinsieme diagonale $D \sseq A$ come:
+\[
+    D = \{x \in A \mid x \notin f(x)\}
+\]
+Chiaramente $D \in \P(A)$. Mostriamo che $D$ non è immagine di alcun elemento di $A$.
+Supponiamo per assurdo che esista $d \in A$ tale che $f(d) = D$.
+Poniamoci la domanda se $d \in D$:
+\begin{itemize}
+    \item Se $d \in D$, allora per definizione di $D$ si deve avere $d \notin f(d)$. Ma $f(d) = D$, quindi $d \notin D$, contraddizione!
+    \item Se $d \notin D$, allora per definizione di $D$ deve essere falso che $d \notin f(d)$, dunque $d \in f(d) = D$, contraddizione!
+\end{itemize}
+In entrambi i casi si giunge a una palese contraddizione logica. Ne segue che $D \notin \im(f)$, dunque $f$ non può essere suriettiva.
+\end{proof}
