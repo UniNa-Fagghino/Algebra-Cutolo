@@ -20,7 +20,7 @@ jobs:
         with:
           root_file: main.tex
           working_directory: Dispense_Algebra_Cutolo
-          args: -pdf -file-line-error -interaction=nonstopmode
+          args: -pdf -file-line-error -interaction=nonstopmode -f
 
       - name: Rename compiled PDF
         run: |
