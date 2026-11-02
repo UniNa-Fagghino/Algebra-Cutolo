@@ -1,0 +1,121 @@
+\chapter{Vademecum Strategico per l'Esame: Scritto e Orale}
+\label{chap:guida_esame}
+
+L'esame di Algebra con il Prof. Giovanni Cutolo è considerato uno degli scogli più impegnativi del primo anno di Informatica. Questa difficoltà non deriva da calcoli lunghi o noiosi, bensì dall'\textbf{assoluta intransigenza del docente rispetto al rigore linguistico e logico}. In questo capitolo raccogliamo i consigli strategici, l'analisi della prova scritta e il censimento completo delle domande d'orale più insidiose.
+
+\section{La Prova Scritta: Struttura e Gestione dei Tempi}
+
+La prova scritta (della durata di 2 ore nel Nuovo Ordinamento) presenta una struttura standardizzata:
+
+\begin{enumerate}
+    \item \textbf{Sezione 1: Quesiti a Risposta Aperta Sintetica (Quesiti Teorici)}
+    \begin{itemize}
+        \item Da 4 a 6 domande brevi mirate a verificare la conoscenza puntuale delle definizioni assiomatiche e dei teoremi fondamentali (ad es. enunciare il Lemma di Euclide, definire un reticolo booleano, scrivere la formula di $\varphi(m)$, indicare gli invertibili di $\Z_m$).
+        \item \emph{Consiglio tattico:} Rispondere con precisione chirurgica. Se la domanda chiede una definizione, scrivere la formula con tutti i quantificatori ($\forall, \exists$) al posto giusto. Non aggiungere divagazioni non richieste che potrebbero contenere imprecisioni.
+    \end{itemize}
+    \item \textbf{Sezione 2: Esercizio sulle Relazioni d'Ordine, Poset e Reticoli}
+    \begin{itemize}
+        \item Assegnato un insieme $S$ (ad es. l'insieme dei divisori di un numero, o un sottoinsieme di $\P(A)$) con una relazione $\le$, viene richiesto di: verificare se è un ordine, tracciare il diagramma di Hasse, determinare minimali, massimali, minimo, massimo, calcolare $\inf$ e $\sup$ di una coppia, verificare se è un reticolo e studiarne distributività e complementi.
+    \end{itemize}
+    \item \textbf{Sezione 3: Esercizio di Aritmetica Modulare}
+    \begin{itemize}
+        \item Risoluzione di un'equazione congruenziale lineare $ax \equiv b \pmod m$ o di un sistema con il Teorema Cinese del Resto.
+        \item Calcolo di una potenza modulare elevata ($a^N \pmod m$) mediante riduzione dell'esponente con il Teorema di Eulero-Fermat o di Fermat.
+    \end{itemize}
+    \item \textbf{Sezione 4: Strutture Algebriche / Polinomi / Grafi}
+    \begin{itemize}
+        \item Studio di un'operazione definita su un insieme $S$, verifica degli assiomi di gruppo o anello, calcolo degli elementi invertibili e cancellabili.
+        \item Decomposizione in irriducibili di un polinomio in $\Z_p[x]$ e studio del campo quoziente $\Z_p[x]/(f(x))$.
+        \item Verifica di proprietà di un grafo (connessione, alberi, bipartizione con Kőnig, eulerianità).
+    \end{itemize}
+\end{enumerate}
+
+\section{Le 10 Domande ``Killer'' dell'Orale con Cutolo}
+
+Dall'analisi delle esperienze d'esame e delle trascrizioni dei colloqui, emergono dieci domande ricorrenti su cui il docente saggia la vera profondità di comprensione dello studente.
+
+\subsection{1. Perché i Naturali contengono lo zero? ($\N$ e Assiomi di Peano)}
+\textbf{La trappola:} Lo studente risponde ``perché $0$ è il primo numero''.
+\textbf{La risposta di Cutolo:} In algebra e teoria degli insiemi, i numeri naturali rappresentano le \textbf{cardinalità degli insiemi finiti}. L'insieme vuoto $\vuoto$ è un insieme finito con zero elementi, dunque $|\vuoto| = 0 \in \N$.
+Inoltre, negli assiomi di Peano formulati da Dedekind, l'elemento base può essere $0$, consentendo a $(\N, +, 0)$ di essere un monoide commutativo con elemento neutro $0$.
+
+\subsection{2. Perché si scrive $\antivecf$ e MAI $f^{-1}$ se $f$ non è biettiva?}
+\textbf{La trappola:} Usare la notazione $f^{-1}(B)$ per indicare la controimmagine di un sottoinsieme.
+\textbf{La risposta di Cutolo:} La scrittura $f^{-1}$ denota l'\textbf{applicazione inversa} $f^{-1}: B \to A$, la quale esiste \textbf{se e solo se $f$ è biettiva}.
+L'operazione di controimmagine $\antivecf: \P(B) \to \P(A)$ definita da $\antivecf(Y) = \{x \in A \mid f(x) \in Y\}$ è invece un'applicazione perfettamente definita per \textbf{qualunque} applicazione $f$, anche quando $f$ non è né iniettiva né suriettiva. Per evitare l'errore concettuale di presupporre l'invertibilità di $f$, si usa la freccia indietro $\antivecf$.
+
+\subsection{3. Dimostrare che $\inf$ è associativo senza usare gli assiomi algebrici}
+\textbf{La trappola:} Recitare l'uguaglianza $(a \wedge b) \wedge c = a \wedge (b \wedge c)$ dicendo che è un assioma del reticolo.
+\textbf{La risposta di Cutolo:} Si deve lavorare unicamente nella definizione d'ordine:
+\begin{enumerate}
+    \item Si definisce $\inf(S) = \max(\minor(S))$.
+    \item Si mostra che sia $d_1 = a \wedge (b \wedge c)$ che $d_2 = (a \wedge b) \wedge c$ sono entrambi il massimo dell'insieme dei minoranti comuni della terna $\{a, b, c\}$.
+    \item Per l'unicità del massimo, $d_1 = d_2$. (Si veda la dimostrazione formale nel Teorema~\ref{teo:teo_equiv_reticolo}).
+\end{enumerate}
+
+\subsection{4. Cancellabilità vs Invertibilità: Perché in un monoide finito coincidono?}
+\textbf{La trappola:} Dare per scontato che cancellabile $\implies$ invertibile.
+\textbf{La risposta di Cutolo:}
+\begin{itemize}
+    \item In un monoide qualsiasi, invertibile $\implies$ cancellabile (si moltiplica per l'inverso).
+    \item Il viceversa è falso nei monoidi infiniti: in $(\Z, \cdot)$, $2$ è cancellabile ($2x = 2y \implies x = y$), ma non ammette inverso in $\Z$.
+    \item Se il monoide $M$ è \textbf{finito}, la cancellabilità a sinistra di $a$ equivale all'\textbf{iniettività} della traslazione $\lambda_a: M \to M$. Poiché $M$ è finito, ogni applicazione iniettiva da $M$ in $se$ stesso è anche \textbf{suriettiva}. Dunque esiste $b \in M$ tale che $\lambda_a(b) = ab = 1$, provando che $a$ è invertibile.
+\end{itemize}
+
+\subsection{5. Cancellabilità e Divisori dello Zero negli Anelli}
+\textbf{La domanda:} Qual è l'esatta relazione tra elementi cancellabili e divisori dello zero in un anello commutativo unitario $R$?
+\textbf{La dimostrazione:}
+Un elemento $a \in R$ è cancellabile rispetto alla moltiplicazione se e solo se $a$ \textbf{non è un divisore dello zero}:
+\begin{itemize}
+    \item $(\implica)$ Sia $a$ cancellabile e supponiamo $ab = 0$. Poiché $a \cdot 0 = 0$, abbiamo $ab = a \cdot 0$. Cancellando $a$ otteniamo $b = 0$. Quindi $a$ non può essere un divisore dello zero.
+    \item $(\impliedby)$ Sia $a$ non divisore dello zero e supponiamo $ax = ay$. Allora $ax - ay = 0 \implies a(x - y) = 0$. Poiché $a$ non è divisore dello zero e $a \neq 0$, deve necessariamente essere $x - y = 0$, da cui $x = y$. Dunque $a$ è cancellabile.
+\end{itemize}
+
+\subsection{6. La Dimostrazione del Teorema di Ruffini dal Teorema del Resto}
+\textbf{La trappola:} Spiegare la regola tabellare di Ruffini per calcolare i coefficienti.
+\textbf{La risposta di Cutolo:} Il Teorema di Ruffini afferma che $c$ è radice di $f(x) \iff (x - c) \mid f(x)$.
+La dimostrazione discende dalla divisione euclidea: $f(x) = (x - c)q(x) + r(x)$ con $\degpoly(r) < 1$, quindi $r \in K$ è una costante.
+Valutando l'omomorfismo di valutazione in $x = c$: $f(c) = (c - c)q(c) + r = 0 + r = r$.
+Dunque il resto della divisione è esattamente $f(c)$. Ne segue che $(x - c) \mid f(x) \iff \text{resto nullo } r = 0 \iff f(c) = 0$.
+
+\subsection{7. Perché il Criterio delle Radici fallisce per Gradi Superiori a 3?}
+\textbf{La trappola:} Dire che se un polinomio non ha radici è sempre irriducibile.
+\textbf{La risposta di Cutolo:} Un polinomio di secondo o terzo grado, se fosse riducibile, dovrebbe avere almeno un fattore di primo grado (poiché la somma dei gradi è 2 o 3), e tale fattore lineare fornirebbe una radice.
+Per un polinomio di quarto grado, invece, la riducibilità può avvenire come prodotto di due polinomi irriducibili di secondo grado:
+\[
+    f(x) = g(x) \cdot h(x) \qquad \text{con } \degpoly(g) = \degpoly(h) = 2
+\]
+In tal caso $f(x)$ \textbf{non ammette alcuna radice nel campo}, ma è comunque \textbf{riducibile}!
+
+\subsection{8. Sottoreticolo vs Sottoinsieme che è un Reticolo}
+\textbf{La trappola:} Credere che ogni sottoinsieme di un reticolo che sia un reticolo con l'ordine indotto sia un sottoreticolo.
+\textbf{La risposta di Cutolo:} Un sottoinsieme $S \sseq L$ è un \textbf{sottoreticolo} se è \textbf{chiuso rispetto alle operazioni} del reticolo ambiente:
+\[
+    \forall a, b \in S, \quad a \wedge_L b \in S \;\wedge\; a \vee_L b \in S
+\]
+Può accadere che $S$, considerato come poset a sé stante con l'ordine indotto, sia un reticolo, ma che l'estremo inferiore di due elementi calcolato in $S$ \textbf{non coincida} con l'estremo inferiore calcolato nel reticolo ambiente $L$! In tal caso $S$ non è un sottoreticolo di $L$.
+
+\subsection{9. Perché l'Anello Quoziente $K[x]/(f(x))$ è un Campo solo se $f$ è Irriducibile?}
+\textbf{La spiegazione:}
+\begin{itemize}
+    \item Se $f(x) = g(x)h(x)$ è riducibile, allora $[g] \cdot [h] = [f] = [0]$ con $[g], [h] \neq [0]$, dunque il quoziente ha divisori dello zero e non può essere un campo.
+    \item Se $f(x)$ è irriducibile, per ogni $[g] \neq [0]$ si ha $\mcd(f, g) = 1$. Per il Teorema di Bézout per polinomi, $f(x)u(x) + g(x)v(x) = 1$. Passando alle classi resto: $[g(x)][v(x)] = [1]$, dunque ogni elemento non nullo è invertibile, rendendo il quoziente un campo.
+\end{itemize}
+
+\subsection{10. Disegnare i Reticoli di Birkhoff e Indicare la Violazione}
+\textbf{La richiesta:} Disegnare al volo i diagrammi di Hasse del pentagono $N_5$ e del diamante $M_3$ ed esibire la terna che non rispetta la distributività. (Si veda la Figura~\ref{fig:n5_m3} nel Capitolo~\ref{chap:ordini_reticoli}).
+
+\section{I Dieci Comandamenti del Rigore Matematico per l'Orale}
+
+\begin{enumerate}
+    \item \textbf{Mai omettere i quantificatori:} Scrivere sempre $\forall$ o $\exists$ specificando l'insieme di appartenenza.
+    \item \textbf{Dichiarare le variabili prima di usarle:} Non iniziare una frase con ``$f(x) = y$'' senza aver prima dichiarato ``Siano $A, B$ insiemi e sia $f: A \to B$ un'applicazione''.
+    \item \textbf{Distinguere implicazione logica da equivalenza:} Non usare $\iff$ al posto di $\implies$.
+    \item \textbf{Non confondere appartenenza ($\in$) ed inclusione ($\sseq$):} $a \in A$ connette un elemento a un insieme; $\{a\} \sseq A$ connette due insiemi.
+    \item \textbf{Non dire ``si annulla'' in modo ambiguo:} Specificare se ci si riferisce a un elemento uguale a zero ($a = 0$) o a un elemento che è divisore dello zero.
+    \item \textbf{Enunciare sempre le ipotesi prima della tesi:} Nei teoremi le ipotesi non sono dettagli opzionali; se si omette l'ipotesi di campo per la divisione euclidea dei polinomi, il teorema è falso.
+    \item \textbf{Rispettare le convenzioni del docente:} Usare $\antivecf$ per le controimmagini e includere $0$ in $\N$.
+    \item \textbf{Nei reticoli, motivare $\inf$ e $\sup$ con la definizione:} Non limitarsi a dire ``si vede dal disegno''.
+    \item \textbf{Conoscere a memoria gli enunciati esatti:} All'orale Cutolo chiede spesso: ``Mi enunci il Teorema di Lagrange'', ``Mi enunci il Teorema di Stone'', ``Mi enunci il Criterio di Birkhoff''.
+    \item \textbf{Se si commette un errore, fermarsi e correggersi con calma:} Cutolo apprezza grandemente lo studente che, resosi conto di un'imprecisione, torna indietro, analizza l'assioma violato e riformula l'argomentazione con rigore formale.
+\end{enumerate}
