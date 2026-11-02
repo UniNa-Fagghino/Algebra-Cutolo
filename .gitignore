@@ -1,0 +1,38 @@
+# ==============================================================================
+# Telegram Chat Export - Privacy e protezione dati personali (NON PUBBLICARE)
+# ==============================================================================
+Chat Export/
+Chat Export/**
+[Cc]hat [Ee]xport/
+
+# ==============================================================================
+# File di sistema operativo e desktop
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# ==============================================================================
+# File temporanei, editor e IDE
+# ==============================================================================
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+~$*
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log e scratch directory locali
+*.log
+scratch/
+.system_generated/
+
